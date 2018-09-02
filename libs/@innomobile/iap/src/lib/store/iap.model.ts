@@ -1,5 +1,6 @@
 export interface IapModel {
     id: string;
+    name?: string;
     itunesId?: string;
     itunesType?: IapType;
     playstoreId?: string;
