@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ToastService } from '@innomobile/core';
+import { ToastService, CoreService } from '@innomobile/core';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 
@@ -15,7 +15,8 @@ export class AuthService {
 
   constructor(
     public afAuth: AngularFireAuth,
-    public toast: ToastService
+    public toast: ToastService,
+    private core: CoreService,
   ) { }
 
   get fbUser(): firebase.User {
@@ -155,9 +156,16 @@ export class AuthService {
 
   // Update Email and verify new email
   async updateFbEmail(email): Promise<boolean> {
+    const mailCorrect = this.core.emailValidator(email);
+    if (!mailCorrect) {
+      this.showError('auth/invalid-email')
+      return false;
+    }
+
     try {
       await this.fbUser.updateEmail(email);
-      return this.sendEmailVerification();
+      await this.sendEmailVerification();
+      return true;
     } catch (error) {
       this.showError(error);
       return false;
