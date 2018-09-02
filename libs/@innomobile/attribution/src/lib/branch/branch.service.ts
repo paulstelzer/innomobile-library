@@ -8,7 +8,7 @@ import { Branch, BranchPromise } from '@innomobile-native/branch/ngx';
 export interface BranchAnalytics {
   channel?: string;
   campaign?: string;
-  [x: string]: string;
+  [x: string]: any;
 }
 
 export interface BranchProperties {
