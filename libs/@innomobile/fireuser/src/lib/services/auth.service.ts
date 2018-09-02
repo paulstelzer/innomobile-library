@@ -23,6 +23,10 @@ export class AuthService {
     return this.afAuth.auth.currentUser;
   }
 
+  get currentToken(): Promise<string> {
+    return this.afAuth.auth.currentUser.getIdToken();
+  }
+
   getRedirectResult(): Promise<any> {
     return this.afAuth.auth.getRedirectResult();
   }
