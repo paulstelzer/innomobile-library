@@ -90,6 +90,9 @@ export class FirebasePlatformService {
   async hasToken(fcmTokens) {
     if (!this.userToken) {
       this.userToken = await this.getToken();
+      if(!this.userToken) {
+        return true;
+      }
     }
 
     if (fcmTokens) {
