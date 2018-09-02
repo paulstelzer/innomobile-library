@@ -180,7 +180,7 @@
       "root": "libs/@innomobile/fireuser",
       "sourceRoot": "libs/@innomobile/fireuser/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "im",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -220,7 +220,7 @@
       "root": "libs/@innomobile/core",
       "sourceRoot": "libs/@innomobile/core/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "im",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -260,7 +260,7 @@
       "root": "libs/@innomobile/attribution",
       "sourceRoot": "libs/@innomobile/attribution/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "im",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -300,7 +300,7 @@
       "root": "libs/@innomobile/ads",
       "sourceRoot": "libs/@innomobile/ads/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "im",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -340,7 +340,7 @@
       "root": "libs/@innomobile/iap",
       "sourceRoot": "libs/@innomobile/iap/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "im",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -380,7 +380,7 @@
       "root": "libs/@innomobile/ionic-image-loader",
       "sourceRoot": "libs/@innomobile/ionic-image-loader/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "im",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -420,7 +420,7 @@
       "root": "libs/@innomobile/firebase-native",
       "sourceRoot": "libs/@innomobile/firebase-native/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "im",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -460,7 +460,7 @@
       "root": "libs/@innomobile/notifications",
       "sourceRoot": "libs/@innomobile/notifications/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "im",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -500,7 +500,7 @@
       "root": "libs/@innomobile/mapbox",
       "sourceRoot": "libs/@innomobile/mapbox/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "im",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -540,7 +540,7 @@
       "root": "libs/@innomobile/countdown-timer",
       "sourceRoot": "libs/@innomobile/countdown-timer/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "im",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

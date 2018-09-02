@@ -6,7 +6,7 @@ import { exec } from 'child_process';
 
 import { cpus } from 'os';
 
-const PACKAGES = [];
+let PACKAGES = [];
 
 function prepare() {
     // write plugin package.json files
@@ -18,6 +18,8 @@ function prepare() {
 
 async function build(ignoreErrors = false) {
     Logger.profile('Building');
+
+    PACKAGES = PACKAGES.filter(element => element !== 'core');
     
     // upload 1 package per CPU thread at a time
     const worker = Queue.async.asyncify((pkg: any) =>
