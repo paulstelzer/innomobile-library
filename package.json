@@ -11,7 +11,7 @@
   "scripts": {
     "lib:build": "npm run core && npm run lib:postbuild",
     "lib:postbuild": "ts-node -P scripts/tsconfig.json scripts/tasks/build",
-    "lib:pub": "ts-node -P scripts/tsconfig.json scripts/tasks/publish",
+    "lib:publish": "ts-node -P scripts/tsconfig.json scripts/tasks/publish",
     "release:major": "npx changelog -M && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version major && git push origin && git push origin --tags",
     "release:minor": "npx changelog -m && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version minor && git push origin && git push origin --tags",
     "release:patch": "npx changelog -p && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version patch && git push origin && git push origin --tags",
