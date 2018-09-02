@@ -66,7 +66,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgxsStoragePluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     //NgxsLoggerPluginModule.forRoot(),
-    CoreModule.forRoot({}),
+    CoreModule.forRoot({}, ' | InnoMobile'),
     FireuserModule.forRoot(firebaseConfig, {
       defaultLanguage: 'en',
       availableLanguages: availableLanguages
