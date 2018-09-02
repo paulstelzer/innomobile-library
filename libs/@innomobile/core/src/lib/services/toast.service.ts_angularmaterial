@@ -1,0 +1,65 @@
+import { CoreModule } from './../core.module';
+import { Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+
+import { MatSnackBar, MatSnackBarConfig, MatSnackBarRef, SimpleSnackBar } from '@angular/material';
+
+@Injectable({
+    providedIn: CoreModule
+})
+export class ToastService {
+
+    okayButton = 'Okay';
+    constructor(private translate: TranslateService, private snackbar: MatSnackBar) {
+        this.translate.get('TOAST.OKAY').subscribe((data) => {
+            this.okayButton = data;
+        });
+    }
+
+
+    async sendToastTranslation(type: string, message: string, action: string = this.okayButton, options: MatSnackBarConfig = null) {
+        this.okayButton = await this.translate.get('TOAST.OKAY').toPromise();
+        const res = await this.translate.get(message).toPromise();
+        return this.sendToast(type, res, action, options);
+    }
+
+    /**
+     * Sendet einen Toast
+     * @param type error, success
+     * @param message
+     * @param action
+     * @param options
+     */
+    sendToast(
+        type: string,
+        message: string,
+        action: string = this.okayButton,
+        options?: MatSnackBarConfig
+    ): MatSnackBarRef<SimpleSnackBar> {
+        let cssClass = 'default';
+        switch (type) {
+            case 'error':
+                cssClass = 'error';
+                break;
+            case 'success':
+                cssClass = 'success';
+                break;
+            case 'info':
+                cssClass = 'info';
+                break;
+            default:
+                cssClass = 'default';
+                break;
+        }
+
+        let toastOptions: MatSnackBarConfig = {
+            panelClass: 'toast-' + cssClass,
+            duration: 5000
+        };
+
+        toastOptions = Object.assign(toastOptions, options);
+
+        return this.snackbar.open(message, action, toastOptions);
+    }
+
+}

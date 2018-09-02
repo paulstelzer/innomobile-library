@@ -1,0 +1,31 @@
+{
+	"FIREBASE": {
+		"ERROR": {
+			"DEFAULT": "Something went wrong - Please try again later",
+			"INVALID": "Your Email or Password was invalid",
+			"IN_USE": "This login credentials are already in use",
+			"INVALID_EMAIL": "Please enter a valid Email Address!",
+			"NOT_SAVED": "Your data was not saved, please try again later",
+			"DISABLED": "Your account was blocked, please contact support@iqtest-app.de ",
+			"WEAK_PASSWORD": "The password has to be at least 6 characters!",
+			"NETWORK": "We could not connect to the internet!",
+			"SIGNUP": "We could not create your account!",
+			"QUOTA": "We have not enough space to place the data for the IQ Test!"
+		},
+		"SUCCESS": {
+			"USER_SAVING": "Your account details will be saved",
+			"USER_SAVED": "Your account details are saved successfully",
+			"USER_DELETED": "Your account was deleted successfully",
+			"MAIL_SAVED": "Your account was successfully saved with your Email!",
+			"MAIL_NEW": "We have changed your Email-Address and send you a confirmation link!",
+			"MAIL_VERIFICATION": "We send you an Email to verfiy your Email-Address!",
+			"MAIL_RESET_PASSWORD": "We send you an Email to reset your password!"
+		}
+	},
+	"HOME": {
+		"TITLE": "My Home"
+	},
+	"TOAST": {
+		"OKAY": "Okelidokili"
+	}
+}

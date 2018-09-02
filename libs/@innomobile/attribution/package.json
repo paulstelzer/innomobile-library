@@ -1,0 +1,15 @@
+{
+  "name": "@innomobile/attribution",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^6.0.0",
+    "@angular/core": "^6.0.0",
+    "@ionic/angular": "^4.0.0 || >= 4.0.0-beta.6",
+    "cordova-plugin-x-socialsharing": "^5.4.0",
+    "@ionic-native/social-sharing": "^5.0.0 || >= 5.0.0-beta.17",
+    "branch-cordova-sdk": "^3.0.0",
+    "@innomobile-native/branch": "^5.0.0 || >= 5.0.0-beta.17",
+    "cordova-plugin-appsflyer-sdk": "^4.4.0",
+    "@innomobile-native/appsflyer": "^5.0.0 || >= 5.0.0-beta.17"
+  }
+}

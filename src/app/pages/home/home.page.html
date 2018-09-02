@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ 'HOME.TITLE' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <lib-auth-text></lib-auth-text>
+  The world is your oyster. - Version 0.0.4
+  <ion-icon name="logo-facebook"></ion-icon>
+
+  <div>
+    Branchdata: {{branchData | json}}
+  </div>
+
+  <ion-button (click)="share()">
+    Share a message to a friend
+  </ion-button>
+
+
+  <ion-button (click)="signIn()">
+    <ion-icon name="add-circle"></ion-icon> Sign In anonym
+  </ion-button>
+
+  <ion-button (click)="logout()">
+    Logout
+  </ion-button>
+
+  <ion-button (click)="setLanguage('de')">
+    DEUTSCH
+  </ion-button>
+  <ion-button (click)="setLanguage('en')">
+    ENGLISH
+  </ion-button>
+
+  <!-- <innomobile-youtube-video-player id="kY7UkdSJsbg"></innomobile-youtube-video-player> -->
+
+  <im-img-loader src="https://cp.discoveryourdestination.com/storage/uploads/2018/05/27/5b0a9074cd7bdimmigration.jpg" useImg></im-img-loader>
+
+</ion-content>

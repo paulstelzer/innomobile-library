@@ -1,0 +1,24 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "baseUrl": "./",
+    "module": "es2015",
+    "paths": {
+      "@innomobile/ads": ["../dest/@innomobile/ads"],
+      "@innomobile/attribution": ["../dest/@innomobile/attribution"],
+      "@innomobile/core": ["../dest/@innomobile/core"],
+      "@innomobile/countdown-timer": ["../dest/@innomobile/countdown-timer"],
+      "@innomobile/firebase-native": ["../dest/@innomobile/firebase-native"],
+      "@innomobile/fireuser": ["../dest/@innomobile/fireuser"],
+      "@innomobile/iap": ["../dest/@innomobile/iap"],
+      "@innomobile/ionic-image-loader": ["../dest/@innomobile/ionic-image-loader"],
+      "@innomobile/mapbox": ["../dest/@innomobile/mapbox"],
+      "@innomobile/notifications": ["../dest/@innomobile/notifications"]
+    }
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts"
+  ]
+}

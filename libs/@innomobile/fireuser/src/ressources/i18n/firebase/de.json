@@ -1,0 +1,53 @@
+{
+  "FIREBASE": {
+    "ACTION": {
+      "START": "Zurück zum Start",
+      "VERIFY_EMAIL": {
+        "TITLE": "Bestätige deine Email-Adresse...",
+        "SUCCESS": "Deine Email wurde erfolgreich bestätigt!",
+        "ERROR": "Wir konnten deine Email leider nicht bestätigen!"
+      },
+      "RECOVER_EMAIL": {
+        "TITLE": "Zurücksetzen deiner Email...",
+        "SUCCESS": "Wir haben deine Email erfolgreich zurückgesetzt!",
+        "ERROR": "Wir konnten deine Email nicht zurücksetzen!"
+      },
+      "RESET_PASSWORD": {
+        "TITLE": "Trage ein neues Passwort ein",
+        "BUTTON": "Passwort zurücksetzen",
+        "SUCCESS": "Passwort wurde erfolgreich geändert!",
+        "ERROR": "Dein Passwort konnte nicht geändert werden!"
+      }
+    },
+    "ERROR": {
+      "DEFAULT": "Irgendwas ist falsch gelaufen, bitte versuch es später erneut",
+      "INVALID": "Deine Email oder Passwort waren falsch",
+      "NOT_FOUND": "Es konnte kein Account gefunden werden!",
+      "IN_USE": "Diese Zugangsdaten sind bereits hinterlegt",
+      "INVALID_EMAIL": "Bitte trage eine korrekte Email Adresse ein!",
+      "NOT_SAVED": "Deine Daten konnten nicht gespeichert werden, bitte versuche es später erneut",
+      "DISABLED": "Dein Account ist blockiert, bitte wende dich an support@iqtest-app.de",
+      "WEAK_PASSWORD": "Das Passwort sollte mindestens 6 Zeichen lang sein!",
+      "NETWORK": "Es konnte keine Verbindung zum Internet hergestellt werden!",
+      "SIGNUP": "Die Erstellung des Accounts ist fehlgeschlagen",
+      "QUOTA": "Auf deinem Gerät ist nicht genügend Speicherplatz vorhanden, um die Daten abzulegen!",
+      "RECENT_LOGIN": "Da deine letzte Anmeldung zu lange her ist, ist diese Aktion nicht mehr möglich. Logge dich aus und wieder ein. Danach klicke hier erneut!",
+      "NO_NEW_POSITION": "Deine Position hat sich nicht geändert!",
+      "INVALID_CODE": "Der Code zum Bestätigen der E-Mail-Adresse ist falsch oder du hast deine E-Mail-Adresse bereits hiermit bestätigt!"
+    },
+    "SUCCESS": {
+      "USER_SAVING": "Deine Accountdetails werden gespeichert",
+      "USER_SAVED": "Speichern erfolgreich!",
+      "USER_DELETED": "Dein Account wurde erfolgreich gelöscht",
+      "MAIL_SAVED": "Dein Account wurde erfolgreich mit deiner Email-Adresse verknüpft!",
+      "MAIL_NEW": "Deine Email-Adresse wurde geändert und ein Bestätigungslink versendet!",
+      "MAIL_VERIFICATION": "Wir haben dir eine Email zur Bestätigung deiner E-Mail-Adresse geschickt!",
+      "MAIL_VERIFIED": "Deine Email-Adresse wurde erfolgreich bestätigt!",
+      "MAIL_RECOVERED": "Deine Email-Adresse wurde erfolgreich wiederhergestellt!",
+      "MAIL_RESET_PASSWORD": "Wir haben dir eine Email zum Zurücksetzen geschickt!",
+      "SMS_SEND": "Wir haben dir soeben eine SMS mit dem Verifikationscode geschickt!",
+      "LOGIN_SUCCESFUL": "Login erfolgreich",
+      "PASSWORD_CHANGED": "Du hast dein Passwort erfolgreich geändert!"
+    }
+  }
+}

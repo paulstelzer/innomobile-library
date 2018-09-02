@@ -1,0 +1,38 @@
+
+import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgxsModule } from '@ngxs/store';
+import { NotificationState } from './store/notifications.state';
+import { NotificationsConfig } from './store/notifications.model';
+
+
+export interface LanguageConfig {
+  defaultLanguage: string;
+  availableLanguages: {
+    code: string;
+    name: string;
+  }[];
+}
+
+@NgModule({
+  imports: [
+    NgxsModule.forFeature([
+      NotificationState
+    ])
+  ],
+  declarations: [
+
+  ],
+  exports: [
+
+  ]
+})
+export class NotificationsModule {
+  public static forRoot(notificationsConfig: NotificationsConfig = {path: {user: 'users', notifications: 'notifications'}}): ModuleWithProviders {
+    return {
+      ngModule: NotificationsModule,
+      providers: [
+        { provide: 'notificationsConfig', useValue: notificationsConfig }
+      ]
+    };
+  }
+}
