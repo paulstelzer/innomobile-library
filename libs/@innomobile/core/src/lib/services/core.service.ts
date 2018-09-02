@@ -2,6 +2,7 @@
 import { StoreConfig } from './../core.module';
 import { Injectable, Inject } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { Title } from '@angular/platform-browser';
 
 
 @Injectable({
@@ -9,7 +10,16 @@ import { Platform } from '@ionic/angular';
 })
 export class CoreService {
 
-  constructor(private platform: Platform, @Inject('storeConfig') private storeConfig: StoreConfig) { }
+  constructor(
+    private title: Title,
+    private platform: Platform,
+    @Inject('storeConfig') private storeConfig: StoreConfig,
+    @Inject('titleConfig') private titleConfig: string,
+  ) { }
+
+  setTitle(name: string) {
+    this.title.setTitle(`${name} ${this.titleConfig}`);
+  }
 
   generateGUID() {
     function S4() {

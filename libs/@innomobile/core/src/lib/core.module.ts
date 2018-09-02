@@ -36,11 +36,12 @@ export interface StoreConfig {
   ]
 })
 export class CoreModule {
-  public static forRoot(storeConfig: StoreConfig): ModuleWithProviders {
+  public static forRoot(storeConfig: StoreConfig, titleConfig: string): ModuleWithProviders {
     return {
       ngModule: CoreModule,
       providers: [
-        { provide: 'storeConfig', useValue: storeConfig }
+        { provide: 'storeConfig', useValue: storeConfig },
+        { provide: 'titleConfig', useValue: titleConfig }
       ]
     };
   }
