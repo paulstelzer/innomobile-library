@@ -54,6 +54,27 @@ export class CoreService {
     return false;
   }
 
+  getDate(input) {
+    if (input) {
+      if (input instanceof Date) {
+        return input;
+      } else if (input.toDate instanceof Function) {
+        return input.toDate();
+      } else {
+        return new Date(input);
+      }
+    }
+
+    return new Date();
+  }
+
+  isSameDay(date1, date2) {
+    if (date1.getDate() === date2.getDate() && date1.getMonth() === date2.getMonth()) {
+      return true;
+    }
+    return false;
+  }
+
   getDifferenceDate(date1, date2) {
     if (date1 instanceof Date && date2 instanceof Date) {
       const diff = Math.abs(date1.getTime() - date2.getTime());
