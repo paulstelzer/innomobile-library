@@ -18,7 +18,11 @@ export class AdmobService {
     private _readyPromise: Promise<string>;
     private _readyResolve: any;
 
-    constructor(public admob: AdMobFree, private platform: Platform, @Inject('admobConfig') private admobConfig: AdmobConfig) {
+    constructor(
+        public admob: AdMobFree,
+        private platform: Platform,
+        @Inject('admobConfig') private admobConfig: AdmobConfig,
+    ) {
         this._readyPromise = new Promise(res => { this._readyResolve = res; });
     }
 
