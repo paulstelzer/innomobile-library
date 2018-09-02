@@ -119,7 +119,7 @@ export class IapState implements NgxsOnInit {
         }
 
         ctx.patchState({
-            packages: products
+            products: products
         });
     }
 
