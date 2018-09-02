@@ -3,7 +3,7 @@ import { Platform } from '@ionic/angular';
 
 
 @Component({
-  selector: 'innomobile-contact-button',
+  selector: 'im-contact-button',
   templateUrl: 'contact-button.html'
 })
 export class ContactButtonComponent {

@@ -2,7 +2,7 @@ import { Component, Input, OnChanges } from '@angular/core';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Component({
-  selector: 'innomobile-youtube-video-player',
+  selector: 'im-youtube-video-player',
   templateUrl: 'youtube-video-player.html',
   styleUrls: ['youtube-video-player.scss']
 })
