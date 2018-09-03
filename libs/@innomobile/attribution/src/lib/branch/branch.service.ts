@@ -3,20 +3,7 @@ import { Injectable, Optional, Inject } from '@angular/core';
 import { Platform } from '@ionic/angular';
 
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
-import { Branch, BranchPromise } from '@innomobile-native/branch/ngx';
-
-export interface BranchAnalytics {
-  channel?: string;
-  campaign?: string;
-  [x: string]: any;
-}
-
-export interface BranchProperties {
-  contentMetadata?: {
-    [x: string]: any;
-  };
-  [x: string]: any;
-}
+import { BranchIo, BranchIoPromise, BranchIoAnalytics, BranchIoProperties } from '@innomobile-native/branch/ngx';
 
 @Injectable({
   providedIn: 'root'
@@ -28,14 +15,14 @@ export class BranchService {
 
   constructor(
     private platform: Platform,
-    private branch: Branch,
+    private branch: BranchIo,
     private socialSharing: SocialSharing,
     @Optional() @Inject(BRANCH_CONFIG) private branchConfig: BranchConfigOptions,
   ) {
 
   }
 
-  async initSession(): Promise<BranchPromise> {
+  async initSession(): Promise<BranchIoPromise> {
     if (!this.platform.is('cordova')) { return; }
 
     await this.platform.ready();
@@ -54,7 +41,7 @@ export class BranchService {
     }
   }
 
-  async getSession(): Promise<BranchPromise> {
+  async getSession(): Promise<BranchIoPromise> {
     return await this.branch.initSession();
   }
 
@@ -69,13 +56,14 @@ export class BranchService {
     return this.branch.setIdentity(userId);
   }
 
-  async share(subject: string, message: string, analytics: BranchAnalytics, properties: BranchProperties): Promise<void> {
+  async share(subject: string, message: string, analytics: BranchIoAnalytics, properties: BranchIoProperties): Promise<void> {
     if (!this.initialized) { return; }
 
-    // branchUniversalObj.showShareSheet(analytics, properties, message)
+     
     try {
       const branchUniversalObj = await this.branch.createBranchUniversalObject(properties);
       const response1 = await branchUniversalObj.generateShortUrl(analytics, properties);
+      //branchUniversalObj.showShareSheet(analytics, properties, message)
 
       await this.socialSharing.shareWithOptions({
         message: message + ' ' + response1.url,
