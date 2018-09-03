@@ -1,3 +1,20 @@
+#### 1.1.5 (2018-09-03)
+
+##### Chores
+
+*  Changed scripts ([2211b479](https://github.com/paulstelzer/innomobile-library/commit/2211b4796de83bc4f65502cca85effdb1e111ff4))
+*  Update packages ([d1699f79](https://github.com/paulstelzer/innomobile-library/commit/d1699f79a8cc41928c8d3a762772793e3d80c113))
+
+##### Bug Fixes
+
+* **attribution:**  Change classes of branch.io ([741e8af4](https://github.com/paulstelzer/innomobile-library/commit/741e8af456b31aa3844c02618faab0c51cf7df53))
+* **core:**
+  *  Correct Selector ([6e424d68](https://github.com/paulstelzer/innomobile-library/commit/6e424d68a438e6ec23ff969eeb4d3c62b99ac587))
+  *  Add new date methods ([3c3c0adb](https://github.com/paulstelzer/innomobile-library/commit/3c3c0adbcdaaaab2983f26bc7767ab2395aae1aa))
+* **fireuser:**  Current token generation on runtime ([c7c1c887](https://github.com/paulstelzer/innomobile-library/commit/c7c1c8877611a319e6b48fccaea6ba0789266285))
+* **firebase-native:**  Return false if no token could generated ([1cfe7eea](https://github.com/paulstelzer/innomobile-library/commit/1cfe7eeafec40ab39616b2a60b3690836898e124))
+* **app:**  CoreModule now with 2 parameter ([17ef6a5c](https://github.com/paulstelzer/innomobile-library/commit/17ef6a5c3f23042a790b11945824e0ab574e2963))
+
 #### 1.1.4 (2018-09-02)
 
 ##### Chores
