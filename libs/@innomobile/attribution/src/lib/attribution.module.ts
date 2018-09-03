@@ -1,5 +1,5 @@
 import { NgModule, ModuleWithProviders, InjectionToken } from '@angular/core';
-import { Branch } from '@innomobile-native/branch/ngx';
+import { BranchIo } from '@innomobile-native/branch/ngx';
 import { Appsflyer, AppsflyerOptions } from '@innomobile-native/appsflyer/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
@@ -30,7 +30,7 @@ export class AttributionModule {
     return {
       ngModule: AttributionModule,
       providers: [
-        Branch,
+        BranchIo,
         SocialSharing,
         Appsflyer,
         { provide: APPSFLYER_CONFIG, useValue: appsflyerConfig },
