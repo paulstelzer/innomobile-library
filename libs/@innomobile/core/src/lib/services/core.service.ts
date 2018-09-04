@@ -1,8 +1,9 @@
 
 import { StoreConfig } from './../core.module';
 import { Injectable, Inject } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { Platform, NavController } from '@ionic/angular';
 import { Title } from '@angular/platform-browser';
+import { NavigationExtras, UrlTree } from '@angular/router';
 
 
 @Injectable({
@@ -13,6 +14,7 @@ export class CoreService {
   constructor(
     private title: Title,
     private platform: Platform,
+    private nav: NavController,
     @Inject('storeConfig') private storeConfig: StoreConfig,
     @Inject('titleConfig') private titleConfig: string,
   ) { }
@@ -20,6 +22,17 @@ export class CoreService {
   setTitle(name: string) {
     this.title.setTitle(`${name} ${this.titleConfig}`);
   }
+
+  async navigateForward(link: any[] | string | UrlTree, animated: boolean = true, extras?: NavigationExtras) {
+    // this.router.navigate([link]);
+    this.nav.navigateForward(link, animated, extras);
+  }
+
+  async navigateRoot(link: any[] | string | UrlTree, animated: boolean = true, extras?: NavigationExtras) {
+    // this.router.navigate([link]);
+    this.nav.navigateRoot(link, animated, extras);
+  }
+
 
   generateGUID() {
     function S4() {
@@ -115,7 +128,7 @@ export class CoreService {
     const vars: object = {};
 
     for (let i = 0; i < parameter.length; i++) {
-      let hash = parameter[i].split('=');
+      const hash = parameter[i].split('=');
       vars[hash[0]] = hash[1];
     }
     return vars;
