@@ -4,13 +4,13 @@
         "directive-selector": [
             true,
             "attribute",
-            "innomobile",
+            "im",
             "camelCase"
         ],
         "component-selector": [
             true,
             "element",
-            "innomobile",
+            "im",
             "kebab-case"
         ]
     }
