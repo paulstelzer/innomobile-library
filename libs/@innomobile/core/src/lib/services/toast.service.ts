@@ -12,10 +12,9 @@ export class ToastService {
     constructor(private translate: TranslateService, private toastCtrl: ToastController) { }
 
 
-    sendToastTranslation(type: string, message: string, options: ToastOptions = null) {
-        this.translate.get(message).subscribe((res: string) => {
-            this.sendToast(type, res, options);
-        });
+    async sendToastTranslation(type: string, message: string, options: ToastOptions = null) {
+        const res: string = await this.translate.get(message).toPromise();
+        return this.sendToast(type, res, options);
     }
 
     /**
@@ -51,8 +50,7 @@ export class ToastService {
 
         toastOptions = Object.assign(toastOptions, options);
 
-        let toast = await this.toastCtrl.create(toastOptions);
-        toast.present();
+        const toast = await this.toastCtrl.create(toastOptions);
+        return toast.present();
     }
-
 }
