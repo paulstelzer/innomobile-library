@@ -2,10 +2,9 @@ import { Firebase } from '@ionic-native/firebase/ngx';
 import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { Observable } from 'rxjs';
-import { FirebaseNativeModule } from '../firebase-native.module';
 
 @Injectable({
-  providedIn: FirebaseNativeModule
+  providedIn: 'root'
 })
 export class FirebasePlatformService {
   userToken = null;
@@ -16,6 +15,11 @@ export class FirebasePlatformService {
 
   init() {
     if (!this.platform.is('cordova')) { return; }
+    /*
+    TODO
+    this.firebaseNative.initFirebase();
+    this.firebaseNative.initCrashlytics();
+    */
     this.userToken = this.getToken();
     this.firebaseNative.setBadgeNumber(0);
   }
