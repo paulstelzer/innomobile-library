@@ -1,3 +1,16 @@
+<a name="1.2.1"></a>
+## [1.2.1](https://github.com/paulstelzer/innomobile-library/compare/v1.2.0...v1.2.1) (2018-09-06)
+
+
+### Bug Fixes
+
+* **core:** Remove console.log ([0685b62](https://github.com/paulstelzer/innomobile-library/commit/0685b62))
+* **firebase-native:** Add documentation to setToken ([ea6180f](https://github.com/paulstelzer/innomobile-library/commit/ea6180f))
+* **firebase-native:** Return of setToken ([544bc4a](https://github.com/paulstelzer/innomobile-library/commit/544bc4a))
+* **fireuser:** Add more events and change names ([0b8f75e](https://github.com/paulstelzer/innomobile-library/commit/0b8f75e))
+
+
+
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/paulstelzer/innomobile-library/compare/v1.1.5...v1.2.0) (2018-09-06)
 
