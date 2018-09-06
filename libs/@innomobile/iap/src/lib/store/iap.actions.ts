@@ -9,6 +9,10 @@ export class IapClear {
     static readonly type = '[IAP] Clear everything';
 }
 
+export class IapClearUser {
+    static readonly type = '[IAP] Clear user';
+}
+
 export class AddPackage {
     static readonly type = '[IAP] Add Package';
     constructor(public iap: IAPProductOptions) {}

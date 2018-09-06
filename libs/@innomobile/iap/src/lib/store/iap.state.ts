@@ -1,8 +1,16 @@
-import { State, Action, StateContext, Selector, NgxsOnInit } from '@ngxs/store';
-import { AddPackage, IapInit, IapPurchaseApproved, AddProduct, IapClear, IapPurchaseExpired, IapPurchaseRefunded } from './iap.actions';
+import { Action, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
+import {
+    AddPackage,
+    AddProduct,
+    IapClear,
+    IapClearUser,
+    IapInit,
+    IapPurchaseApproved,
+    IapPurchaseExpired,
+    IapPurchaseRefunded
+} from './iap.actions';
 import { IapStateModel } from './iap.model';
 
-// Section 3
 @State<IapStateModel>({
     name: 'iap',
     defaults: {
@@ -47,7 +55,6 @@ export class IapState implements NgxsOnInit {
      */
     ngxsOnInit(ctx: StateContext<IapStateModel>) {
         ctx.dispatch(new IapInit());
-
     }
 
     @Action(IapInit)
@@ -67,6 +74,15 @@ export class IapState implements NgxsOnInit {
         return ctx.setState({
             packages: [],
             products: [],
+            purchased: [],
+            expired: [],
+            refunded: []
+        });
+    }
+
+    @Action(IapClearUser)
+    iapClearUser(ctx: StateContext<IapStateModel>) {
+        return ctx.patchState({
             purchased: [],
             expired: [],
             refunded: []
