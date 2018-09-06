@@ -62,6 +62,7 @@ export class YoutubeVideoPlayerComponent implements OnChanges {
             events: {
               onReady: (event: any) => {
                 this.ready = true;
+                console.log('Video with ID', this.id, 'ready');
                 if (this.autoplay) {
                   this.playVideo();
                 }
@@ -70,10 +71,8 @@ export class YoutubeVideoPlayerComponent implements OnChanges {
               }
             }
           });
-
-
         } else {
-          // console.log('No YT API');
+          console.log('No YT API for Video ID', this.id);
           this.loadYtApi();
         }
       }, 500);
@@ -87,12 +86,20 @@ export class YoutubeVideoPlayerComponent implements OnChanges {
 
   playVideo() {
     if (!this.ready || !this.player) { return; }
-    this.player.playVideo();
+    if (this.player.playVideo instanceof Function) {
+      this.player.playVideo();
+    } else {
+      console.log('This player has no play video function', this.player);
+    }
   }
 
   pauseVideo() {
     if (!this.ready || !this.player) { return; }
-    this.player.pauseVideo();
+    if (this.player.playVideo instanceof Function) {
+      this.player.pauseVideo();
+    } else {
+      console.log('This player has no pause video function', this.player);
+    }
   }
 
 }
