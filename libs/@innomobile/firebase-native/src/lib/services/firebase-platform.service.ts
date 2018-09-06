@@ -78,7 +78,11 @@ export class FirebasePlatformService {
     return token;
   }
 
-  setToken(fcmTokens) {
+  /**
+   * Returns the new fcmToken or false if no token can be determined or is already in the list
+   * @param fcmTokens Object of FCM Tokens
+   */
+  setToken(fcmTokens: { [token: string]: true | false }) {
     if (!this.hasToken(fcmTokens)) {
       if (this.userToken) {
         const currentTokens = fcmTokens || {};
@@ -88,7 +92,7 @@ export class FirebasePlatformService {
         return tokens;
       }
     }
-    return fcmTokens;
+    return false;
   }
 
   async hasToken(fcmTokens) {
