@@ -32,14 +32,6 @@ export class AuthService {
   }
 
   // #region Sign Up
-  async anonymousSignup(): Promise<any> {
-    try {
-      return await this.afAuth.auth.signInAnonymously();
-    } catch (error) {
-      this.showError(error);
-      return false;
-    }
-  }
 
   async emailSignUp(email, password): Promise<any> {
     try {

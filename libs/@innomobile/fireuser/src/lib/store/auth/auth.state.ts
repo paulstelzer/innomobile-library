@@ -1,25 +1,28 @@
-import { AuthService } from './../../services/auth.service';
+import { Action, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
-
-import { Action, Selector, State, StateContext, NgxsOnInit } from '@ngxs/store';
-
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-
+import { AuthService } from './../../services/auth.service';
 import {
+    FireAuthAnonymousSignUp,
     FireAuthUserCheck,
-    FireAuthUserToken,
-    FireAuthUserSuccess,
-    FireAuthUserNull,
-    FireAuthUserFailed,
+    FireAuthUserCreateFailed,
+    FireAuthUserCreateSuccess,
     FireAuthUserDelete,
-    FireAuthUserSignOut,
+    FireAuthUserFailed,
+    FireAuthUserNull,
+    FireAuthUserSignedOutFailed,
     FireAuthUserSignedOutSuccess,
-    FireAuthUserSignedOutFailed
+    FireAuthUserSignOut,
+    FireAuthUserSuccess,
+    FireAuthUserToken
 } from './auth.actions';
 import { AuthStateModel } from './auth.model';
-import { Observable } from 'rxjs';
+
+
+
 
 
 @State<AuthStateModel>({
@@ -108,6 +111,16 @@ export class AuthState implements NgxsOnInit {
         } catch (err) {
             // console.log('Error', err);
             return ctx.dispatch(new FireAuthUserSignedOutFailed(err));
+        }
+    }
+
+    @Action(FireAuthAnonymousSignUp)
+    async signUpAnonymous(ctx: StateContext<AuthStateModel>) {
+        try {
+            const data = await this.afAuth.auth.signInAnonymously();
+            return ctx.dispatch(new FireAuthUserCreateSuccess(data));
+        } catch (error) {
+            return ctx.dispatch(new FireAuthUserCreateFailed(error));
         }
     }
 
