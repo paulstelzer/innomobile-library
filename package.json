@@ -15,6 +15,7 @@
     "release:major": "npx changelog -M && npm run commit && npm version major && npm run git",
     "release:minor": "npx changelog -m && npm run commit && npm version minor && npm run git",
     "release:patch": "npx changelog -p && npm run commit && npm version patch && npm run git",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "commit": "git add . && git commit -m 'updated CHANGELOG.md'  ",
     "git": "git push origin && git push origin --tags",
     "all": "npm run core && npm run fireuser && npm run firebase && npm run attribution && npm run iap && npm run ads && npm run mapbox && npm run ionic-image-loader && npm run notifications && npm run countdown-timer",
