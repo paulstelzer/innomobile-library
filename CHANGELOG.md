@@ -1,3 +1,25 @@
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/paulstelzer/innomobile-library/compare/v1.1.5...v1.2.0) (2018-09-06)
+
+
+### Bug Fixes
+
+* **attribution:** Branch.io import fix ([c5e766d](https://github.com/paulstelzer/innomobile-library/commit/c5e766d))
+* **core:** Add Ionic Navigation ([9f05e82](https://github.com/paulstelzer/innomobile-library/commit/9f05e82))
+* **core:** Change selector of components ([c6282f6](https://github.com/paulstelzer/innomobile-library/commit/c6282f6))
+* **core:** Fix YT Video player ([6c88f9c](https://github.com/paulstelzer/innomobile-library/commit/6c88f9c))
+* **core:** SendToastTranslation and SendToast with return ([9d4871e](https://github.com/paulstelzer/innomobile-library/commit/9d4871e))
+* **firebase-native:** Added necessary methods ([d3fb0fe](https://github.com/paulstelzer/innomobile-library/commit/d3fb0fe))
+* **fireuser:** Add getUserId selector ([cc82ee0](https://github.com/paulstelzer/innomobile-library/commit/cc82ee0))
+* **fireuser:** Fix language string ([a6c6456](https://github.com/paulstelzer/innomobile-library/commit/a6c6456))
+
+
+### Features
+
+* **iap:** Start with PWA support (WIP) // Add refund and expired handler ([9247126](https://github.com/paulstelzer/innomobile-library/commit/9247126))
+
+
+
 <a name="1.1.5"></a>
 ## [1.1.5](https://github.com/paulstelzer/innomobile-library/compare/v1.1.4...v1.1.5) (2018-09-03)
 
