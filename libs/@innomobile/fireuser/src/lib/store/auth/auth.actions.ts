@@ -1,33 +1,43 @@
 import * as firebase from 'firebase/app';
 
 // Actions
-export class CheckUser {
-  static type = '[Auth] CheckUser';
+export class FireAuthUserCheck {
+  static type = '[FireAuth] CheckUser';
 }
 
-export class UserToken {
-  static type = '[Auth] UserToken';
+export class FireAuthUserToken {
+  static type = '[FireAuth] UserToken';
 }
 
-export class UserDelete {
-  static type = '[Auth] UserDelete';
+export class FireAuthUserDelete {
+  static type = '[FireAuth] UserDelete';
 }
 
-export class UserSignOut {
-  static type = '[Auth] Sign out';
+export class FireAuthUserSignOut {
+  static type = '[FireAuth] Sign out';
 }
 
 // Events
-export class UserSuccess {
-  static type = '[Auth] UserSuccess';
+export class FireAuthUserSuccess {
+  static type = '[FireAuth] UserSuccess';
   constructor(public user: firebase.User) {}
 }
 
-export class UserNull {
-  static type = '[Auth] UserNull';
+export class FireAuthUserNull {
+  static type = '[FireAuth] UserNull';
 }
 
-export class UserFailed {
-  static type = '[Auth] UserFailed';
+export class FireAuthUserFailed {
+  static type = '[FireAuth] UserFailed';
+  constructor(public error: any) {}
+}
+
+export class FireAuthUserSignedOutSuccess {
+  static type = '[FireAuth] User successfully signed out';
+  constructor() {}
+}
+
+export class FireAuthUserSignedOutFailed {
+  static type = '[FireAuth] User sign out failed';
   constructor(public error: any) {}
 }

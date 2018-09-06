@@ -8,13 +8,15 @@ import { Action, Selector, State, StateContext, NgxsOnInit } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 
 import {
-    CheckUser,
-    UserToken,
-    UserSuccess,
-    UserNull,
-    UserFailed,
-    UserDelete,
-    UserSignOut
+    FireAuthUserCheck,
+    FireAuthUserToken,
+    FireAuthUserSuccess,
+    FireAuthUserNull,
+    FireAuthUserFailed,
+    FireAuthUserDelete,
+    FireAuthUserSignOut,
+    FireAuthUserSignedOutSuccess,
+    FireAuthUserSignedOutFailed
 } from './auth.actions';
 import { AuthStateModel } from './auth.model';
 import { Observable } from 'rxjs';
@@ -56,54 +58,56 @@ export class AuthState implements NgxsOnInit {
      * Init
      */
     ngxsOnInit(ctx: StateContext<AuthStateModel>) {
-        ctx.dispatch(new CheckUser());
+        return ctx.dispatch(new FireAuthUserCheck());
     }
 
     /**
      * Commands
      */
-    @Action(CheckUser)
+    @Action(FireAuthUserCheck)
     checkUser(ctx: StateContext<AuthStateModel>): Observable<firebase.User> {
         return this.afAuth.authState.pipe(
             tap((user: firebase.User) => {
                 if (user) {
                     // User is logged in
-                    ctx.dispatch(new UserToken());
-                    ctx.dispatch(new UserSuccess(user));
+                    ctx.dispatch(new FireAuthUserToken());
+                    ctx.dispatch(new FireAuthUserSuccess(user));
                 } else {
                     // User is logged out
-                    ctx.dispatch(new UserNull());
+                    ctx.dispatch(new FireAuthUserNull());
                 }
             })
         );
     }
 
-    @Action(UserToken)
+    @Action(FireAuthUserToken)
     async userToken(ctx: StateContext<AuthStateModel>) {
         if (this.afAuth.auth.currentUser) {
             const token = await this.afAuth.auth.currentUser.getIdToken();
-            ctx.patchState({
+            return ctx.patchState({
                 token: token
             });
         }
+        return false;
     }
 
-    @Action(UserDelete)
+    @Action(FireAuthUserDelete)
     async userDelete(ctx: StateContext<AuthStateModel>) {
         if (this.afAuth.auth.currentUser) {
             return await this.afAuth.auth.currentUser.delete();
         }
+        return false;
     }
 
-    @Action(UserSignOut)
-    async signOut() {
+    @Action(FireAuthUserSignOut)
+    async signOut(ctx: StateContext<AuthStateModel>) {
         try {
             await this.afAuth.auth.signOut();
             // console.log('User Sign Out', data);
-            return true;
+            return ctx.dispatch(new FireAuthUserSignedOutSuccess());
         } catch (err) {
             // console.log('Error', err);
-            throw err;
+            return ctx.dispatch(new FireAuthUserSignedOutFailed(err));
         }
     }
 
@@ -111,53 +115,19 @@ export class AuthState implements NgxsOnInit {
      * Events
      */
 
-    @Action(UserSuccess)
-    setUserStateOnSuccess(ctx: StateContext<AuthStateModel>, event: UserSuccess) {
-        ctx.patchState({
+    @Action(FireAuthUserSuccess)
+    setUserStateOnSuccess(ctx: StateContext<AuthStateModel>, event: FireAuthUserSuccess) {
+        return ctx.patchState({
             authUser: event.user
         });
     }
 
-    @Action([UserNull, UserFailed])
+    @Action([FireAuthUserNull, FireAuthUserFailed])
     setUserStateNull(ctx: StateContext<AuthStateModel>) {
-        ctx.patchState({
+        return ctx.patchState({
             authUser: null,
             token: null
         });
     }
-
-    /** Private Functions */
-    /*
-        private enablePersistence() {
-            */
-    // const version = this.platform.versions();
-
-    // console.log('VERSION', version);
-
-    /*
-    if (version && version.android) {
-      if (version.android.major && version.android.major <= 4) {
-        return;
-      }
-    }
-
-    if (version && version.ios) {
-      if (version.ios.major && version.ios.major <= 9) {
-        return;
-      }
-    }
-*/
-    /*
-            firebase.firestore().enablePersistence()
-                .then(() => {
-                    console.log('enabled Persistence');
-                })
-                .catch((err) => {
-                    if (err && err.code) {
-                        console.error('[ERROR] enablePersistence', err.code);
-                    }
-                });
-        }*/
-
 
 }
