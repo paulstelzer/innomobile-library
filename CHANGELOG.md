@@ -1,35 +1,29 @@
-#### 1.1.5 (2018-09-03)
+<a name="1.1.5"></a>
+## [1.1.5](https://github.com/paulstelzer/innomobile-library/compare/v1.1.4...v1.1.5) (2018-09-03)
 
-##### Chores
 
-*  Changed scripts ([2211b479](https://github.com/paulstelzer/innomobile-library/commit/2211b4796de83bc4f65502cca85effdb1e111ff4))
-*  Update packages ([d1699f79](https://github.com/paulstelzer/innomobile-library/commit/d1699f79a8cc41928c8d3a762772793e3d80c113))
+### Bug Fixes
 
-##### Bug Fixes
+* **app:** CoreModule now with 2 parameter ([17ef6a5](https://github.com/paulstelzer/innomobile-library/commit/17ef6a5))
+* **attribution:** Change classes of branch.io ([741e8af](https://github.com/paulstelzer/innomobile-library/commit/741e8af))
+* **core:** Add new date methods ([3c3c0ad](https://github.com/paulstelzer/innomobile-library/commit/3c3c0ad))
+* **core:** Correct Selector ([6e424d6](https://github.com/paulstelzer/innomobile-library/commit/6e424d6))
+* **firebase-native:** Return false if no token could generated ([1cfe7ee](https://github.com/paulstelzer/innomobile-library/commit/1cfe7ee))
+* **fireuser:** Current token generation on runtime ([c7c1c88](https://github.com/paulstelzer/innomobile-library/commit/c7c1c88))
 
-* **attribution:**  Change classes of branch.io ([741e8af4](https://github.com/paulstelzer/innomobile-library/commit/741e8af456b31aa3844c02618faab0c51cf7df53))
-* **core:**
-  *  Correct Selector ([6e424d68](https://github.com/paulstelzer/innomobile-library/commit/6e424d68a438e6ec23ff969eeb4d3c62b99ac587))
-  *  Add new date methods ([3c3c0adb](https://github.com/paulstelzer/innomobile-library/commit/3c3c0adbcdaaaab2983f26bc7767ab2395aae1aa))
-* **fireuser:**  Current token generation on runtime ([c7c1c887](https://github.com/paulstelzer/innomobile-library/commit/c7c1c8877611a319e6b48fccaea6ba0789266285))
-* **firebase-native:**  Return false if no token could generated ([1cfe7eea](https://github.com/paulstelzer/innomobile-library/commit/1cfe7eeafec40ab39616b2a60b3690836898e124))
-* **app:**  CoreModule now with 2 parameter ([17ef6a5c](https://github.com/paulstelzer/innomobile-library/commit/17ef6a5c3f23042a790b11945824e0ab574e2963))
 
-#### 1.1.4 (2018-09-02)
 
-##### Chores
+<a name="1.1.4"></a>
+## [1.1.4](https://github.com/paulstelzer/innomobile-library/compare/c55c6d7...v1.1.4) (2018-09-02)
 
-*  Prefix adjusted, paths and build script fixed ([b38ee205](https://github.com/paulstelzer/innomobile-library/commit/b38ee205ca7edcd4d2edb3ccbeaad050467d2306))
 
-##### Bug Fixes
+### Bug Fixes
 
-* **core:**  Set title with custom config ([f16c7f6a](https://github.com/paulstelzer/innomobile-library/commit/f16c7f6adba4078a3506ef877288be80acbf9f69))
-* **fireuser:**  Check if Email is correct on update ([f5abe020](https://github.com/paulstelzer/innomobile-library/commit/f5abe02058e3dfedd6fbaa617474f4e974d2b2ab))
-* **iap:**
-  *  Patched wrong attribute ([ca4e7128](https://github.com/paulstelzer/innomobile-library/commit/ca4e7128e4936cafdb62358e395e438ca80e3926))
-  *  Add name to IapModel ([947ad735](https://github.com/paulstelzer/innomobile-library/commit/947ad7355e44c0245839aa5fabf69c58fb55e91b))
-* **attribution:**  Fix Interface for BranchAnalytics and Branchproperties ([c55c6d7a](https://github.com/paulstelzer/innomobile-library/commit/c55c6d7a49768d80cd31c2f96239b4603ce106e8))
+* **attribution:** Fix Interface for BranchAnalytics and Branchproperties ([c55c6d7](https://github.com/paulstelzer/innomobile-library/commit/c55c6d7))
+* **core:** Set title with custom config ([f16c7f6](https://github.com/paulstelzer/innomobile-library/commit/f16c7f6))
+* **fireuser:** Check if Email is correct on update ([f5abe02](https://github.com/paulstelzer/innomobile-library/commit/f5abe02))
+* **iap:** Add name to IapModel ([947ad73](https://github.com/paulstelzer/innomobile-library/commit/947ad73))
+* **iap:** Patched wrong attribute ([ca4e712](https://github.com/paulstelzer/innomobile-library/commit/ca4e712))
 
-##### Code Style Changes
 
-* **ads:**  Better style for constructor ([7e34dafa](https://github.com/paulstelzer/innomobile-library/commit/7e34dafaab625de2bb9e239e3292aa375ee85e9a))
+
