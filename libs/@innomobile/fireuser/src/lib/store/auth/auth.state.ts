@@ -36,12 +36,20 @@ export class AuthState implements NgxsOnInit {
         return state.authUser;
     }
 
+    @Selector()
+    static getUserId(state: AuthStateModel) {
+        if (state.authUser && state.authUser.uid) {
+            return state.authUser.uid;
+        }
+        return null;
+    }
+
     constructor(
         private afAuth: AngularFireAuth,
         private auth: AuthService
     ) {
         firebase.firestore().settings({ timestampsInSnapshots: true });
-        //this.enablePersistence();
+        // this.enablePersistence();
     }
 
     /**
@@ -149,7 +157,6 @@ export class AuthState implements NgxsOnInit {
                         console.error('[ERROR] enablePersistence', err.code);
                     }
                 });
-    
         }*/
 
 
