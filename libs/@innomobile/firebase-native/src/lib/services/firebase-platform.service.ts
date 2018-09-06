@@ -74,7 +74,7 @@ export class FirebasePlatformService {
       await this.firebaseNative.grantPermission();
     }
 
-    console.log('Token', token);
+    console.log('[@innomobile/firebase-native] User Token', token);
     return token;
   }
 
@@ -88,7 +88,7 @@ export class FirebasePlatformService {
         return tokens;
       }
     }
-    return false;
+    return fcmTokens;
   }
 
   async hasToken(fcmTokens) {
