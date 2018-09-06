@@ -62,7 +62,6 @@ export class YoutubeVideoPlayerComponent implements OnChanges {
             events: {
               onReady: (event: any) => {
                 this.ready = true;
-                console.log('Video with ID', this.id, 'ready');
                 if (this.autoplay) {
                   this.playVideo();
                 }
