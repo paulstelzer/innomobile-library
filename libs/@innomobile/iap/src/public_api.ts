@@ -4,6 +4,11 @@
 
 export * from './lib/iap.module';
 
+// Classes
+export * from './lib/classes/iap-product.class';
+export * from './lib/classes/iap-pwa-generator.class';
+export * from './lib/classes/iap-pwa-product.model';
+
 // Services
 export * from './lib/services/iap.service';
 

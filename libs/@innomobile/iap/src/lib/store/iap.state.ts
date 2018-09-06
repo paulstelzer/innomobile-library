@@ -1,16 +1,6 @@
 import { State, Action, StateContext, Selector, NgxsOnInit } from '@ngxs/store';
-
-
-import { IAPProduct } from '@ionic-native/in-app-purchase-2/ngx';
-import { AddPackage, IapInit, IapPurchaseApproved, AddProduct, IapClear } from './iap.actions';
-
-
-// Section 2
-export interface IapStateModel {
-    packages: any[];
-    products: IAPProduct[];
-    purchased: any[];
-}
+import { AddPackage, IapInit, IapPurchaseApproved, AddProduct, IapClear, IapPurchaseExpired, IapPurchaseRefunded } from './iap.actions';
+import { IapStateModel } from './iap.model';
 
 // Section 3
 @State<IapStateModel>({
@@ -18,10 +8,17 @@ export interface IapStateModel {
     defaults: {
         packages: [],
         products: [],
-        purchased: []
+        purchased: [],
+        expired: [],
+        refunded: []
     }
 })
 export class IapState implements NgxsOnInit {
+
+    @Selector()
+    static getPackages(state: IapStateModel) {
+        return state.packages;
+    }
 
     @Selector()
     static getProducts(state: IapStateModel) {
@@ -33,7 +30,17 @@ export class IapState implements NgxsOnInit {
         return state.purchased;
     }
 
-    constructor() {}
+    @Selector()
+    static expiredItems(state: IapStateModel) {
+        return state.expired;
+    }
+
+    @Selector()
+    static refundedItems(state: IapStateModel) {
+        return state.refunded;
+    }
+
+    constructor() { }
 
     /**
      * Dispatch CheckSession on start
@@ -46,13 +53,9 @@ export class IapState implements NgxsOnInit {
     @Action(IapInit)
     iapInit(ctx: StateContext<IapStateModel>) {
         if (!ctx.getState()) {
-            ctx.setState({
-                packages: [],
-                products: [],
-                purchased: []
-            });
+            return ctx.dispatch(new IapClear());
         } else {
-            ctx.patchState({
+            return ctx.patchState({
                 packages: [],
                 products: []
             });
@@ -61,10 +64,12 @@ export class IapState implements NgxsOnInit {
 
     @Action(IapClear)
     iapClear(ctx: StateContext<IapStateModel>) {
-        ctx.setState({
+        return ctx.setState({
             packages: [],
             products: [],
-            purchased: []
+            purchased: [],
+            expired: [],
+            refunded: []
         });
     }
 
@@ -76,13 +81,31 @@ export class IapState implements NgxsOnInit {
         if (index < 0) {
             purchased.push(action.product);
 
-            ctx.patchState({
+            return ctx.patchState({
                 purchased: purchased
             });
-        } else {
-            console.log('Already included');
         }
+        return false;
+    }
 
+    @Action(IapPurchaseExpired)
+    purchaseExpired(ctx: StateContext<IapStateModel>, { product }: IapPurchaseExpired) {
+        const arr = ctx.getState().expired;
+
+        arr.push(product);
+        return ctx.patchState({
+            purchased: arr
+        });
+    }
+
+    @Action(IapPurchaseRefunded)
+    purchaseRefunded(ctx: StateContext<IapStateModel>, { product }: IapPurchaseRefunded) {
+        const arr = ctx.getState().refunded;
+
+        arr.push(product);
+        return ctx.patchState({
+            refunded: arr
+        });
     }
 
     @Action(AddPackage)
@@ -100,10 +123,11 @@ export class IapState implements NgxsOnInit {
 
         if (!included) {
             packages.push(action.iap);
-            ctx.patchState({
+            return ctx.patchState({
                 packages: packages
             });
         }
+        return false;
     }
 
     @Action(AddProduct)
@@ -118,7 +142,7 @@ export class IapState implements NgxsOnInit {
             products.push(action.product);
         }
 
-        ctx.patchState({
+        return ctx.patchState({
             products: products
         });
     }

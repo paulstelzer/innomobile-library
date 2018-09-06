@@ -1,83 +1,81 @@
-import { Injectable, Inject, Optional } from '@angular/core';
-import { IapModule } from '../iap.module';
-
+import { Inject, Injectable } from '@angular/core';
+import { IAPProduct, IAPProductOptions, InAppPurchase2 } from '@ionic-native/in-app-purchase-2/ngx';
 import { Platform } from '@ionic/angular';
-
-import { InAppPurchase2, IAPProduct, IAPProductOptions } from '@ionic-native/in-app-purchase-2/ngx';
-import { IapModel, IapType, IapPurchase } from '../store/iap.model';
-
 import { Store } from '@ngxs/store';
-import { IapPurchaseApproved, AddPackage, AddProduct } from '../store/iap.actions';
-
+import { IapPwaGenerator } from '../classes/iap-pwa-generator.class';
+import { IAP_DEBUG, IAP_PACKAGES, IAP_PWA_PACKAGES } from '../iap.module';
+import { AddPackage, AddProduct, IapPurchaseApproved, IapPurchaseRefunded, IapPurchaseExpired } from '../store/iap.actions';
+import { IapModel, IapPurchase, IapType } from '../store/iap.model';
 
 @Injectable({
-    providedIn: IapModule
+    providedIn: 'root'
 })
 export class IapService {
-    private initialized = false;
+    private isSupportedNative = true;
 
     constructor(
         public iapStore: InAppPurchase2,
         private store: Store,
         private platform: Platform,
-        @Inject('iapPackages') private packages: IapModel[],
-        @Optional() @Inject('iapDebug') private debug
+        @Inject(IAP_PACKAGES) private packages: IapModel[],
+        @Inject(IAP_PWA_PACKAGES) private pwaPackages: IapModel[],
+        @Inject(IAP_DEBUG) private debug,
     ) {
 
     }
 
     init() {
-        // If not Cordova, return
-        if (!this.platform.is('cordova')) { return; }
+        if (this.platform.is('cordova')) {
+            if (this.platform.is('ios') || this.platform.is('android')) {
+                this.isSupportedNative = true;
 
-        this.initialized = true;
-        // Debug everything
-        if (this.debug) {
-            this.iapStore.verbosity = this.iapStore.DEBUG;
-        }
+                // Debug everything
+                if (this.debug) {
+                    this.iapStore.verbosity = this.iapStore.DEBUG;
+                }
 
-        for (const iapPackage of this.packages) {
-            const p: IAPProductOptions = {
-                id: '',
-                alias: '',
-                type: ''
-            };
-            if (this.platform.is('ios')) {
-                if (!iapPackage.itunesId) { return; }
-                p.id = iapPackage.itunesId;
-                p.alias = iapPackage.id;
-                p.type = this.getIapType(iapPackage.itunesType);
-            } else if (this.platform.is('android')) {
-                if (!iapPackage.playstoreId) { return; }
-                p.id = iapPackage.playstoreId;
-                p.alias = iapPackage.id;
-                p.type = this.getIapType(iapPackage.playstoreType);
-            } else {
+                for (const iapPackage of this.packages) {
+                    const p: IAPProductOptions = {
+                        id: '',
+                        alias: '',
+                        type: ''
+                    };
+                    if (this.platform.is('ios')) {
+                        if (!iapPackage.itunesId) { return; }
+                        p.id = iapPackage.itunesId;
+                        p.alias = iapPackage.id;
+                        p.type = this.getIapType(iapPackage.itunesType);
+                    } else if (this.platform.is('android')) {
+                        if (!iapPackage.playstoreId) { return; }
+                        p.id = iapPackage.playstoreId;
+                        p.alias = iapPackage.id;
+                        p.type = this.getIapType(iapPackage.playstoreType);
+                    } else {
+                        return;
+                    }
+
+                    this.registerPackage(p);
+                }
+
+                // Overall Store Error
+                this.iapStore.error((error) => {
+                    console.log('[@innomobile/iap] Store Error ', error);
+                });
+
+                this.refresh();
+
+                this.iapStore.ready(() => {
+                    console.log('[@innomobile/iap]  IAP Store is ready');
+                });
                 return;
             }
-
-            this.registerPackage(p);
         }
-
-        // Overall Store Error
-        this.iapStore.error((error) => {
-            console.log('[@innomobile/iap] Store Error ', error);
-        });
-
-        this.refresh();
-
-        this.iapStore.ready(() => {
-            console.log('[@innomobile/iap]  IAP Store is ready');
-        });
-    }
-
-    registerPackage(p: IAPProductOptions) {
-        this.iapStore.register(p);
-        this.registerHandlers(p.id);
-        this.store.dispatch(new AddPackage(p));
+        this.isSupportedNative = false;
+        return this.initPwa();
     }
 
     finish(id: string) {
+        if (!this.isSupportedNative) { return; }
         const product = this.get(id);
         if (product) {
             product.finish();
@@ -87,13 +85,13 @@ export class IapService {
     }
 
     refresh() {
+        if (!this.isSupportedNative) { return; }
         // Refresh is important after register IAPs
         this.iapStore.refresh();
     }
 
     get(id: string) {
-        if (!this.initialized) { return null; }
-
+        if (!this.isSupportedNative) { return; }
         try {
             const product = this.iapStore.get(id);
             return product;
@@ -104,17 +102,34 @@ export class IapService {
     }
 
     purchase(id: string) {
+        if (!this.isSupportedNative) {
+            // TODO PURCHASE IF NOT NATIVE
+            // HANDLER FOR INPUT PROMT AND HANDLERS
+            return;
+        }
+
         /* Only configuring purchase when you want to buy,
          * because when you configure a purchase -
          * It prompts the user to input their apple id info on config which is annoying
          */
-        if (!this.initialized) { return; }
-
         try {
-            this.iapStore.order(id);
+            return this.iapStore.order(id);
         } catch (err) {
             console.log('[@innomobile/iap] Error Ordering IAP ', err);
         }
+    }
+
+    private initPwa() {
+        const iaps = new IapPwaGenerator(this.pwaPackages);
+        for (const p of iaps.getProducts()) {
+            this.store.dispatch(new AddProduct(p));
+        }
+    }
+
+    private registerPackage(p: IAPProductOptions) {
+        this.iapStore.register(p);
+        this.registerHandlers(p.id);
+        this.store.dispatch(new AddPackage(p));
     }
 
     private getIapType(input: IapType): string {
@@ -131,15 +146,15 @@ export class IapService {
     }
 
     private registerHandlers(id: string) {
-        // Handlers
-        /*
+        // TODO Refunded / Expired --> Remove packages
+
         this.iapStore.when(id).refunded((product: IAPProduct) => {
-            console.log('IAP refunded', product)
+            this.store.dispatch(new IapPurchaseRefunded(product));
         });
 
         this.iapStore.when(id).expired((product: IAPProduct) => {
-            console.log('IAP expired', product)
-        });*/
+            this.store.dispatch(new IapPurchaseExpired(product));
+        });
 
         this.iapStore.when(id).approved((product: IAPProduct) => {
             const obj = JSON.parse(product.transaction.receipt);
@@ -157,7 +172,6 @@ export class IapService {
         });
 
         this.iapStore.when(id).updated((product: IAPProduct) => {
-            // console.log('Updated', product);
             this.store.dispatch(new AddProduct(product));
         });
     }

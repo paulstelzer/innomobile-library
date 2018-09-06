@@ -1,3 +1,13 @@
+import { IAPProduct } from '@ionic-native/in-app-purchase-2/ngx';
+
+export interface IapStateModel {
+    packages: any[];
+    products: IAPProduct[];
+    purchased: any[];
+    expired: any[];
+    refunded: any[];
+}
+
 export interface IapModel {
     id: string;
     name?: string;
