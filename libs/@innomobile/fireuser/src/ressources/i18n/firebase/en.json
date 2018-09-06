@@ -26,7 +26,7 @@
       "IN_USE": "This login credentials are already in use",
       "INVALID_EMAIL": "Please enter a valid Email Address!",
       "NOT_SAVED": "Your data was not saved, please try again later",
-      "DISABLED": "Your account was blocked, please contact support@iqtest-app.de ",
+      "DISABLED": "Your account was blocked, please contact info@exmaple.com",
       "WEAK_PASSWORD": "The password has to be at least 6 characters!",
       "NETWORK": "We could not connect to the internet!",
       "SIGNUP": "We could not create your account!",
