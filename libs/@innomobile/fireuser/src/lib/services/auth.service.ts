@@ -154,7 +154,7 @@ export class AuthService {
   async updateFbEmail(email): Promise<boolean> {
     const mailCorrect = this.core.emailValidator(email);
     if (!mailCorrect) {
-      this.showError('auth/invalid-email')
+      this.showError('auth/invalid-email');
       return false;
     }
 
@@ -178,7 +178,7 @@ export class AuthService {
       return await this.fbUser.linkAndRetrieveDataWithCredential(credential);
     } catch (error) {
       this.showError(error);
-      return false;
+      throw error;
     }
   }
 
@@ -369,7 +369,7 @@ export class AuthService {
       newObject = {
         ...newObject,
         createdAt: date
-      }
+      };
     }
     return newObject;
   }
