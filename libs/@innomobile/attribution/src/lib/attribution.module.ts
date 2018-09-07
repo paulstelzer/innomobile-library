@@ -23,10 +23,6 @@ export interface BranchConfigOptions {
 })
 export class AttributionModule {
   public static forRoot(appsflyerConfig?: AppsflyerOptions, branchConfig?: BranchConfigOptions): ModuleWithProviders {
-    const branchConfigToken = {
-      debug: false,
-      ...branchConfig
-    };
     return {
       ngModule: AttributionModule,
       providers: [
@@ -34,7 +30,7 @@ export class AttributionModule {
         SocialSharing,
         Appsflyer,
         { provide: APPSFLYER_CONFIG, useValue: appsflyerConfig },
-        { provide: BRANCH_CONFIG, useValue: branchConfigToken }
+        { provide: BRANCH_CONFIG, useValue: branchConfig }
       ]
     };
   }

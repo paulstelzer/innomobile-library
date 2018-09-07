@@ -12,6 +12,7 @@ export class BranchService {
   initialized = false;
   debug = false;
   lastUserId = '';
+  branchConfigToken: BranchConfigOptions = null;
 
   constructor(
     private platform: Platform,
@@ -24,11 +25,14 @@ export class BranchService {
 
   async initSession(): Promise<BranchIoPromise> {
     if (!this.platform.is('cordova')) { return; }
-
+    this.branchConfigToken = {
+      debug: false,
+      ...this.branchConfig
+    };
     await this.platform.ready();
 
-    if (this.branchConfig && this.branchConfig.debug) {
-      this.branch.setDebug(this.branchConfig.debug);
+    if (this.branchConfigToken && this.branchConfigToken.debug) {
+      this.branch.setDebug(this.branchConfigToken.debug);
     }
 
     try {
@@ -59,11 +63,11 @@ export class BranchService {
   async share(subject: string, message: string, analytics: BranchIoAnalytics, properties: BranchIoProperties): Promise<void> {
     if (!this.initialized) { return; }
 
-     
+
     try {
       const branchUniversalObj = await this.branch.createBranchUniversalObject(properties);
       const response1 = await branchUniversalObj.generateShortUrl(analytics, properties);
-      //branchUniversalObj.showShareSheet(analytics, properties, message)
+      // branchUniversalObj.showShareSheet(analytics, properties, message)
 
       await this.socialSharing.shareWithOptions({
         message: message + ' ' + response1.url,
