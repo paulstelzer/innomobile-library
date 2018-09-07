@@ -5,7 +5,7 @@ import { Platform } from '@ionic/angular';
 // NGXS
 import { Store } from '@ngxs/store';
 
-import { UpdateLanguage, AuthService, UserSignOut } from '@innomobile/fireuser';
+import { UpdateLanguage, AuthService, FireAuthUserSignOut, FireAuthAnonymousSignUp } from '@innomobile/fireuser';
 import { BranchService, AppsflyerService } from '@innomobile/attribution';
 import { ToastService } from '@innomobile/core';
 
@@ -48,7 +48,7 @@ export class HomePage implements OnInit {
 
   async signIn() {
     console.log('Sign in');
-    await this.authService.anonymousSignup();
+    this.store.dispatch(new FireAuthAnonymousSignUp());
 
     const data = this.store.selectSnapshot(state => state.auth.authUser);
     console.log('[selectSnapshot] User Data', data);
@@ -60,7 +60,7 @@ export class HomePage implements OnInit {
   }
 
   logout() {
-    this.store.dispatch(new UserSignOut());
+    this.store.dispatch(new FireAuthUserSignOut());
   }
 
   share() {
