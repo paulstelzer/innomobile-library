@@ -1,5 +1,5 @@
-import { IAPProduct } from '@ionic-native/in-app-purchase-2/ngx';
-import { IAPProductClass } from './iap-product.class';
+
+import { IAPProductClass, IAPProduct } from './iap-product.class';
 
 export class IapPwaGenerator {
     products: IAPProduct[] = [];

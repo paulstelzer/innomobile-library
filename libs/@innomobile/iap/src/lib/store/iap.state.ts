@@ -10,6 +10,7 @@ import {
     IapPurchaseRefunded
 } from './iap.actions';
 import { IapStateModel } from './iap.model';
+import { IAPProduct } from '../classes/iap-product.class';
 
 @State<IapStateModel>({
     name: 'iap',
@@ -29,7 +30,7 @@ export class IapState implements NgxsOnInit {
     }
 
     @Selector()
-    static getProducts(state: IapStateModel) {
+    static getProducts(state: IapStateModel): IAPProduct[] {
         return state.products;
     }
 
