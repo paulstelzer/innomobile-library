@@ -88,7 +88,13 @@ export class CoreService {
     return false;
   }
 
-  getDifferenceDate(date1, date2) {
+  /**
+   * Get the difference between two dates in hours
+   * @param date1 Date
+   * @param date2 Date
+   * @returns Difference in hours
+   */
+  getDifferenceDate(date1: Date, date2: Date): number {
     if (date1 instanceof Date && date2 instanceof Date) {
       const diff = Math.abs(date1.getTime() - date2.getTime());
       const diffHours = Math.ceil(diff / (1000 * 3600));
