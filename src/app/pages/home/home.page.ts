@@ -64,6 +64,6 @@ export class HomePage implements OnInit {
   }
 
   share() {
-    this.branch.share("Subject", "My Message", { channel: 'viral', campaign: 'Party', }, { contentMetadata: { userId: 123 } });
+    this.branch.share('Subject', 'My Message', { channel: 'viral', campaign: 'Party', }, { contentMetadata: { userId: 123 } });
   }
 }
