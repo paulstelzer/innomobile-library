@@ -1,6 +1,6 @@
 
 import { IapPurchase } from './iap.model';
-import { IAPProductOptions, IAPProduct } from '../classes/iap-product.class';
+import { IAPProductOptions, IAPProduct } from '@ionic-native/in-app-purchase-2/ngx';
 
 export class IapInit {
     static readonly type = '[IAP] Init';

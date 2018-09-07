@@ -10,7 +10,7 @@ import {
     IapPurchaseRefunded
 } from './iap.actions';
 import { IapStateModel } from './iap.model';
-import { IAPProduct } from '../classes/iap-product.class';
+import { IAPProduct } from '@ionic-native/in-app-purchase-2/ngx';
 
 @State<IapStateModel>({
     name: 'iap',

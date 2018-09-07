@@ -1,4 +1,4 @@
-import { IAPProduct } from '../classes/iap-product.class';
+import { IAPProduct } from '@ionic-native/in-app-purchase-2/ngx';
 
 export interface IapStateModel {
     packages: any[];
