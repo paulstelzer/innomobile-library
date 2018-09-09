@@ -14,6 +14,12 @@ export class ToastService {
 
     async sendToastTranslation(type: string, message: string, options: ToastOptions = null) {
         const res: string = await this.translate.get(message).toPromise();
+
+        const closeButtonText: string = await this.translate.get('TOAST.OKAY').toPromise();
+        options = {
+            closeButtonText: closeButtonText,
+            ...options,
+        };
         return this.sendToast(type, res, options);
     }
 
@@ -40,12 +46,12 @@ export class ToastService {
                 break;
         }
 
-        let toastOptions = {
+        let toastOptions: ToastOptions = {
             message: message,
             cssClass: 'toast-' + cssClass,
             duration: 6000,
             showCloseButton: true,
-            dismissOnPageChange: false
+            closeButtonText: 'OKAY',
         };
 
         toastOptions = Object.assign(toastOptions, options);
