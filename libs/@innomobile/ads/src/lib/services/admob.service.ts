@@ -97,6 +97,11 @@ export class AdmobService {
             this.admob.rewardVideo.config(rewardConfig);
             this.prepareReward();
 
+            if (this.config.reward.isTesting) {
+                this.admob.on('admob.rewardvideo.events.LOAD').subscribe((data) => {
+                    console.log('[@innomobile/ads] Reward Load', data);
+                });
+            }
 
             this.admob.on('admob.rewardvideo.events.CLOSE').subscribe((data) => {
                 this.prepareReward();
@@ -166,8 +171,7 @@ export class AdmobService {
         try {
             const ready = await this.admob.interstitial.isReady();
             if (ready) {
-                this.admob.interstitial.show();
-                return true;
+                return this.admob.interstitial.show();
             }
         } catch (error) {
             this.prepareInterstitial();
@@ -184,8 +188,10 @@ export class AdmobService {
         if (!this.initialized || !this.showAd) { return; }
 
         try {
-            await this.admob.rewardVideo.isReady();
-            return this.admob.rewardVideo.show();
+            const ready = await this.admob.rewardVideo.isReady();
+            if (ready) {
+                return this.admob.rewardVideo.show();
+            }
         } catch (error) {
             this.prepareReward();
         }
