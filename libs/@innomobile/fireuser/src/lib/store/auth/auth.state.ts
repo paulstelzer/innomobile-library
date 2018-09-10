@@ -21,10 +21,6 @@ import {
 } from './auth.actions';
 import { AuthStateModel } from './auth.model';
 
-
-
-
-
 @State<AuthStateModel>({
     name: 'auth',
     defaults: {
