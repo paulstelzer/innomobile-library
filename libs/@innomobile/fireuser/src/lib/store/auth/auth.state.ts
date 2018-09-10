@@ -1,5 +1,5 @@
 import { Action, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import { Observable } from 'rxjs';
