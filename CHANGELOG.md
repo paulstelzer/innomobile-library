@@ -1,3 +1,13 @@
+<a name="1.2.6"></a>
+## [1.2.6](https://github.com/paulstelzer/innomobile-library/compare/v1.2.5...v1.2.6) (2018-09-10)
+
+
+### Bug Fixes
+
+* **fireuser:** Use of [@angular](https://github.com/angular)/fire ([cd1249d](https://github.com/paulstelzer/innomobile-library/commit/cd1249d))
+
+
+
 <a name="1.2.5"></a>
 ## [1.2.5](https://github.com/paulstelzer/innomobile-library/compare/v1.2.2...v1.2.5) (2018-09-10)
 
