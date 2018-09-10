@@ -88,7 +88,7 @@ export class AdmobService {
             });
         }
 
-        if (this.config.reward.id) {
+        if (this.config.reward) {
             const rewardConfig: AdMobFreeRewardVideoConfig = {
                 isTesting: (this.config.reward.isTesting) || false,
                 autoShow: (this.config.reward.autoShow) || false,
@@ -126,19 +126,21 @@ export class AdmobService {
         if (!this.initialized || !this.showAd) { return; }
 
         try {
-            await this.admob.banner.prepare();
+            return await this.admob.banner.prepare();
         } catch (error) {
             console.log('[@innomobile/ads] Admob Banner Prepare Error', error);
         }
+        return false;
     }
 
     async launchBanner() {
         if (!this.initialized || !this.showAd) { return; }
         try {
-            await this.admob.banner.show();
+            return await this.admob.banner.show();
         } catch (error) {
             console.log('[@innomobile/ads] Admob Banner Launch Error', error);
         }
+        return false;
 
     }
 
@@ -146,15 +148,16 @@ export class AdmobService {
         if (!this.initialized) { return; }
 
         try {
-            await this.admob.banner.remove();
+            return await this.admob.banner.remove();
         } catch (error) {
             console.log('[@innomobile/ads] Admob Banner Remove Error', error);
         }
+        return false;
     }
 
     prepareInterstitial() {
         if (!this.initialized || !this.showAd) { return; }
-        this.admob.interstitial.prepare();
+        return this.admob.interstitial.prepare();
     }
 
     async launchInterstitial(): Promise<boolean> {
@@ -166,25 +169,26 @@ export class AdmobService {
                 this.admob.interstitial.show();
                 return true;
             }
-            return false;
-        } catch (e) {
-            return false;
+        } catch (error) {
+            this.prepareInterstitial();
         }
+        return false;
     }
 
     prepareReward() {
         if (!this.initialized || !this.showAd) { return; }
-        this.admob.rewardVideo.prepare();
+        return this.admob.rewardVideo.prepare();
     }
 
     async launchReward() {
         if (!this.initialized || !this.showAd) { return; }
 
         try {
-            await this.admob.interstitial.isReady();
-            this.admob.rewardVideo.show();
+            await this.admob.rewardVideo.isReady();
+            return this.admob.rewardVideo.show();
         } catch (error) {
             this.prepareReward();
         }
+        return false;
     }
 }
