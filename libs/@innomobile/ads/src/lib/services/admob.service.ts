@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 
 import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig, AdMobFreeRewardVideoConfig } from '@ionic-native/admob-free/ngx';
 
-import { AdsModule, AdmobConfig, AdmobAdsConfig } from '../ads.module';
+import { AdmobConfig, AdmobAdsConfig } from '../ads.module';
 
 @Injectable({
     providedIn: 'root'
@@ -15,19 +15,11 @@ export class AdmobService {
 
     config: AdmobAdsConfig = null;
 
-    private _readyPromise: Promise<string>;
-    private _readyResolve: any;
-
     constructor(
         public admob: AdMobFree,
         private platform: Platform,
         @Inject('admobConfig') private admobConfig: AdmobConfig,
     ) {
-        this._readyPromise = new Promise(res => { this._readyResolve = res; });
-    }
-
-    ready(): Promise<string> {
-        return this._readyPromise;
     }
 
     activateAds(enable) {
@@ -120,9 +112,6 @@ export class AdmobService {
                 }, 8000);
             });
         }
-
-        this._readyResolve('1');
-
     }
 
     /**
