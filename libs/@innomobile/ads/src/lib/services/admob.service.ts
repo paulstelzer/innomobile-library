@@ -71,7 +71,7 @@ export class AdmobService {
             this.admob.interstitial.config(interstitialConfig);
             this.prepareInterstitial();
 
-            if (this.config.interstitial.isTesting) {
+            if (interstitialConfig.isTesting) {
                 this.admob.on('admob.interstitial.events.LOAD').subscribe((data) => {
                     console.log('[@innomobile/ads] Interstitial Load', data);
                 });
@@ -80,7 +80,7 @@ export class AdmobService {
             this.admob.on('admob.interstitial.events.LOAD_FAIL').subscribe((data) => {
                 setTimeout(() => {
                     this.prepareInterstitial();
-                }, 8000);
+                }, 10000);
             });
 
             this.admob.on('admob.interstitial.events.CLOSE').subscribe((data) => {
@@ -97,7 +97,7 @@ export class AdmobService {
             this.admob.rewardVideo.config(rewardConfig);
             this.prepareReward();
 
-            if (this.config.reward.isTesting) {
+            if (rewardConfig.isTesting) {
                 this.admob.on('admob.rewardvideo.events.LOAD').subscribe((data) => {
                     console.log('[@innomobile/ads] Reward Load', data);
                 });
@@ -114,7 +114,7 @@ export class AdmobService {
             this.admob.on('admob.rewardvideo.events.LOAD_FAIL').subscribe((data) => {
                 setTimeout(() => {
                     this.prepareReward();
-                }, 8000);
+                }, 10000);
             });
         }
     }
@@ -172,11 +172,12 @@ export class AdmobService {
             const ready = await this.admob.interstitial.isReady();
             if (ready) {
                 return this.admob.interstitial.show();
+            } else {
+                return this.prepareInterstitial();
             }
         } catch (error) {
-            this.prepareInterstitial();
+            return error;
         }
-        return false;
     }
 
     prepareReward() {
@@ -191,10 +192,11 @@ export class AdmobService {
             const ready = await this.admob.rewardVideo.isReady();
             if (ready) {
                 return this.admob.rewardVideo.show();
+            } else {
+                return this.prepareReward();
             }
         } catch (error) {
-            this.prepareReward();
+            return error;
         }
-        return false;
     }
 }
