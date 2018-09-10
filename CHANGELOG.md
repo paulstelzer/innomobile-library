@@ -1,3 +1,20 @@
+<a name="1.2.5"></a>
+## [1.2.5](https://github.com/paulstelzer/innomobile-library/compare/v1.2.2...v1.2.5) (2018-09-10)
+
+
+### Bug Fixes
+
+* **app:** Change Function calls ([7e330bb](https://github.com/paulstelzer/innomobile-library/commit/7e330bb))
+* **app:** Lint ([184b293](https://github.com/paulstelzer/innomobile-library/commit/184b293))
+* **attribution:** Remove Function call in decorator ([fcab981](https://github.com/paulstelzer/innomobile-library/commit/fcab981))
+* **core:** Fix Object Values Comma Pipe ([79fbdb6](https://github.com/paulstelzer/innomobile-library/commit/79fbdb6))
+* **core:** Toast with close button text ([bdaf7aa](https://github.com/paulstelzer/innomobile-library/commit/bdaf7aa))
+* **fireuser:** Throw error on emailUpgrade ([acaebdf](https://github.com/paulstelzer/innomobile-library/commit/acaebdf))
+* **iap:** Add clearing method for user ([8dea30a](https://github.com/paulstelzer/innomobile-library/commit/8dea30a))
+* **iap:** Import types correctly ([ab8ce42](https://github.com/paulstelzer/innomobile-library/commit/ab8ce42))
+
+
+
 <a name="1.2.2"></a>
 ## [1.2.2](https://github.com/paulstelzer/innomobile-library/compare/v1.2.1...v1.2.2) (2018-09-06)
 
