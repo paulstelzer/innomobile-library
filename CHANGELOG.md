@@ -1,3 +1,17 @@
+<a name="1.2.7"></a>
+## [1.2.7](https://github.com/paulstelzer/innomobile-library/compare/v1.2.6...v1.2.7) (2018-09-11)
+
+
+### Bug Fixes
+
+* **ads:** Add testing event for rewardedVideo ([a4cd36d](https://github.com/paulstelzer/innomobile-library/commit/a4cd36d))
+* **ads:** Check for ready ([68c3955](https://github.com/paulstelzer/innomobile-library/commit/68c3955))
+* **ads:** Remove ready method ([07d39e8](https://github.com/paulstelzer/innomobile-library/commit/07d39e8))
+* **ads:** Return for AmobService methods ([f83a262](https://github.com/paulstelzer/innomobile-library/commit/f83a262))
+* **fireauth:** Subscribe to AuthState ([24b342c](https://github.com/paulstelzer/innomobile-library/commit/24b342c))
+
+
+
 <a name="1.2.6"></a>
 ## [1.2.6](https://github.com/paulstelzer/innomobile-library/compare/v1.2.5...v1.2.6) (2018-09-10)
 
