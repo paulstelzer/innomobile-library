@@ -1,7 +1,7 @@
-import { IAPProduct } from '@ionic-native/in-app-purchase-2/ngx';
+import { IAPProduct, IAPProductOptions } from '@ionic-native/in-app-purchase-2/ngx';
 
 export interface IapStateModel {
-    packages: any[];
+    packages: IAPProductOptions[];
     products: IAPProduct[];
     purchased: any[];
     expired: any[];

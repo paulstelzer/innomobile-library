@@ -6,12 +6,16 @@ import { IapPwaGenerator } from '../classes/iap-pwa-generator.class';
 import { IAP_DEBUG, IAP_PACKAGES, IAP_PWA_PACKAGES } from '../iap.module';
 import { AddPackage, AddProduct, IapPurchaseApproved, IapPurchaseRefunded, IapPurchaseExpired } from '../store/iap.actions';
 import { IapModel, IapPurchase, IapType } from '../store/iap.model';
+import { IapState } from '../store/iap.state';
+import { isObject, isEqual, transform } from 'lodash';
 
 @Injectable({
     providedIn: 'root'
 })
 export class IapService {
     private isSupportedNative = true;
+    private storePackages: IAPProductOptions[];
+    private storeProducts: IAPProduct[];
 
     constructor(
         public iapStore: InAppPurchase2,
@@ -25,49 +29,13 @@ export class IapService {
     }
 
     init() {
+        this.storePackages = this.store.selectSnapshot(IapState.getPackages);
+        this.storeProducts = this.store.selectSnapshot(IapState.getProducts);
+
         if (this.platform.is('cordova')) {
             if (this.platform.is('ios') || this.platform.is('android')) {
                 this.isSupportedNative = true;
-
-                // Debug everything
-                if (this.debug) {
-                    this.iapStore.verbosity = this.iapStore.DEBUG;
-                }
-
-                for (const iapPackage of this.packages) {
-                    const p: IAPProductOptions = {
-                        id: '',
-                        alias: '',
-                        type: ''
-                    };
-                    if (this.platform.is('ios')) {
-                        if (!iapPackage.itunesId) { return; }
-                        p.id = iapPackage.itunesId;
-                        p.alias = iapPackage.id;
-                        p.type = this.getIapType(iapPackage.itunesType);
-                    } else if (this.platform.is('android')) {
-                        if (!iapPackage.playstoreId) { return; }
-                        p.id = iapPackage.playstoreId;
-                        p.alias = iapPackage.id;
-                        p.type = this.getIapType(iapPackage.playstoreType);
-                    } else {
-                        return;
-                    }
-
-                    this.registerPackage(p);
-                }
-
-                // Overall Store Error
-                this.iapStore.error((error) => {
-                    console.log('[@innomobile/iap] Store Error ', error);
-                });
-
-                this.refresh();
-
-                this.iapStore.ready(() => {
-                    console.log('[@innomobile/iap]  IAP Store is ready');
-                });
-                return;
+                return this.initCordova();
             }
         }
         this.isSupportedNative = false;
@@ -119,17 +87,76 @@ export class IapService {
         }
     }
 
+    private initCordova() {
+        // Debug everything
+        if (this.debug) {
+            this.iapStore.verbosity = this.iapStore.DEBUG;
+        }
+
+        for (const iapPackage of this.packages) {
+            const p: IAPProductOptions = {
+                id: '',
+                alias: '',
+                type: ''
+            };
+            if (this.platform.is('ios')) {
+                if (!iapPackage.itunesId) { return; }
+                p.id = iapPackage.itunesId;
+                p.alias = iapPackage.id;
+                p.type = this.getIapType(iapPackage.itunesType);
+            } else if (this.platform.is('android')) {
+                if (!iapPackage.playstoreId) { return; }
+                p.id = iapPackage.playstoreId;
+                p.alias = iapPackage.id;
+                p.type = this.getIapType(iapPackage.playstoreType);
+            } else {
+                return;
+            }
+
+            this.registerPackage(p);
+        }
+
+        // Overall Store Error
+        this.iapStore.error((error) => {
+            console.log('[@innomobile/iap] Store Error ', error);
+        });
+
+        this.refresh();
+
+        this.iapStore.ready(() => {
+            console.log('[@innomobile/iap]  IAP Store is ready');
+        });
+    }
+
     private initPwa() {
         const iaps = new IapPwaGenerator(this.pwaPackages);
         for (const p of iaps.getProducts()) {
-            this.store.dispatch(new AddProduct(p));
+            this.addProduct(p);
         }
+    }
+
+    private addProduct(product: IAPProduct) {
+        this.store.dispatch(new AddProduct(product));
+    }
+
+    private addPackage(p: IAPProductOptions) {
+        const index = this.findIndex(p.id, this.storePackages);
+        if (index >= 0) {
+            const changes = this.getDifferenceBetweenObjects(this.storePackages[index], p);
+            if (Object.keys(changes).length === 0) { return; }
+        }
+
+        this.store.dispatch(new AddPackage(p));
+    }
+
+    private findIndex(id, arr: any[]) {
+        return arr.findIndex(ele => ele.id === id);
     }
 
     private registerPackage(p: IAPProductOptions) {
         this.iapStore.register(p);
         this.registerHandlers(p.id);
-        this.store.dispatch(new AddPackage(p));
+        this.addPackage(p);
     }
 
     private getIapType(input: IapType): string {
@@ -172,7 +199,24 @@ export class IapService {
         });
 
         this.iapStore.when(id).updated((product: IAPProduct) => {
-            this.store.dispatch(new AddProduct(product));
+            this.addProduct(product);
         });
+    }
+
+    /**
+     * Deep diff between two object, using lodash
+     * @param  object Object compared
+     * @param  base   Object to compare with
+     * @return         Return a new object who represent the diff
+     */
+    private getDifferenceBetweenObjects(obj1, obj2) {
+        const changes = (object, base) => {
+            return transform(object, (result, value, key) => {
+                if (!isEqual(value, base[key])) {
+                    result[key] = (isObject(value) && isObject(base[key])) ? changes(value, base[key]) : value;
+                }
+            });
+        };
+        return changes(obj1, obj2);
     }
 }

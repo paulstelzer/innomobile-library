@@ -113,6 +113,7 @@
     "core-js": "^2.5.7",
     "es6-promise-plugin": "^4.2.2",
     "firebase": "^5.4.2",
+    "lodash": "^4.17.10",
     "mapbox-gl": "^0.48.0",
     "rxjs": "^6.3.2",
     "zone.js": "^0.8.26"

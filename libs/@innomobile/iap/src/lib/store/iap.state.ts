@@ -10,7 +10,7 @@ import {
     IapPurchaseRefunded
 } from './iap.actions';
 import { IapStateModel } from './iap.model';
-import { IAPProduct } from '@ionic-native/in-app-purchase-2/ngx';
+import { IAPProduct, IAPProductOptions } from '@ionic-native/in-app-purchase-2/ngx';
 
 @State<IapStateModel>({
     name: 'iap',
@@ -25,7 +25,7 @@ import { IAPProduct } from '@ionic-native/in-app-purchase-2/ngx';
 export class IapState implements NgxsOnInit {
 
     @Selector()
-    static getPackages(state: IapStateModel) {
+    static getPackages(state: IapStateModel): IAPProductOptions[] {
         return state.packages;
     }
 
@@ -62,11 +62,6 @@ export class IapState implements NgxsOnInit {
     iapInit(ctx: StateContext<IapStateModel>) {
         if (!ctx.getState()) {
             return ctx.dispatch(new IapClear());
-        } else {
-            return ctx.patchState({
-                packages: [],
-                products: []
-            });
         }
     }
 
@@ -191,4 +186,6 @@ export class IapState implements NgxsOnInit {
         }
         return -1;
     }
+
+
 }
