@@ -57,27 +57,22 @@ export class AuthState implements NgxsOnInit {
      * Init
      */
     ngxsOnInit(ctx: StateContext<AuthStateModel>) {
-        return ctx.dispatch(new FireAuthUserCheck());
+        this.afAuth.authState.subscribe((user: firebase.User) => {
+            if (user) {
+                // User is logged in
+                ctx.dispatch(new FireAuthUserToken());
+                ctx.dispatch(new FireAuthUserSuccess(user));
+            } else {
+                // User is logged out
+                ctx.dispatch(new FireAuthUserNull());
+            }
+        });
     }
 
     /**
      * Commands
      */
-    @Action(FireAuthUserCheck)
-    checkUser(ctx: StateContext<AuthStateModel>): Observable<firebase.User> {
-        return this.afAuth.authState.pipe(
-            tap((user: firebase.User) => {
-                if (user) {
-                    // User is logged in
-                    ctx.dispatch(new FireAuthUserToken());
-                    ctx.dispatch(new FireAuthUserSuccess(user));
-                } else {
-                    // User is logged out
-                    ctx.dispatch(new FireAuthUserNull());
-                }
-            })
-        );
-    }
+
 
     @Action(FireAuthUserToken)
     async userToken(ctx: StateContext<AuthStateModel>) {
