@@ -11,6 +11,7 @@ import {
 } from './iap.actions';
 import { IapStateModel } from './iap.model';
 import { IAPProduct, IAPProductOptions } from '@ionic-native/in-app-purchase-2/ngx';
+import { Observable } from 'rxjs';
 
 @State<IapStateModel>({
     name: 'iap',
@@ -59,7 +60,7 @@ export class IapState implements NgxsOnInit {
     }
 
     @Action(IapInit)
-    iapInit(ctx: StateContext<IapStateModel>) {
+    iapInit(ctx: StateContext<IapStateModel>): Observable<void> {
         if (!ctx.getState()) {
             return ctx.dispatch(new IapClear());
         }

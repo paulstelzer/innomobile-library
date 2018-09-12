@@ -15,7 +15,6 @@ import { isObject, isEqual, transform } from 'lodash';
 export class IapService {
     private isSupportedNative = true;
     private storePackages: IAPProductOptions[];
-    private storeProducts: IAPProduct[];
 
     constructor(
         public iapStore: InAppPurchase2,
@@ -30,7 +29,6 @@ export class IapService {
 
     init() {
         this.storePackages = this.store.selectSnapshot(IapState.getPackages);
-        this.storeProducts = this.store.selectSnapshot(IapState.getProducts);
 
         if (this.platform.is('cordova')) {
             if (this.platform.is('ios') || this.platform.is('android')) {
