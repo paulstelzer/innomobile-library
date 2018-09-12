@@ -1,3 +1,14 @@
+<a name="1.2.8"></a>
+## [1.2.8](https://github.com/paulstelzer/innomobile-library/compare/v1.2.7...v1.2.8) (2018-09-12)
+
+
+### Bug Fixes
+
+* **iap:** Less store writes ([0d7c192](https://github.com/paulstelzer/innomobile-library/commit/0d7c192))
+* **iap:** Set Return value ([dcacd00](https://github.com/paulstelzer/innomobile-library/commit/dcacd00))
+
+
+
 <a name="1.2.7"></a>
 ## [1.2.7](https://github.com/paulstelzer/innomobile-library/compare/v1.2.6...v1.2.7) (2018-09-11)
 
