@@ -169,7 +169,7 @@ export class AdmobService {
         if (!this.initialized || !this.showAd) { return; }
 
         try {
-            const ready = await this.admob.interstitial.isReady();
+            const ready = await this.isInterstitialReady();
             if (ready) {
                 return this.admob.interstitial.show();
             } else {
@@ -178,6 +178,11 @@ export class AdmobService {
         } catch (error) {
             return error;
         }
+    }
+
+    async isInterstitialReady(): Promise<boolean> {
+        if (!this.initialized || !this.showAd) { return false; }
+        return await this.admob.interstitial.isReady();
     }
 
     prepareReward() {
@@ -189,7 +194,7 @@ export class AdmobService {
         if (!this.initialized || !this.showAd) { return; }
 
         try {
-            const ready = await this.admob.rewardVideo.isReady();
+            const ready = await this.isRewardReady();
             if (ready) {
                 return this.admob.rewardVideo.show();
             } else {
@@ -198,5 +203,10 @@ export class AdmobService {
         } catch (error) {
             return error;
         }
+    }
+
+    async isRewardReady(): Promise<boolean> {
+        if (!this.initialized || !this.showAd) { return false; }
+        return await this.admob.rewardVideo.isReady();
     }
 }
