@@ -1,4 +1,4 @@
-import { Action, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
+import { Action, NgxsOnInit, Selector, State, StateContext, createSelector } from '@ngxs/store';
 import {
     AddPackage,
     AddProduct,
@@ -48,6 +48,16 @@ export class IapState implements NgxsOnInit {
     @Selector()
     static refundedItems(state: IapStateModel) {
         return state.refunded;
+    }
+
+    static getProduct(alias: string) {
+        return createSelector([IapState], (state: IapStateModel) => {
+            const products: IAPProduct[] = state.products.filter(ele => ele.alias === alias);
+            if (products && products.length > 0) {
+                return products[0];
+            }
+            return null;
+        });
     }
 
     constructor() { }

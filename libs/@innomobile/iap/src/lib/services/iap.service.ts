@@ -1,13 +1,16 @@
 import { Inject, Injectable } from '@angular/core';
 import { IAPProduct, IAPProductOptions, InAppPurchase2 } from '@ionic-native/in-app-purchase-2/ngx';
-import { Platform } from '@ionic/angular';
+import { Platform, ModalController } from '@ionic/angular';
 import { Store } from '@ngxs/store';
 import { IapPwaGenerator } from '../classes/iap-pwa-generator.class';
-import { IAP_DEBUG, IAP_PACKAGES, IAP_PWA_PACKAGES } from '../iap.module';
+import { IAP_DEBUG, IAP_PACKAGES, IAP_PWA_PACKAGES, STRIPE_KEY } from '../iap.module';
 import { AddPackage, AddProduct, IapPurchaseApproved, IapPurchaseRefunded, IapPurchaseExpired } from '../store/iap.actions';
 import { IapModel, IapPurchase, IapType } from '../store/iap.model';
 import { IapState } from '../store/iap.state';
 import { isObject, isEqual, transform } from 'lodash';
+import { StripePaymentModalComponent } from '../modals/stripe-payment-modal/stripe-payment-modal.component';
+
+declare var Stripe: any;
 
 @Injectable({
     providedIn: 'root'
@@ -16,12 +19,16 @@ export class IapService {
     private isSupportedNative = true;
     private storePackages: IAPProductOptions[];
 
+    stripe = null;
+
     constructor(
         public iapStore: InAppPurchase2,
         private store: Store,
         private platform: Platform,
+        private modalCtrl: ModalController,
         @Inject(IAP_PACKAGES) private packages: IapModel[],
         @Inject(IAP_PWA_PACKAGES) private pwaPackages: IapModel[],
+        @Inject(STRIPE_KEY) private stripeKey,
         @Inject(IAP_DEBUG) private debug,
     ) {
     }
@@ -35,6 +42,11 @@ export class IapService {
                 return this.initCordova();
             }
         }
+
+        if (this.stripeKey) {
+            this.stripe = Stripe(this.stripeKey);
+        }
+
         this.isSupportedNative = false;
         return this.initPwa();
     }
@@ -68,8 +80,12 @@ export class IapService {
 
     purchase(id: string) {
         if (!this.isSupportedNative) {
-            // TODO PURCHASE IF NOT NATIVE
-            // HANDLER FOR INPUT PROMT AND HANDLERS
+            this.modalCtrl.create({
+                component: StripePaymentModalComponent,
+                componentProps: {
+                    id: id
+                }
+            });
             return;
         }
 
