@@ -1,4 +1,13 @@
-import { Action, NgxsOnInit, Selector, State, StateContext, createSelector } from '@ngxs/store';
+import { IAPProduct, IAPProductOptions } from '@ionic-native/in-app-purchase-2/ngx';
+import {
+    Action,
+    createSelector,
+    NgxsOnInit,
+    Selector,
+    State,
+    StateContext
+    } from '@ngxs/store';
+import { Observable } from 'rxjs';
 import {
     AddPackage,
     AddProduct,
@@ -8,10 +17,8 @@ import {
     IapPurchaseApproved,
     IapPurchaseExpired,
     IapPurchaseRefunded
-} from './iap.actions';
+    } from './iap.actions';
 import { IapStateModel } from './iap.model';
-import { IAPProduct, IAPProductOptions } from '@ionic-native/in-app-purchase-2/ngx';
-import { Observable } from 'rxjs';
 
 @State<IapStateModel>({
     name: 'iap',
@@ -51,13 +58,14 @@ export class IapState implements NgxsOnInit {
     }
 
     static getProduct(alias: string) {
-        return createSelector([IapState], (state: IapStateModel) => {
+        const selector = createSelector([IapState], (state: IapStateModel) => {
             const products: IAPProduct[] = state.products.filter(ele => ele.alias === alias);
             if (products && products.length > 0) {
                 return products[0];
             }
             return null;
         });
+        return selector;
     }
 
     constructor() { }

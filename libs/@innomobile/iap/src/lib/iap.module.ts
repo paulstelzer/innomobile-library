@@ -1,19 +1,19 @@
-import { NgModule, ModuleWithProviders, InjectionToken } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { InAppPurchase2 } from '@ionic-native/in-app-purchase-2/ngx';
-import { IapModel } from './store/iap.model';
-import { IapState } from './store/iap.state';
+import { IonicModule } from '@ionic/angular';
+import { TranslateModule } from '@ngx-translate/core';
 import { NgxsModule } from '@ngxs/store';
 import { IAPPwaProductModel } from './classes/iap-pwa-product.model';
 import { StripePaymentModalComponent } from './modals/stripe-payment-modal/stripe-payment-modal.component';
-import { TranslateModule } from '@ngx-translate/core';
-
-export const IAP_PACKAGES = new InjectionToken<IapModel[]>('IAP packages');
-export const IAP_PWA_PACKAGES = new InjectionToken<IAPPwaProductModel[]>('IAP PWA packages');
-export const IAP_DEBUG = new InjectionToken<IapModel[]>('IAP debug');
-export const STRIPE_KEY = new InjectionToken<string>('Stripe Key');
+import { IapModel } from './store/iap.model';
+import { IapState } from './store/iap.state';
+import { IAP_PACKAGES, IAP_PWA_PACKAGES, STRIPE_KEY, IAP_DEBUG } from './classes/iap-token';
 
 @NgModule({
   imports: [
+    CommonModule,
+    IonicModule,
     NgxsModule.forFeature([
       IapState
     ]),
@@ -23,7 +23,7 @@ export const STRIPE_KEY = new InjectionToken<string>('Stripe Key');
     StripePaymentModalComponent
   ],
   declarations: [
-
+    StripePaymentModalComponent
   ],
   exports: [
 
