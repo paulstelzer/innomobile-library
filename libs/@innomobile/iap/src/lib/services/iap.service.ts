@@ -15,7 +15,7 @@ declare var Stripe: any;
     providedIn: 'root'
 })
 export class IapService {
-    private isSupportedNative = true;
+    isSupportedNative = true;
     private storePackages: IAPProductOptions[];
 
     stripe = null;
