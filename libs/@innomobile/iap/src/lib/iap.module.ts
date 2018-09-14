@@ -1,11 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { InAppPurchase2 } from '@ionic-native/in-app-purchase-2/ngx';
-import { IonicModule } from '@ionic/angular';
-import { TranslateModule } from '@ngx-translate/core';
 import { NgxsModule } from '@ngxs/store';
 import { IAPPwaProductModel } from './classes/iap-pwa-product.model';
-import { StripePaymentModalComponent } from './modals/stripe-payment-modal/stripe-payment-modal.component';
+import { StripePaymentComponent } from './modals/stripe-payment/stripe-payment.component';
 import { IapModel } from './store/iap.model';
 import { IapState } from './store/iap.state';
 import { IAP_PACKAGES, IAP_PWA_PACKAGES, STRIPE_KEY, IAP_DEBUG } from './classes/iap-token';
@@ -13,20 +11,15 @@ import { IAP_PACKAGES, IAP_PWA_PACKAGES, STRIPE_KEY, IAP_DEBUG } from './classes
 @NgModule({
   imports: [
     CommonModule,
-    IonicModule,
     NgxsModule.forFeature([
       IapState
     ]),
-    TranslateModule
-  ],
-  entryComponents: [
-    StripePaymentModalComponent
   ],
   declarations: [
-    StripePaymentModalComponent
+    StripePaymentComponent
   ],
   exports: [
-
+    StripePaymentComponent
   ]
 })
 export class IapModule {

@@ -19,4 +19,4 @@ export * from './lib/store/iap.model';
 export * from './lib/store/iap.state';
 
 // Stripe Payment Modal
-export * from './lib/modals/stripe-payment-modal/stripe-payment-modal.component';
+export * from './lib/modals/stripe-payment/stripe-payment.component';

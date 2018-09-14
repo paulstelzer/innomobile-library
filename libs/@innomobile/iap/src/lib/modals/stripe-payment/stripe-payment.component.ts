@@ -1,56 +1,43 @@
-import { TranslateService } from '@ngx-translate/core';
-import { Component, OnInit, AfterViewInit, ViewChild, Inject } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { AfterViewInit, Component, OnInit, ViewChild, Input } from '@angular/core';
+import { IAPProduct } from '@ionic-native/in-app-purchase-2/ngx';
 import { Store } from '@ngxs/store';
+import { IapService } from '../../services/iap.service';
 import { IapPurchaseApproved } from '../../store/iap.actions';
 import { IapPurchase } from '../../store/iap.model';
 import { IapState } from '../../store/iap.state';
-import { IAPProduct } from '@ionic-native/in-app-purchase-2/ngx';
-import { STRIPE_KEY } from '../../classes/iap-token';
-
-declare var Stripe: any;
 
 @Component({
-  selector: 'inno-stripe-payment-modal',
-  templateUrl: './stripe-payment-modal.component.html',
-  styleUrls: ['./stripe-payment-modal.component.scss']
+  selector: 'inno-stripe-payment',
+  templateUrl: './stripe-payment.component.html',
+  styleUrls: ['./stripe-payment.component.scss']
 })
-export class StripePaymentModalComponent implements OnInit, AfterViewInit {
+export class StripePaymentComponent implements OnInit, AfterViewInit {
   @ViewChild('stripeElement') stripeElement;
 
-  id: string = null;
-  product: IAPProduct = null;
+  @Input() id: string = null;
+  @Input() label = 'Buy';
 
-  label = 'Buy';
+  product: IAPProduct = null;
 
   paymentRequestButton: any;
   paymentRequest: any;
   elements: any;
 
-  loading = true;
   available = false;
-
-  stripe = null;
+  loading = true;
 
   constructor(
-    private modalCtrl: ModalController,
     private store: Store,
-    private translate: TranslateService,
-    @Inject(STRIPE_KEY) private stripeKey,
+    private iap: IapService
   ) { }
 
   ngOnInit() {
     this.product = this.store.selectSnapshot(IapState.getProduct(this.id));
-
-    if (this.stripeKey) {
-      this.stripe = Stripe(this.stripeKey);
-  }
   }
 
   async ngAfterViewInit() {
-    this.label = await this.translate.get('INNOMOBILE.PAYMENT.LABEL').toPromise();
     // 1. instantiate a paymentRequest object
-    this.paymentRequest = this.stripe.paymentRequest({
+    this.paymentRequest = this.iap.stripe.paymentRequest({
       country: 'DE',
       currency: 'eur',
       total: {
@@ -62,7 +49,7 @@ export class StripePaymentModalComponent implements OnInit, AfterViewInit {
     });
 
     // 2. initalize elements
-    this.elements = this.stripe.elements();
+    this.elements = this.iap.stripe.elements();
 
 
     // 3. register listener
@@ -88,9 +75,7 @@ export class StripePaymentModalComponent implements OnInit, AfterViewInit {
     this.mountButton();
   }
 
-  cancel(data = null, type = 'cancel') {
-    this.modalCtrl.dismiss(data, type);
-  }
+
 
 
   approved(source) {
@@ -115,7 +100,6 @@ export class StripePaymentModalComponent implements OnInit, AfterViewInit {
     }
 
     this.loading = false;
-
   }
 
 }
