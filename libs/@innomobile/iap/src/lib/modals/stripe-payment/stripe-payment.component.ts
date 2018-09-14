@@ -16,8 +16,9 @@ export class StripePaymentComponent implements OnInit, AfterViewInit {
 
   @Input() id: string = null;
   @Input() label = 'Buy';
-
-  product: IAPProduct = null;
+  @Input() country = 'DE';
+  @Input() currency = 'eur';
+  @Input() price: number;
 
   paymentRequestButton: any;
   paymentRequest: any;
@@ -32,16 +33,18 @@ export class StripePaymentComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit() {
-    this.product = this.store.selectSnapshot(IapState.getProduct(this.id));
   }
 
   async ngAfterViewInit() {
+    if (!this.iap.stripe) {
+      return;
+    }
     // 1. instantiate a paymentRequest object
     this.paymentRequest = this.iap.stripe.paymentRequest({
-      country: 'DE',
-      currency: 'eur',
+      country: this.country,
+      currency: this.currency,
       total: {
-        amount: (+this.product.priceMicros / 10000),
+        amount: this.price,
         label: this.label,
       },
       requestPayerName: true,

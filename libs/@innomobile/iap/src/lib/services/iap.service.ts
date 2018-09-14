@@ -29,6 +29,7 @@ export class IapService {
         @Inject(IAP_DEBUG) private debug,
         @Inject(STRIPE_KEY) private stripeKey,
     ) {
+
     }
 
     init() {
