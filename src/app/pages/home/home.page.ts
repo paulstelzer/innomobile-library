@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { Platform } from '@ionic/angular';
+import { Platform, Slides } from '@ionic/angular';
 
 // NGXS
 import { Store } from '@ngxs/store';
@@ -10,60 +10,64 @@ import { BranchService, AppsflyerService } from '@innomobile/attribution';
 import { ToastService } from '@innomobile/core';
 
 @Component({
-  selector: 'app-page-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss']
+    selector: 'app-page-home',
+    templateUrl: 'home.page.html',
+    styleUrls: ['home.page.scss']
 })
 export class HomePage implements OnInit {
-  version = '';
-  branchData = null;
+    @ViewChild(Slides) slides: Slides;
+    version = '';
+    branchData = null;
 
-  constructor(
-    private platform: Platform,
-    private toast: ToastService,
-    private store: Store,
-    private authService: AuthService,
-    private branch: BranchService,
-    private appsflyer: AppsflyerService
-  ) {
-    this.init();
+    constructor(
+        private platform: Platform,
+        private toast: ToastService,
+        private store: Store,
+        private authService: AuthService,
+        private branch: BranchService,
+        private appsflyer: AppsflyerService
+    ) {
+        this.init();
 
-    this.platform.resume.subscribe(() => {
-      this.init();
-    });
+        this.platform.resume.subscribe(() => {
+            this.init();
+        });
 
-    this.appsflyer.init();
-  }
-
-  ngOnInit(): void {
-    this.version = environment.version;
-  }
-
-  async init() {
-    if (this.platform.is('cordova')) {
-      this.branchData = await this.branch.initSession();
-      console.log('Data branch', JSON.stringify(this.branchData));
+        this.appsflyer.init();
     }
-  }
 
-  async signIn() {
-    console.log('Sign in');
-    this.store.dispatch(new FireAuthAnonymousSignUp());
+    ngOnInit() {
+        this.version = environment.version;
 
-    const data = this.store.selectSnapshot(state => state.auth.authUser);
-    console.log('[selectSnapshot] User Data', data);
-  }
+        this.slides.update();
+        this.slides.lockSwipes(true);
+    }
 
-  setLanguage(lang) {
-    this.store.dispatch(new UpdateLanguage(lang));
-    this.toast.sendToastTranslation('error', 'Test it');
-  }
+    async init() {
+        if (this.platform.is('cordova')) {
+            this.branchData = await this.branch.initSession();
+            console.log('Data branch', JSON.stringify(this.branchData));
+        }
+    }
 
-  logout() {
-    this.store.dispatch(new FireAuthUserSignOut());
-  }
+    async signIn() {
+        console.log('Sign in');
+        this.store.dispatch(new FireAuthAnonymousSignUp());
 
-  share() {
-    this.branch.share('Subject', 'My Message', { channel: 'viral', campaign: 'Party', }, { contentMetadata: { userId: 123 } });
-  }
+        const data = this.store.selectSnapshot(state => state.auth.authUser);
+        console.log('[selectSnapshot] User Data', data);
+    }
+
+    setLanguage(lang) {
+        this.store.dispatch(new UpdateLanguage(lang));
+        this.toast.sendToastTranslation('error', 'Test it');
+    }
+
+    logout() {
+        this.store.dispatch(new FireAuthUserSignOut());
+    }
+
+    share() {
+        this.branch.share('Subject', 'My Message', { channel: 'viral', campaign: 'Party', }, { contentMetadata: { userId: 123 } });
+    }
 }

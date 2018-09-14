@@ -14,7 +14,6 @@ export class AboutPage implements OnInit {
 
   async initAdmob() {
     this.admob.init();
-    await this.admob.ready();
     console.log('Admob is ready');
 
   }
