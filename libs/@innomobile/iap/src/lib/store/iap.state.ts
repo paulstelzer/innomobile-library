@@ -52,9 +52,6 @@ export class IapState implements NgxsOnInit {
 
     constructor() { }
 
-    /**
-     * Dispatch CheckSession on start
-     */
     ngxsOnInit(ctx: StateContext<IapStateModel>) {
         ctx.dispatch(new IapInit());
     }

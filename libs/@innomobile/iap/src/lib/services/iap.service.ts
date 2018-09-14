@@ -24,7 +24,6 @@ export class IapService {
         @Inject(IAP_PWA_PACKAGES) private pwaPackages: IapModel[],
         @Inject(IAP_DEBUG) private debug,
     ) {
-
     }
 
     init() {
