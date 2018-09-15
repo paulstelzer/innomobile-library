@@ -1,3 +1,23 @@
+<a name="1.2.9"></a>
+## [1.2.9](https://github.com/paulstelzer/innomobile-library/compare/v1.2.8...v1.2.9) (2018-09-15)
+
+
+### Bug Fixes
+
+* **ads:** Add ready methods ([aecf89e](https://github.com/paulstelzer/innomobile-library/commit/aecf89e))
+* **iap:** Fix Stripe Issues ([4f01f03](https://github.com/paulstelzer/innomobile-library/commit/4f01f03))
+* **iap:** If stripe is not available catch the error ([78c28a1](https://github.com/paulstelzer/innomobile-library/commit/78c28a1))
+* **iap:** isSupportedNative is now public ([4586be7](https://github.com/paulstelzer/innomobile-library/commit/4586be7))
+* **iap:** Stripe as single component ([9906cae](https://github.com/paulstelzer/innomobile-library/commit/9906cae))
+* **iap:** Stripe component edited ([49f4ef4](https://github.com/paulstelzer/innomobile-library/commit/49f4ef4))
+
+
+### Features
+
+* **iap:** Add Stripe Payment ([ae2ee66](https://github.com/paulstelzer/innomobile-library/commit/ae2ee66))
+
+
+
 <a name="1.2.8"></a>
 ## [1.2.8](https://github.com/paulstelzer/innomobile-library/compare/v1.2.7...v1.2.8) (2018-09-12)
 
