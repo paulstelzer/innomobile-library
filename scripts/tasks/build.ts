@@ -1,5 +1,5 @@
-import { ROOT_PATH, PLUGIN_PATHS } from "../build/helpers";
-import { Logger } from "../logger";
+import { ROOT_PATH, PLUGIN_PATHS } from '../build/helpers';
+import { Logger } from '../logger';
 
 import * as Queue from 'async-promise-queue';
 import { exec } from 'child_process';
@@ -20,7 +20,7 @@ async function build(ignoreErrors = false) {
     Logger.profile('Building');
 
     PACKAGES = PACKAGES.filter(element => element !== 'core');
-    
+
     // upload 1 package per CPU thread at a time
     const worker = Queue.async.asyncify((pkg: any) =>
         new Promise<any>((resolve, reject) => {

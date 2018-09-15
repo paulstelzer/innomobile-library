@@ -1,9 +1,5 @@
 {
-  "extends": "../tsconfig.json",
-  "compilerOptions": {
-    "outDir": "../out-tsc/app",
-    "baseUrl": "./",
-    "module": "es2015",
+    "extends": "../tsconfig.json",
     "paths": {
       "@innomobile/ads": ["../dest/@innomobile/ads"],
       "@innomobile/attribution": ["../dest/@innomobile/attribution"],
@@ -15,10 +11,10 @@
       "@innomobile/ionic-image-loader": ["../dest/@innomobile/ionic-image-loader"],
       "@innomobile/mapbox": ["../dest/@innomobile/mapbox"],
       "@innomobile/notifications": ["../dest/@innomobile/notifications"]
-    }
-  },
-  "exclude": [
-    "test.ts",
-    "**/*.spec.ts"
-  ]
-}
+    },
+    "exclude": [
+      "src/test.ts",
+      "**/*.spec.ts"
+    ]
+  }
+  
