@@ -196,15 +196,17 @@ export class IapService {
         });
 
         this.iapStore.when(id).approved((product: IAPProduct) => {
-            const obj = JSON.parse(product.transaction.receipt);
-            const purchaseTime = (obj && obj.purchaseTime) ? obj.purchaseTime : 0;
-
+            let purchaseTime = new Date().getTime();
+            if (product.transaction && product.transaction.receipt) {
+                const obj = JSON.parse(product.transaction.receipt);
+                purchaseTime = (obj && obj.purchaseTime) ? obj.purchaseTime : new Date().getTime();
+            }
             const p: IapPurchase = {
                 alias: product.alias,
                 id: product.transaction.id,
-                purchaseToken: product.transaction.purchaseToken,
+                purchaseToken: product.transaction.purchaseToken || '',
                 purchaseTime: purchaseTime,
-                signature: product.transaction.signature,
+                signature: product.transaction.signature || '',
                 type: product.transaction.type
             };
             this.store.dispatch(new IapPurchaseApproved(p));
