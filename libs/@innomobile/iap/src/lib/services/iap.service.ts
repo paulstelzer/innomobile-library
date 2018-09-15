@@ -43,7 +43,13 @@ export class IapService {
         }
 
         if (this.stripeKey) {
-            this.stripe = Stripe(this.stripeKey);
+            try {
+                this.stripe = Stripe(this.stripeKey);
+            } catch (error) {
+                if (this.debug) {
+                    console.log('[@innomobile/iap] Stripe is not available', error);
+                }
+            }
         }
 
         this.isSupportedNative = false;
