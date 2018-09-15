@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders, InjectionToken } from '@angular/core';
-import { BranchIo } from '@innomobile-native/branch/ngx';
-import { Appsflyer, AppsflyerOptions } from '@innomobile-native/appsflyer/ngx';
+import { BranchIo } from '@ionic-native/branch-io/ngx';
+import { Appsflyer, AppsflyerOptions } from '@ionic-native/appsflyer/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 export const APPSFLYER_CONFIG = new InjectionToken<AppsflyerOptions>('Appsflyer Config');

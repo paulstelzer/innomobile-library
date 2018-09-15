@@ -3,7 +3,7 @@ import { Injectable, Optional, Inject } from '@angular/core';
 import { Platform } from '@ionic/angular';
 
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
-import { BranchIo, BranchIoPromise, BranchIoAnalytics, BranchIoProperties } from '@innomobile-native/branch/ngx';
+import { BranchIo, BranchIoPromise, BranchIoAnalytics, BranchIoProperties } from '@ionic-native/branch-io/ngx';
 
 @Injectable({
   providedIn: 'root'
