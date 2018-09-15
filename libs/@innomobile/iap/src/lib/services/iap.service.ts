@@ -185,8 +185,6 @@ export class IapService {
     }
 
     private registerHandlers(id: string) {
-        // TODO Refunded / Expired --> Remove packages
-
         this.iapStore.when(id).refunded((product: IAPProduct) => {
             this.store.dispatch(new IapPurchaseRefunded(product));
         });
