@@ -2,7 +2,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { InAppPurchase2 } from '@ionic-native/in-app-purchase-2/ngx';
 import { NgxsModule } from '@ngxs/store';
 import { IAPPwaProductModel } from './classes/iap-pwa-product.model';
-import { StripePaymentComponent } from './modals/stripe-payment/stripe-payment.component';
+import { StripePaymentComponent } from './components/stripe-payment/stripe-payment.component';
 import { IapModel } from './store/iap.model';
 import { IapState } from './store/iap.state';
 import { IAP_PACKAGES, IAP_PWA_PACKAGES, STRIPE_KEY, IAP_DEBUG } from './classes/iap-token';

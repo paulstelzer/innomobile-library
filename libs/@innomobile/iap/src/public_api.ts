@@ -18,5 +18,5 @@ export * from './lib/store/iap.actions';
 export * from './lib/store/iap.model';
 export * from './lib/store/iap.state';
 
-// Stripe Payment Modal
-export * from './lib/modals/stripe-payment/stripe-payment.component';
+// Components
+export * from './lib/components/stripe-payment/stripe-payment.component';

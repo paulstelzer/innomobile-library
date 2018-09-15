@@ -1,10 +1,13 @@
-import { AfterViewInit, Component, OnInit, ViewChild, Input } from '@angular/core';
-import { IAPProduct } from '@ionic-native/in-app-purchase-2/ngx';
+import { AfterViewInit, Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { IapService } from '../../services/iap.service';
 import { IapPurchaseApproved } from '../../store/iap.actions';
 import { IapPurchase } from '../../store/iap.model';
-import { IapState } from '../../store/iap.state';
+
+export interface StripeResponse {
+  canMakePayment: boolean;
+  ready: boolean;
+}
 
 @Component({
   selector: 'inno-stripe-payment',
@@ -19,6 +22,9 @@ export class StripePaymentComponent implements OnInit, AfterViewInit {
   @Input() country = 'DE';
   @Input() currency = 'eur';
   @Input() price: number;
+  @Input() useDefaultButton = true;
+
+  @Output() ready = new EventEmitter<StripeResponse>();
 
   paymentRequestButton: any;
   paymentRequest: any;
@@ -98,11 +104,28 @@ export class StripePaymentComponent implements OnInit, AfterViewInit {
     const result = await this.paymentRequest.canMakePayment();
 
     if (result) {
+      this.ready.emit({
+        canMakePayment: true,
+        ready: true
+      });
       this.available = true;
-      this.paymentRequestButton.mount(this.stripeElement.nativeElement);
+
+      if (this.useDefaultButton) {
+        this.paymentRequestButton.mount(this.stripeElement.nativeElement);
+      }
+
+    } else {
+      this.ready.emit({
+        canMakePayment: false,
+        ready: true
+      });
     }
 
     this.loading = false;
+  }
+
+  showPayRequest() {
+    this.paymentRequest.show();
   }
 
 }
