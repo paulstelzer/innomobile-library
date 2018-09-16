@@ -1,6 +1,6 @@
 import * as Listr from 'listr';
 
-import { getPackages, preparePackage, publishPackage } from '../helper/helpers';
+import { getPackages, publishPackage } from '../helper/helpers';
 import { runChangelog } from '../helper/changelog';
 
 async function publish() {
@@ -21,7 +21,7 @@ async function publish() {
 
     // Step 2: Add all packages to publish
     getPackages('core').forEach(name => {
-        // tasks.push(publishPackage(name));
+        tasks.push(publishPackage(name));
     });
 
     const listr = new Listr(tasks);
