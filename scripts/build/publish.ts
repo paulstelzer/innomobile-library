@@ -4,11 +4,14 @@ import { getPackages, preparePackage, publishPackage } from '../helper/helpers';
 import { runChangelog } from '../helper/changelog';
 
 async function publish() {
+    const index = process.argv.indexOf('--package');
+
     let releaseType = 'patch';
-    if (process.argv.indexOf('minor')) {
-        releaseType = 'minor';
-    } else if (process.argv.indexOf('major')) {
-        releaseType = 'major';
+    if (index >= 0 && process.argv[index + 1]) {
+        const value = process.argv[index + 1];
+        if (value === 'minor' || value === 'major') {
+            releaseType = value;
+        }
     }
 
     const tasks = [];
