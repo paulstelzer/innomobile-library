@@ -74,13 +74,6 @@ export function preparePackage(name) {
     const projectTasks = [];
 
     projectTasks.push({
-        title: `Add Version`,
-        task: async () => {
-            changeJson(name);
-        }
-    });
-
-    projectTasks.push({
         title: `Build package`,
         task: async () => {
             try {
