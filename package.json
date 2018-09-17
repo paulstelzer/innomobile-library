@@ -9,7 +9,8 @@
     "url": "https://github.com/paulstelzer/innomobile-library.git"
   },
   "scripts": {
-    "lib:publish": "ts-node -P scripts/tsconfig.json scripts/build/publish --release",
+    "lib:publish": "ts-node -P scripts/tsconfig.json scripts/build/publish --package",
+    "lib:changelog": "ts-node -P scripts/tsconfig.json scripts/build/changelog --release",
     "lib:build": "ts-node -P scripts/tsconfig.json scripts/build/build --package",
     "ng": "ng",
     "start": "ionic serve",
