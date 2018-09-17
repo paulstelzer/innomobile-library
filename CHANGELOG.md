@@ -1,8 +1,3 @@
-<a name="1.2.14"></a>
-## [1.2.14](https://github.com/paulstelzer/innomobile-library/compare/v1.2.13...v1.2.14) (2018-09-17)
-
-
-
 <a name="1.2.13"></a>
 ## [1.2.13](https://github.com/paulstelzer/innomobile-library/compare/v1.2.12...v1.2.13) (2018-09-17)
 
