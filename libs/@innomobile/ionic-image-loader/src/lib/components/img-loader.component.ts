@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2 } from '@angular/core';
-import { ImageLoader } from '../providers/image-loader';
-import { ImageLoaderConfig } from '../providers/image-loader-config';
+import { ImageLoader } from '../services/image-loader';
+import { ImageLoaderConfig } from '../services/image-loader-config';
 
 const propMap: any = {
   display: 'display',
@@ -32,7 +32,7 @@ export class ImgLoaderComponent implements OnInit {
   /**
    * Enable/Disable caching
    */
-  @Input() cache: boolean = true;
+  @Input() cache = true;
   /**
    * Width of the image. This will be ignored if using useImg.
    */
@@ -69,7 +69,7 @@ export class ImgLoaderComponent implements OnInit {
   /**
    * Indicates if the image is still loading
    */
-  isLoading: boolean = true;
+  isLoading = true;
 
   element: HTMLElement;
 
@@ -94,7 +94,7 @@ export class ImgLoaderComponent implements OnInit {
   set src(imageUrl: string) {
     this._src = this.processImageUrl(imageUrl);
     this.updateImage(this._src);
-  };
+  }
 
   private _useImg: boolean = this._config.useImg;
 
@@ -140,7 +140,7 @@ export class ImgLoaderComponent implements OnInit {
 
   private updateImage(imageUrl: string) {
     this._imageLoader.getImagePath(imageUrl)
-      .then((imageUrl: string) => this.setImage(imageUrl))
+      .then((img: string) => this.setImage(img))
       .catch((error: any) => this.setImage(this.fallbackUrl || imageUrl));
   }
 
@@ -174,7 +174,7 @@ export class ImgLoaderComponent implements OnInit {
   private setImage(imageUrl: string, stopLoading: boolean = true): void {
     this.isLoading = !stopLoading;
 
-    if (this._useImg) {      
+    if (this._useImg) {
       // Using <img> tag
       if (!this.element) {
         // create img element if we dont have one
@@ -193,7 +193,7 @@ export class ImgLoaderComponent implements OnInit {
       }
 
       this._renderer.appendChild(this._eRef.nativeElement, this.element);
-      
+
 
     } else {
 
@@ -201,7 +201,7 @@ export class ImgLoaderComponent implements OnInit {
 
       this.element = this._eRef.nativeElement;
 
-      for (let prop in propMap) {
+      for (const prop in propMap) {
         if (this[prop]) {
           this._renderer.setStyle(this.element, propMap[prop], this[prop]);
         }
