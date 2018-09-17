@@ -1,6 +1,5 @@
 import * as Listr from 'listr';
 
-import { getPackages, publishPackage } from '../helper/helpers';
 import { runChangelog } from '../helper/changelog';
 
 async function publish() {

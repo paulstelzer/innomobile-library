@@ -16,8 +16,6 @@ export const PLUGIN_PATHS = fs.readdirSync(PLUGINS_ROOT).map(d => path.join(PLUG
 export const DEST_ROOT = path.join(ROOT_PATH, 'dest/@innomobile/');
 export const DEST_PATHS = fs.readdirSync(DEST_ROOT).map(d => path.join(DEST_ROOT, d, 'package.json'));
 
-const FLAGS = '--access public';
-
 export function getPackages(returnOnly: string = null) {
     let PACKAGES = [];
 
