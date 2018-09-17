@@ -1,3 +1,8 @@
+<a name="1.2.14"></a>
+## [1.2.14](https://github.com/paulstelzer/innomobile-library/compare/v1.2.13...v1.2.14) (2018-09-17)
+
+
+
 <a name="1.2.13"></a>
 ## [1.2.13](https://github.com/paulstelzer/innomobile-library/compare/v1.2.12...v1.2.13) (2018-09-17)
 
@@ -7,6 +12,22 @@
 * **attribution:** Appsflyer fix ([c2b8747](https://github.com/paulstelzer/innomobile-library/commit/c2b8747))
 * **ionic-image-loader:** Fix lint issues ([c8f11e9](https://github.com/paulstelzer/innomobile-library/commit/c8f11e9))
 * **ionic-image-loader:** Fixed some issues ([e6072c2](https://github.com/paulstelzer/innomobile-library/commit/e6072c2))
+
+
+
+<a name="1.2.12"></a>
+## [1.2.12](https://github.com/paulstelzer/innomobile-library/compare/v1.2.11...v1.2.12) (2018-09-16)
+
+
+
+<a name="1.2.11"></a>
+## [1.2.11](https://github.com/paulstelzer/innomobile-library/compare/v1.3.0...v1.2.11) (2018-09-16)
+
+
+
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/paulstelzer/innomobile-library/compare/v1.2.10...v1.3.0) (2018-09-16)
+
 
 
 <a name="1.2.10"></a>
