@@ -20,7 +20,7 @@ async function publish() {
     tasks.push(runChangelog(releaseType));
 
     // Step 2: Add all packages to publish
-    getPackages('core').forEach(name => {
+    getPackages().forEach(name => {
         tasks.push(publishPackage(name));
     });
 
