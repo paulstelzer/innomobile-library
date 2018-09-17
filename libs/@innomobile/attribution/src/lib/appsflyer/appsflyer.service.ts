@@ -26,8 +26,6 @@ export class AppsflyerService {
             delete this.appsflyerConfig.appId;
         }
 
-        await this.platform.ready();
-
         try {
             console.log('[@innomobile/attribution] appsflyer: options', this.appsflyerConfig);
             const data = await this.appsflyer.initSdk(this.appsflyerConfig);
@@ -39,6 +37,7 @@ export class AppsflyerService {
     }
 
     log(type: string, data: any) {
+        if (!this.initialized) { return; }
         this.appsflyer.trackEvent(type, data);
     }
 
