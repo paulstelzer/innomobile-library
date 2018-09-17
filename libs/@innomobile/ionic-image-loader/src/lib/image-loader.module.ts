@@ -25,7 +25,7 @@ export class IonicImageLoader {
       ngModule: IonicImageLoader,
       providers: [
         File,
-        WebView 
+        WebView,
       ]
     };
   }

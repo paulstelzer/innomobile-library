@@ -6,31 +6,31 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class ImageLoaderConfig {
 
-  debugMode: boolean = false;
+  debugMode = false;
 
-  spinnerEnabled: boolean = true;
+  spinnerEnabled = true;
 
-  fallbackAsPlaceholder: boolean = false;
+  fallbackAsPlaceholder = false;
 
-  backgroundSize: string = 'contain';
+  backgroundSize = 'contain';
 
-  backgroundRepeat: string = 'no-repeat';
+  backgroundRepeat = 'no-repeat';
 
-  display: string = 'block';
+  display = 'block';
 
-  width: string = '100%';
+  width = '100%';
 
-  height: string = '100%';
+  height = '100%';
 
-  useImg: boolean = false;
+  useImg = false;
 
   fallbackUrl: string;
 
-  concurrency: number = 5;
+  concurrency = 5;
 
-  maxCacheSize: number = -1;
+  maxCacheSize = -1;
 
-  maxCacheAge: number = -1;
+  maxCacheAge = -1;
 
   imageReturnType: 'base64' | 'uri' = 'base64';
 
@@ -40,11 +40,13 @@ export class ImageLoaderConfig {
 
   httpHeaders: HttpHeaders;
 
-  fileNameCachedWithExtension: boolean = false;
+  fileNameCachedWithExtension = false;
 
-  fallbackFileNameCachedExtension: string = '.jpg';
+  fallbackFileNameCachedExtension = '.jpg';
 
-  private _cacheDirectoryName: string = 'image-loader-cache';
+  cacheDirectoryType: 'cache' | 'data' = 'cache';
+
+  private _cacheDirectoryName = 'image-loader-cache';
 
   get cacheDirectoryName(): string {
     return this._cacheDirectoryName;

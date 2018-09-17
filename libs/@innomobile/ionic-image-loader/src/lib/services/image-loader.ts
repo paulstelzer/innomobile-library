@@ -28,28 +28,28 @@ export class ImageLoader {
    * Indicates if the cache service is ready.
    * When the cache service isn't ready, images are loaded via browser instead.
    */
-  private isCacheReady: boolean = false;
+  private isCacheReady = false;
   /**
    * Indicates if this service is initialized.
    * This service is initialized once all the setup is done.
    */
-  private isInit: boolean = false;
+  private isInit = false;
   /**
    * Number of concurrent requests allowed
    */
-  private concurrency: number = 5;
+  private concurrency = 5;
   /**
    * Queue items
    */
   private queue: QueueItem[] = [];
-  private processing: number = 0;
+  private processing = 0;
   /**
    * Fast accessable Object for currently processing items
    */
   private currentlyProcessing: { [index: string]: Promise<any> } = {};
   private cacheIndex: IndexItem[] = [];
-  private currentCacheSize: number = 0;
-  private indexed: boolean = false;
+  private currentCacheSize = 0;
+  private indexed = false;
 
   constructor(
     private config: ImageLoaderConfig,
@@ -62,7 +62,7 @@ export class ImageLoader {
       // we are running on a browser, or using livereload
       // plugin will not function in this case
       this.isInit = true;
-      this.throwWarning('You are running on a browser or using livereload, IonicImageLoader will not function, falling back to browser loading.');
+      this.throwWarning('falling back to browser loading.');
     } else {
       fromEvent(document, 'deviceready').pipe(first()).subscribe(res => {
         if (this.nativeAvailable) {
@@ -71,7 +71,7 @@ export class ImageLoader {
           // we are running on a browser, or using livereload
           // plugin will not function in this case
           this.isInit = true;
-          this.throwWarning('You are running on a browser or using livereload, IonicImageLoader will not function, falling back to browser loading.');
+          this.throwWarning('falling back to browser loading.');
         }
       });
     }
@@ -90,7 +90,7 @@ export class ImageLoader {
   }
 
   private get isDevServer(): boolean {
-    return (window['IonicDevServer'] != undefined);
+    return (window['IonicDevServer'] !== undefined);
   }
 
   /**
@@ -117,7 +117,7 @@ export class ImageLoader {
    */
   clearCache(): void {
 
-    if (!this.platform.is('cordova')) return;
+    if (!this.platform.is('cordova')) { return; }
 
     const clear = () => {
 
@@ -213,43 +213,54 @@ export class ImageLoader {
 
   }
 
+
+  getFileCacheDirectory() {
+    if (this.config.cacheDirectoryType === 'data') {
+      return this.file.dataDirectory;
+    }
+    return this.file.cacheDirectory;
+  }
+
   /**
    * Processes one item from the queue
    */
   private processQueue() {
-
     // make sure we can process items first
-    if (!this.canProcess) return;
+    if (!this.canProcess) {
+      return;
+    }
 
     // increase the processing number
     this.processing++;
 
     // take the first item from queue
     const currentItem: QueueItem = this.queue.splice(0, 1)[0];
+
+    // function to call when done processing this item
+    // this will reduce the processing number
+    // then will execute this function again to process any remaining items
+    const done = () => {
+      this.processing--;
+      this.processQueue();
+
+      // only delete if it's the last/unique occurrence in the queue
+      if (this.currentlyProcessing[currentItem.imageUrl] !== undefined && !this.currentlyInQueue(currentItem.imageUrl)) {
+        delete this.currentlyProcessing[currentItem.imageUrl];
+      }
+    };
+
+    const error = (e) => {
+      currentItem.reject();
+      this.throwError(e);
+      done();
+    };
+
     if (this.currentlyProcessing[currentItem.imageUrl] === undefined) {
       this.currentlyProcessing[currentItem.imageUrl] = new Promise((resolve, reject) => {
         // process more items concurrently if we can
-        if (this.canProcess) this.processQueue();
+        if (this.canProcess) { this.processQueue(); }
 
-        // function to call when done processing this item
-        // this will reduce the processing number
-        // then will execute this function again to process any remaining items
-        const done = () => {
-          this.processing--;
-          this.processQueue();
-
-          if (this.currentlyProcessing[currentItem.imageUrl] !== undefined) {
-            delete this.currentlyProcessing[currentItem.imageUrl];
-          }
-        };
-
-        const error = (e) => {
-          currentItem.reject();
-          this.throwError(e);
-          done();
-        };
-
-        const localDir = this.file.cacheDirectory + this.config.cacheDirectoryName + '/';
+        const localDir = this.getFileCacheDirectory() + this.config.cacheDirectoryName + '/';
         const fileName = this.createFileName(currentItem.imageUrl);
 
         this.http.get(currentItem.imageUrl, {
@@ -270,25 +281,38 @@ export class ImageLoader {
                 });
               });
             }).catch((e) => {
-              //Could not write image
+              // Could not write image
               error(e);
+              reject(e);
             });
           },
           (e) => {
-            //Could not get image via httpClient
-            console.info('[@innomobile/ion-image-loader] Could not get image via httpclient - make sure to add Access-Control-Allow-Origin: * to your server which serves the image');
+            // Could not get image via httpClient
             error(e);
-          }
-        );
-      });
+            reject(e);
+          });
+      },
+      );
     } else {
-      //Prevented same Image from loading at the same time
+      // Prevented same Image from loading at the same time
       this.currentlyProcessing[currentItem.imageUrl].then(() => {
-        this.getCachedImagePath(currentItem.imageUrl).then((localUrl) => {
+        this.getCachedImagePath(currentItem.imageUrl).then(localUrl => {
           currentItem.resolve(localUrl);
-        })
-      });
+        });
+        done();
+      },
+        (e) => {
+          error(e);
+        });
     }
+  }
+
+  /**
+   * Search if the url is currently in the queue
+   * @param imageUrl {string} Image url to search
+   */
+  private currentlyInQueue(imageUrl: string) {
+    return this.queue.some(item => item.imageUrl === imageUrl);
   }
 
   /**
@@ -388,7 +412,7 @@ export class ImageLoader {
           // grab the first item in index since it's the oldest one
           const file: IndexItem = this.cacheIndex.splice(0, 1)[0];
 
-          if (typeof file == 'undefined') return maintain();
+          if (typeof file === 'undefined') { return maintain(); }
 
           // delete the file then process next file if necessary
           this.removeFile(file.name)
@@ -535,10 +559,12 @@ export class ImageLoader {
    */
   private hashString(string: string): number {
     let hash = 0, char;
-    if (string.length === 0) return hash;
+    if (string.length === 0) { return hash; }
     for (let i = 0; i < string.length; i++) {
       char = string.charCodeAt(i);
+      // tslint:disable-next-line:no-bitwise
       hash = ((hash << 5) - hash) + char;
+      // tslint:disable-next-line:no-bitwise
       hash = hash & hash;
     }
     return hash;
@@ -550,6 +576,7 @@ export class ImageLoader {
    * @param filename
    */
   private getExtensionFromFileName(filename) {
+    // tslint:disable-next-line:no-bitwise
     return filename.substr((~-filename.lastIndexOf('.') >>> 0) + 1) || this.config.fallbackFileNameCachedExtension;
   }
 }
