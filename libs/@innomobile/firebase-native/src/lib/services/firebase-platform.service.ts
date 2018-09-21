@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FirebasePlatformService {
-  userToken = null;
 
   constructor(private platform: Platform, private firebaseNative: Firebase) {
 
@@ -15,12 +14,6 @@ export class FirebasePlatformService {
 
   init() {
     if (!this.platform.is('cordova')) { return; }
-    /*
-    TODO
-    this.firebaseNative.initFirebase();
-    this.firebaseNative.initCrashlytics();
-    */
-    this.userToken = this.getToken();
     this.firebaseNative.setBadgeNumber(0);
   }
 
@@ -70,8 +63,8 @@ export class FirebasePlatformService {
     if (this.platform.is('android')) {
       token = await this.firebaseNative.getToken();
     } else if (this.platform.is('ios')) {
-      token = await this.firebaseNative.getToken();
       await this.firebaseNative.grantPermission();
+      token = await this.firebaseNative.getToken();
     }
 
     console.log('[@innomobile/firebase-native] User Token', token);
@@ -79,32 +72,29 @@ export class FirebasePlatformService {
   }
 
   /**
-   * Returns the new fcmToken or false if no token can be determined or is already in the list
-   * @param fcmTokens Object of FCM Tokens
-   */
-  setToken(fcmTokens: { [token: string]: true | false }) {
-    if (!this.hasToken(fcmTokens)) {
-      if (this.userToken) {
-        const currentTokens = fcmTokens || {};
-        const tokens = { ...currentTokens, [this.userToken]: true };
-        // Zugriff via const tokens = user.fcmTokens ? Object.keys(user.fcmTokens) : []
+ * Returns the new fcmToken or false if no token can be determined or is already in the list
+ * @param fcmTokens Object of FCM Tokens
+ */
+  async setToken(fcmTokens: { [token: string]: true | false }) {
+    const userToken = await this.getToken();
+    const hasToken = this.hasToken(fcmTokens, userToken);
 
-        return tokens;
-      }
+    if (!hasToken) {
+      const currentTokens = fcmTokens || {};
+      const tokens = { ...currentTokens, [userToken]: true };
+      // Zugriff via const tokens = user.fcmTokens ? Object.keys(user.fcmTokens) : []
+      return tokens;
     }
     return false;
   }
 
-  async hasToken(fcmTokens) {
-    if (!this.userToken) {
-      this.userToken = await this.getToken();
-      if (!this.userToken) {
-        return true;
-      }
+  hasToken(fcmTokens, userToken) {
+    if (!userToken) {
+      return true;
     }
 
     if (fcmTokens) {
-      if (fcmTokens[this.userToken]) {
+      if (fcmTokens[userToken]) {
         return true;
       }
     }
