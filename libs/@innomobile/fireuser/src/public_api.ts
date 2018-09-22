@@ -5,7 +5,6 @@
 export * from './lib/fireuser.module';
 
 export * from './lib/auth/auth.module';
-export * from './lib/auth/auth-text/auth-text.component';
 
 // Services
 export * from './lib/services/auth.service';
