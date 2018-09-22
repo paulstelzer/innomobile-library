@@ -1,0 +1,2505 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>@innomobile/fireuser documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">@innomobile/fireuser documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>AuthService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/lib/services/auth.service.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Auth Service to connect to Firebase</p>
+
+            </p>
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#customTokenLogin">customTokenLogin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#emailLogin">emailLogin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#emailSignUp">emailSignUp</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#emailUpgrade">emailUpgrade</a>
+                            </li>
+                            <li>
+                                <a href="#getRedirectResult">getRedirectResult</a>
+                            </li>
+                            <li>
+                                <a href="#itemDate">itemDate</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#phoneLogin">phoneLogin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#phoneUpgrade">phoneUpgrade</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#reAuthenticateUser">reAuthenticateUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#recoverEmail">recoverEmail</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#resetPassword">resetPassword</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#sendEmailVerification">sendEmailVerification</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#setNewPassword">setNewPassword</a>
+                            </li>
+                            <li>
+                                <a href="#showError">showError</a>
+                            </li>
+                            <li>
+                                <a href="#showSuccess">showSuccess</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#socialSignIn">socialSignIn</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#socialUpgrade">socialUpgrade</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateFbEmail">updateFbEmail</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateFirebaseUserDisplayName">updateFirebaseUserDisplayName</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updatePassword">updatePassword</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#verifyEmail">verifyEmail</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#fbUser">fbUser</a>
+                                </li>
+                                <li>
+                                    <a href="#currentToken">currentToken</a>
+                                </li>
+                                <li>
+                                    <a href="#timestamp">timestamp</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+
+            <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="customTokenLogin"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            customTokenLogin
+                            </b>
+                            <a href="#customTokenLogin"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>customTokenLogin(token: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/lib/services/auth.service.ts:135</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Login with custom token</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>token</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Token</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="emailLogin"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            emailLogin
+                            </b>
+                            <a href="#emailLogin"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>emailLogin(email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, password: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/lib/services/auth.service.ts:104</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>User Login with email and password</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>email</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Email</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>password</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Password</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="emailSignUp"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            emailSignUp
+                            </b>
+                            <a href="#emailSignUp"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>emailSignUp(email: , password: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/lib/services/auth.service.ts:56</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Sign up a new user with Email and Password</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>email</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Email</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>password</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Password</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="emailUpgrade"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            emailUpgrade
+                            </b>
+                            <a href="#emailUpgrade"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>emailUpgrade(email: , password: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="231" class="link-to-prism">src/lib/services/auth.service.ts:231</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Update an anonymous user with Email and Password</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>email</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Email</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>password</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Password</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getRedirectResult"></a>
+                        <span class="name">
+                            <b>
+                            getRedirectResult
+                            </b>
+                            <a href="#getRedirectResult"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getRedirectResult()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/lib/services/auth.service.ts:45</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>After signin get the results</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="itemDate"></a>
+                        <span class="name">
+                            <b>
+                            itemDate
+                            </b>
+                            <a href="#itemDate"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>itemDate(object: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, newItem: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="450" class="link-to-prism">src/lib/services/auth.service.ts:450</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Sets a updatedAt and createdAt Date for an object</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Default value</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>object</td>
+                                                        <td>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                        </td>
+
+                                                        <td>
+                                                                <code><p>Object that should be uploaded to Firestore</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>newItem</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code>false</code>
+                                                        </td>
+
+                                                        <td>
+                                                                <code><p>Should the object get a createdAt?</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="phoneLogin"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            phoneLogin
+                            </b>
+                            <a href="#phoneLogin"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>phoneLogin(phoneNumber: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, verifier: firebase.auth.ApplicationVerifier)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/lib/services/auth.service.ts:120</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>User login with telephon number</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>phoneNumber</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Telephone number of user</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>verifier</td>
+                                                        <td>
+                                                                    <code>firebase.auth.ApplicationVerifier</code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Application verifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="phoneUpgrade"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            phoneUpgrade
+                            </b>
+                            <a href="#phoneUpgrade"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>phoneUpgrade(phoneNumber: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, verifier: firebase.auth.ApplicationVerifier)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="246" class="link-to-prism">src/lib/services/auth.service.ts:246</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Update an anonymous user with telephonenumber</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>phoneNumber</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Telephone number of user</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>verifier</td>
+                                                        <td>
+                                                                    <code>firebase.auth.ApplicationVerifier</code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Application verifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="reAuthenticateUser"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            reAuthenticateUser
+                            </b>
+                            <a href="#reAuthenticateUser"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>reAuthenticateUser(password: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/lib/services/auth.service.ts:154</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Re-Authenticate the user</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>password</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>password</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="recoverEmail"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            recoverEmail
+                            </b>
+                            <a href="#recoverEmail"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>recoverEmail(code: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="324" class="link-to-prism">src/lib/services/auth.service.ts:324</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Recover the email of a user</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>code</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Code from Firebase</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="resetPassword"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            resetPassword
+                            </b>
+                            <a href="#resetPassword"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>resetPassword(email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="292" class="link-to-prism">src/lib/services/auth.service.ts:292</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Reset password fpr user</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>email</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Email</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sendEmailVerification"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            sendEmailVerification
+                            </b>
+                            <a href="#sendEmailVerification"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>sendEmailVerification()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="354" class="link-to-prism">src/lib/services/auth.service.ts:354</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Send Email Verification</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="setNewPassword"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            setNewPassword
+                            </b>
+                            <a href="#setNewPassword"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>setNewPassword(password: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, code: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="340" class="link-to-prism">src/lib/services/auth.service.ts:340</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Confirm new password</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>password</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Password</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>code</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>code</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="showError"></a>
+                        <span class="name">
+                            <b>
+                            showError
+                            </b>
+                            <a href="#showError"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>showError(error: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="380" class="link-to-prism">src/lib/services/auth.service.ts:380</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Sends a translated error message</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>error</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Error Code or Message for the toast</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="showSuccess"></a>
+                        <span class="name">
+                            <b>
+                            showSuccess
+                            </b>
+                            <a href="#showSuccess"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>showSuccess(message: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="372" class="link-to-prism">src/lib/services/auth.service.ts:372</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Sends a translated success message</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>message</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Message for the toast</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="socialSignIn"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            socialSignIn
+                            </b>
+                            <a href="#socialSignIn"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>socialSignIn(service: <a href="../undefineds/NetworkValue.html">NetworkValue</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/lib/services/auth.service.ts:74</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Login via Social Network</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>service</td>
+                                                        <td>
+                                                                    <code><a href="../miscellaneous/typealiases.html#NetworkValue" target="_self" >NetworkValue</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Name of the network</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="socialUpgrade"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            socialUpgrade
+                            </b>
+                            <a href="#socialUpgrade"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>socialUpgrade(service: <a href="../undefineds/NetworkValue.html">NetworkValue</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="261" class="link-to-prism">src/lib/services/auth.service.ts:261</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Upgrade via Social Network</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>service</td>
+                                                        <td>
+                                                                    <code><a href="../miscellaneous/typealiases.html#NetworkValue" target="_self" >NetworkValue</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Name of the network</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="updateFbEmail"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            updateFbEmail
+                            </b>
+                            <a href="#updateFbEmail"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>updateFbEmail(email: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="205" class="link-to-prism">src/lib/services/auth.service.ts:205</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Update Email and verify new email</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>email</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Email</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="updateFirebaseUserDisplayName"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            updateFirebaseUserDisplayName
+                            </b>
+                            <a href="#updateFirebaseUserDisplayName"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>updateFirebaseUserDisplayName(name: , photoURL: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/lib/services/auth.service.ts:172</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Update the Firebase user</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>name</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Name of user</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>photoURL</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Photo URL of user</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="updatePassword"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            updatePassword
+                            </b>
+                            <a href="#updatePassword"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>updatePassword(oldPassword: , newPassword: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/lib/services/auth.service.ts:189</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Update the password of the user</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>oldPassword</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Old Password</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>newPassword</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>New Password</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="verifyEmail"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            verifyEmail
+                            </b>
+                            <a href="#verifyEmail"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>verifyEmail(code: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="309" class="link-to-prism">src/lib/services/auth.service.ts:309</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Verify Email</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>code</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Code from Firebase</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+            <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="fbUser"></a>
+                        <span class="name"><b>fbUser</b><a href="#fbUser"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>fbUser()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/lib/services/auth.service.ts:31</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Get the current Firebase Auth User</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>firebase.User</code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="currentToken"></a>
+                        <span class="name"><b>currentToken</b><a href="#currentToken"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>currentToken()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/lib/services/auth.service.ts:38</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Get current token of the Firebase Auth User</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>Promise&lt;string&gt;</code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="timestamp"></a>
+                        <span class="name"><b>timestamp</b><a href="#timestamp"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>timestamp()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="441" class="link-to-prism">src/lib/services/auth.service.ts:441</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Timestamp from Firestore</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>firebase.firestore.FieldValue</code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { ToastService, CoreService } from &#x27;@innomobile/core&#x27;;
+
+import { AngularFireAuth } from &#x27;@angular/fire/auth&#x27;;
+
+import * as firebase from &#x27;firebase/app&#x27;;
+import &#x27;firebase/auth&#x27;;
+
+/** Networks for Firebase Signin and Signup */
+export type NetworkValue &#x3D; &#x27;github&#x27; | &#x27;google&#x27; | &#x27;facebook&#x27; | &#x27;twitter&#x27;;
+
+/**
+ * Auth Service to connect to Firebase
+ */
+@Injectable({
+  providedIn: &#x27;root&#x27;
+})
+export class AuthService {
+  /**
+   * @ignore
+   */
+  constructor(
+    public afAuth: AngularFireAuth,
+    public toast: ToastService,
+    private core: CoreService,
+  ) { }
+
+  /**
+   * Get the current Firebase Auth User
+   */
+  get fbUser(): firebase.User {
+    return this.afAuth.auth.currentUser;
+  }
+
+  /**
+   * Get current token of the Firebase Auth User
+   */
+  get currentToken(): Promise&lt;string&gt; {
+    return this.afAuth.auth.currentUser.getIdToken();
+  }
+
+  /**
+   * After signin get the results
+   */
+  getRedirectResult(): Promise&lt;any&gt; {
+    return this.afAuth.auth.getRedirectResult();
+  }
+
+  // #region Sign Up
+
+  /**
+   * Sign up a new user with Email and Password
+   * @param email Email
+   * @param password Password
+   */
+  async emailSignUp(email, password): Promise&lt;any&gt; {
+    try {
+      return await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+    } catch (error) {
+      this.showError(error);
+      return false;
+    }
+
+  }
+
+  // #endregion
+
+  // #region Login
+
+  /**
+   * Login via Social Network
+   * @param service Name of the network
+   */
+  async socialSignIn(service: NetworkValue): Promise&lt;any&gt; {
+    let provider &#x3D; null;
+    switch (service) {
+      case &#x27;github&#x27;:
+        provider &#x3D; new firebase.auth.GithubAuthProvider();
+        break;
+      case &#x27;google&#x27;:
+        provider &#x3D; new firebase.auth.GoogleAuthProvider();
+        break;
+      case &#x27;facebook&#x27;:
+        provider &#x3D; new firebase.auth.FacebookAuthProvider();
+        break;
+      case &#x27;twitter&#x27;:
+        provider &#x3D; new firebase.auth.TwitterAuthProvider();
+        break;
+    }
+    try {
+      return await this.afAuth.auth.signInWithRedirect(provider);
+    } catch (error) {
+      this.showError(error);
+      return false;
+    }
+
+  }
+
+  /**
+   * User Login with email and password
+   * @param email Email
+   * @param password Password
+   */
+  async emailLogin(email: string, password: string): Promise&lt;any&gt; {
+    email &#x3D; email.replace(/\s/g, &#x27;&#x27;);
+    try {
+      return await this.afAuth.auth.signInWithEmailAndPassword(email, password);
+    } catch (error) {
+      this.showError(error);
+      return false;
+    }
+
+  }
+
+  /**
+   * User login with telephon number
+   * @param phoneNumber Telephone number of user
+   * @param verifier Application verifier
+   */
+  async phoneLogin(phoneNumber: string, verifier: firebase.auth.ApplicationVerifier): Promise&lt;any&gt; {
+    try {
+      const data &#x3D; await this.afAuth.auth.signInWithPhoneNumber(phoneNumber, verifier);
+      this.showSuccess(&#x27;SMS_SEND&#x27;);
+      return data;
+    } catch (error) {
+      this.showError(error);
+      return false;
+    }
+  }
+
+  /**
+   * Login with custom token
+   * @param token Token
+   */
+  async customTokenLogin(token: string): Promise&lt;any&gt; {
+    try {
+      const data &#x3D; await this.afAuth.auth.signInWithCustomToken(token);
+      this.showSuccess(&#x27;LOGIN_SUCCESFUL&#x27;);
+      return data;
+    } catch (error) {
+      this.showError(error);
+      return false;
+    }
+
+  }
+
+  // #endregion
+
+  // #region Update Firebase User
+  /**
+   * Re-Authenticate the user
+   * @param password password
+   */
+  async reAuthenticateUser(password): Promise&lt;any&gt; {
+    try {
+      const credential &#x3D; firebase.auth.EmailAuthProvider.credential(
+        this.fbUser.email,
+        password
+      );
+      return await this.fbUser.reauthenticateWithCredential(credential);
+    } catch (error) {
+      this.showError(error);
+      return false;
+    }
+  }
+
+  /**
+   * Update the Firebase user
+   * @param name Name of user
+   * @param photoURL Photo URL of user
+   */
+  async updateFirebaseUserDisplayName(name, photoURL): Promise&lt;any&gt; {
+    try {
+      return await this.fbUser.updateProfile({
+        displayName: name,
+        photoURL: photoURL
+      });
+    } catch (error) {
+      this.showError(error);
+      return false;
+    }
+  }
+
+  /**
+   * Update the password of the user
+   * @param oldPassword Old Password
+   * @param newPassword New Password
+   */
+  async updatePassword(oldPassword, newPassword): Promise&lt;boolean&gt; {
+    try {
+      await this.reAuthenticateUser(oldPassword);
+      await this.fbUser.updatePassword(newPassword);
+      this.showSuccess(&#x27;PASSWORD_CHANGED&#x27;);
+      return true;
+    } catch (error) {
+      this.showError(error);
+      return false;
+    }
+  }
+
+  /**
+   * Update Email and verify new email
+   * @param email Email
+   */
+  async updateFbEmail(email): Promise&lt;boolean&gt; {
+    const mailCorrect &#x3D; this.core.emailValidator(email);
+    if (!mailCorrect) {
+      this.showError(&#x27;auth/invalid-email&#x27;);
+      return false;
+    }
+
+    try {
+      await this.fbUser.updateEmail(email);
+      await this.sendEmailVerification();
+      return true;
+    } catch (error) {
+      this.showError(error);
+      return false;
+    }
+  }
+
+  // #endregion
+
+  // #region Upgrade User Account
+
+  /**
+   * Update an anonymous user with Email and Password
+   * @param email Email
+   * @param password Password
+   */
+  async emailUpgrade(email, password): Promise&lt;any&gt; {
+    try {
+      const credential &#x3D; firebase.auth.EmailAuthProvider.credential(email, password);
+      return await this.fbUser.linkAndRetrieveDataWithCredential(credential);
+    } catch (error) {
+      this.showError(error);
+      throw error;
+    }
+  }
+
+  /**
+   * Update an anonymous user with telephonenumber
+   * @param phoneNumber Telephone number of user
+   * @param verifier Application verifier
+   */
+  async phoneUpgrade(phoneNumber: string, verifier: firebase.auth.ApplicationVerifier): Promise&lt;any&gt; {
+    try {
+      const data &#x3D; await this.fbUser.linkWithPhoneNumber(phoneNumber, verifier);
+      this.showSuccess(&#x27;SMS_SEND&#x27;);
+      return data;
+    } catch (error) {
+      this.showError(error);
+      return false;
+    }
+  }
+
+  /**
+     * Upgrade via Social Network
+     * @param service Name of the network
+     */
+  async socialUpgrade(service: NetworkValue): Promise&lt;any&gt; {
+    try {
+      let provider &#x3D; null;
+      switch (service) {
+        case &#x27;github&#x27;:
+          provider &#x3D; new firebase.auth.GithubAuthProvider();
+          break;
+        case &#x27;google&#x27;:
+          provider &#x3D; new firebase.auth.GoogleAuthProvider();
+          break;
+        case &#x27;facebook&#x27;:
+          provider &#x3D; new firebase.auth.FacebookAuthProvider();
+          break;
+        case &#x27;twitter&#x27;:
+          provider &#x3D; new firebase.auth.TwitterAuthProvider();
+          break;
+      }
+      return await this.fbUser.linkWithRedirect(provider);
+    } catch (error) {
+      this.showError(error);
+      return false;
+    }
+  }
+
+  // #endregion
+
+  // #region Reset Password
+  /**
+   * Reset password fpr user
+   * @param email Email
+   */
+  async resetPassword(email: string): Promise&lt;boolean&gt; {
+    try {
+      await firebase.auth().sendPasswordResetEmail(email);
+      this.showSuccess(&#x27;MAIL_RESET_PASSWORD&#x27;);
+      return true;
+    } catch (error) {
+      this.showError(error);
+      return false;
+    }
+  }
+  // #endregion
+
+  // #region Email Action Handler
+  /**
+   * Verify Email
+   * @param code Code from Firebase
+   */
+  async verifyEmail(code: string): Promise&lt;boolean&gt; {
+    try {
+      await this.afAuth.auth.applyActionCode(code);
+      this.showSuccess(&#x27;MAIL_VERIFIED&#x27;);
+      return true;
+    } catch (error) {
+      this.showError(error);
+      return false;
+    }
+  }
+
+  /**
+   * Recover the email of a user
+   * @param code Code from Firebase
+   */
+  async recoverEmail(code: string): Promise&lt;boolean&gt; {
+    try {
+      await this.afAuth.auth.applyActionCode(code);
+      this.showSuccess(&#x27;MAIL_RECOVERED&#x27;);
+      return true;
+    } catch (error) {
+      this.showError(error);
+      return false;
+    }
+  }
+
+  /**
+   * Confirm new password
+   * @param password Password
+   * @param code code
+   */
+  async setNewPassword(password: string, code: string): Promise&lt;boolean&gt; {
+    try {
+      await this.afAuth.auth.confirmPasswordReset(code, password);
+      this.showSuccess(&#x27;PASSWORD_CHANGED&#x27;);
+      return true;
+    } catch (error) {
+      this.showError(error);
+      return false;
+    }
+  }
+
+  /**
+   * Send Email Verification
+   */
+  async sendEmailVerification(): Promise&lt;boolean&gt; {
+    try {
+      await this.fbUser.sendEmailVerification();
+      this.showSuccess(&#x27;MAIL_VERIFICATION&#x27;);
+      return true;
+    } catch (error) {
+      this.showError(error);
+      return false;
+    }
+  }
+
+  // #endregion
+
+  // #region Helper Toast
+  /**
+   * Sends a translated success message
+   * @param message Message for the toast
+   */
+  showSuccess(message): void {
+    this.toast.sendToastTranslation(&#x27;success&#x27;, &#x27;FIREBASE.SUCCESS.&#x27; + message);
+  }
+
+  /**
+   * Sends a translated error message
+   * @param error Error Code or Message for the toast
+   */
+  showError(error): void {
+    if (typeof error !&#x3D;&#x3D; &#x27;object&#x27;) {
+      const errorCode &#x3D; error;
+      error &#x3D; {
+        code: errorCode
+      };
+    }
+    let errorMessage &#x3D; &#x27;&#x27;;
+
+    switch (error.code) {
+      case &#x27;auth/requires-recent-login&#x27;:
+        errorMessage &#x3D; &#x27;RECENT_LOGIN&#x27;;
+        break;
+      case &#x27;auth/email-already-in-use&#x27;:
+        errorMessage &#x3D; &#x27;IN_USE&#x27;;
+        break;
+      case &#x27;auth/credential-already-in-use&#x27;:
+        errorMessage &#x3D; &#x27;IN_USE&#x27;;
+        break;
+      case &#x27;auth/user-not-found&#x27;:
+        errorMessage &#x3D; &#x27;NOT_FOUND&#x27;;
+        break;
+      case &#x27;auth/wrong-password&#x27;:
+        errorMessage &#x3D; &#x27;INVALID&#x27;;
+        break;
+      case &#x27;auth/invalid-email&#x27;:
+        errorMessage &#x3D; &#x27;INVALID_EMAIL&#x27;;
+        break;
+      case &#x27;auth/weak-password&#x27;:
+        errorMessage &#x3D; &#x27;WEAK_PASSWORD&#x27;;
+        break;
+      case &#x27;auth/user-disabled&#x27;:
+        errorMessage &#x3D; &#x27;DISABLED&#x27;;
+        break;
+      case &#x27;auth/provider-already-linked&#x27;:
+        errorMessage &#x3D; &#x27;IN_USE&#x27;;
+        break;
+      case &#x27;user/not-saved&#x27;:
+        errorMessage &#x3D; &#x27;NOT_SAVED&#x27;;
+        break;
+      case &#x27;user/no-new-position&#x27;:
+        errorMessage &#x3D; &#x27;NO_NEW_POSITION&#x27;;
+        break;
+      case &#x27;auth/invalid-action-code&#x27;:
+        errorMessage &#x3D; &#x27;INVALID_CODE&#x27;;
+        break;
+      case &#x27;auth/network-request-failed&#x27;:
+        errorMessage &#x3D; &#x27;NETWORK&#x27;;
+        break;
+      default:
+        errorMessage &#x3D; &#x27;DEFAULT&#x27;;
+        break;
+
+    }
+    this.toast.sendToastTranslation(&#x27;error&#x27;, &#x27;FIREBASE.ERROR.&#x27; + errorMessage);
+  }
+  // #endregion
+
+  /**
+   * Timestamp from Firestore
+   */
+  get timestamp(): firebase.firestore.FieldValue {
+    return firebase.firestore.FieldValue.serverTimestamp();
+  }
+
+  /**
+   * Sets a updatedAt and createdAt Date for an object
+   * @param object Object that should be uploaded to Firestore
+   * @param newItem Should the object get a createdAt?
+   */
+  itemDate(object: any, newItem: boolean &#x3D; false): any {
+    const date &#x3D; this.timestamp;
+    let newObject &#x3D; {
+      ...object,
+      updatedAt: date
+    };
+    if (newItem) {
+      newObject &#x3D; {
+        ...newObject,
+        createdAt: date
+      };
+    }
+    return newObject;
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'AuthService.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <script src="../js/menu-wc.js"></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -2,12 +2,8 @@ import { Action, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { AuthService } from './../../services/auth.service';
 import {
     FireAuthAnonymousSignUp,
-    FireAuthUserCheck,
     FireAuthUserCreateFailed,
     FireAuthUserCreateSuccess,
     FireAuthUserDelete,
@@ -46,11 +42,9 @@ export class AuthState implements NgxsOnInit {
     }
 
     constructor(
-        private afAuth: AngularFireAuth,
-        private auth: AuthService
+        private afAuth: AngularFireAuth
     ) {
         firebase.firestore().settings({ timestampsInSnapshots: true });
-        // this.enablePersistence();
     }
 
     /**
@@ -86,7 +80,7 @@ export class AuthState implements NgxsOnInit {
     }
 
     @Action(FireAuthUserDelete)
-    async userDelete(ctx: StateContext<AuthStateModel>) {
+    async userDelete() {
         if (this.afAuth.auth.currentUser) {
             return await this.afAuth.auth.currentUser.delete();
         }

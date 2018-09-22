@@ -1,6 +1,5 @@
 
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { AuthModule } from './auth/auth.module';
 
 // Firebase
 import { AngularFireModule, FirebaseOptionsToken } from '@angular/fire';
@@ -11,21 +10,16 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { NgxsModule } from '@ngxs/store';
 import { AuthState } from './store/auth/auth.state';
 import { LanguageState } from './store/language/language.state';
+import { LanguageConfigModel } from './store/language/language.model';
 
-export interface LanguageConfig {
-  defaultLanguage: string;
-  availableLanguages: {
-    code: string;
-    name: string;
-  }[];
-}
-
+/**
+ * Add this module via FireuserModule.forRoot(firebaseConfig, languageConfig) to your app.module.ts
+ */
 @NgModule({
   imports: [
     AngularFireModule,
     AngularFireAuthModule,
     AngularFirestoreModule.enablePersistence(),
-    AuthModule,
     NgxsModule.forFeature([
       AuthState,
       LanguageState
@@ -39,11 +33,16 @@ export interface LanguageConfig {
   ]
 })
 export class FireuserModule {
-  public static forRoot(firebaseConfig, languageConfig: LanguageConfig): ModuleWithProviders {
+
+  /**
+   * Add this to your app module
+   * @param firebaseConfig Firebase Config
+   * @param languageConfig Which languages should be supported
+   */
+  public static forRoot(firebaseConfig, languageConfig: LanguageConfigModel): ModuleWithProviders {
     return {
       ngModule: FireuserModule,
       providers: [
-        // Firebase,
         { provide: FirebaseOptionsToken, useValue: firebaseConfig },
         { provide: 'languageConfig', useValue: languageConfig }
       ]

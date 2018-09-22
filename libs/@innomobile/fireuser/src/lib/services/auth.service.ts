@@ -6,33 +6,53 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 
+/** Networks for Firebase Signin and Signup */
 export type NetworkValue = 'github' | 'google' | 'facebook' | 'twitter';
 
+/**
+ * Auth Service to connect to Firebase
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
+  /**
+   * @ignore
+   */
   constructor(
     public afAuth: AngularFireAuth,
     public toast: ToastService,
     private core: CoreService,
   ) { }
 
+  /**
+   * Get the current Firebase Auth User
+   */
   get fbUser(): firebase.User {
     return this.afAuth.auth.currentUser;
   }
 
+  /**
+   * Get current token of the Firebase Auth User
+   */
   get currentToken(): Promise<string> {
     return this.afAuth.auth.currentUser.getIdToken();
   }
 
+  /**
+   * After signin get the results
+   */
   getRedirectResult(): Promise<any> {
     return this.afAuth.auth.getRedirectResult();
   }
 
   // #region Sign Up
 
+  /**
+   * Sign up a new user with Email and Password
+   * @param email Email
+   * @param password Password
+   */
   async emailSignUp(email, password): Promise<any> {
     try {
       return await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
@@ -76,7 +96,12 @@ export class AuthService {
 
   }
 
-  async emailLogin(email: string, password: string, rememberMe: boolean = true): Promise<any> {
+  /**
+   * User Login with email and password
+   * @param email Email
+   * @param password Password
+   */
+  async emailLogin(email: string, password: string): Promise<any> {
     email = email.replace(/\s/g, '');
     try {
       return await this.afAuth.auth.signInWithEmailAndPassword(email, password);
@@ -87,9 +112,14 @@ export class AuthService {
 
   }
 
-  async phoneLogin(number, verifier): Promise<any> {
+  /**
+   * User login with telephon number
+   * @param phoneNumber Telephone number of user
+   * @param verifier Application verifier
+   */
+  async phoneLogin(phoneNumber: string, verifier: firebase.auth.ApplicationVerifier): Promise<any> {
     try {
-      const data = await this.afAuth.auth.signInWithPhoneNumber(number, verifier);
+      const data = await this.afAuth.auth.signInWithPhoneNumber(phoneNumber, verifier);
       this.showSuccess('SMS_SEND');
       return data;
     } catch (error) {
@@ -98,6 +128,10 @@ export class AuthService {
     }
   }
 
+  /**
+   * Login with custom token
+   * @param token Token
+   */
   async customTokenLogin(token: string): Promise<any> {
     try {
       const data = await this.afAuth.auth.signInWithCustomToken(token);
@@ -113,6 +147,10 @@ export class AuthService {
   // #endregion
 
   // #region Update Firebase User
+  /**
+   * Re-Authenticate the user
+   * @param password password
+   */
   async reAuthenticateUser(password): Promise<any> {
     try {
       const credential = firebase.auth.EmailAuthProvider.credential(
@@ -126,6 +164,11 @@ export class AuthService {
     }
   }
 
+  /**
+   * Update the Firebase user
+   * @param name Name of user
+   * @param photoURL Photo URL of user
+   */
   async updateFirebaseUserDisplayName(name, photoURL): Promise<any> {
     try {
       return await this.fbUser.updateProfile({
@@ -138,6 +181,11 @@ export class AuthService {
     }
   }
 
+  /**
+   * Update the password of the user
+   * @param oldPassword Old Password
+   * @param newPassword New Password
+   */
   async updatePassword(oldPassword, newPassword): Promise<boolean> {
     try {
       await this.reAuthenticateUser(oldPassword);
@@ -150,7 +198,10 @@ export class AuthService {
     }
   }
 
-  // Update Email and verify new email
+  /**
+   * Update Email and verify new email
+   * @param email Email
+   */
   async updateFbEmail(email): Promise<boolean> {
     const mailCorrect = this.core.emailValidator(email);
     if (!mailCorrect) {
@@ -172,6 +223,11 @@ export class AuthService {
 
   // #region Upgrade User Account
 
+  /**
+   * Update an anonymous user with Email and Password
+   * @param email Email
+   * @param password Password
+   */
   async emailUpgrade(email, password): Promise<any> {
     try {
       const credential = firebase.auth.EmailAuthProvider.credential(email, password);
@@ -182,9 +238,14 @@ export class AuthService {
     }
   }
 
-  async phoneUpgrade(number, verifier): Promise<any> {
+  /**
+   * Update an anonymous user with telephonenumber
+   * @param phoneNumber Telephone number of user
+   * @param verifier Application verifier
+   */
+  async phoneUpgrade(phoneNumber: string, verifier: firebase.auth.ApplicationVerifier): Promise<any> {
     try {
-      const data = await this.fbUser.linkWithPhoneNumber(number, verifier);
+      const data = await this.fbUser.linkWithPhoneNumber(phoneNumber, verifier);
       this.showSuccess('SMS_SEND');
       return data;
     } catch (error) {
@@ -224,6 +285,10 @@ export class AuthService {
   // #endregion
 
   // #region Reset Password
+  /**
+   * Reset password fpr user
+   * @param email Email
+   */
   async resetPassword(email: string): Promise<boolean> {
     try {
       await firebase.auth().sendPasswordResetEmail(email);
@@ -237,6 +302,10 @@ export class AuthService {
   // #endregion
 
   // #region Email Action Handler
+  /**
+   * Verify Email
+   * @param code Code from Firebase
+   */
   async verifyEmail(code: string): Promise<boolean> {
     try {
       await this.afAuth.auth.applyActionCode(code);
@@ -248,6 +317,10 @@ export class AuthService {
     }
   }
 
+  /**
+   * Recover the email of a user
+   * @param code Code from Firebase
+   */
   async recoverEmail(code: string): Promise<boolean> {
     try {
       await this.afAuth.auth.applyActionCode(code);
@@ -259,6 +332,11 @@ export class AuthService {
     }
   }
 
+  /**
+   * Confirm new password
+   * @param password Password
+   * @param code code
+   */
   async setNewPassword(password: string, code: string): Promise<boolean> {
     try {
       await this.afAuth.auth.confirmPasswordReset(code, password);
@@ -270,6 +348,9 @@ export class AuthService {
     }
   }
 
+  /**
+   * Send Email Verification
+   */
   async sendEmailVerification(): Promise<boolean> {
     try {
       await this.fbUser.sendEmailVerification();
@@ -284,10 +365,18 @@ export class AuthService {
   // #endregion
 
   // #region Helper Toast
+  /**
+   * Sends a translated success message
+   * @param message Message for the toast
+   */
   showSuccess(message): void {
     this.toast.sendToastTranslation('success', 'FIREBASE.SUCCESS.' + message);
   }
 
+  /**
+   * Sends a translated error message
+   * @param error Error Code or Message for the toast
+   */
   showError(error): void {
     if (typeof error !== 'object') {
       const errorCode = error;
@@ -346,19 +435,18 @@ export class AuthService {
   }
   // #endregion
 
-  getDifferenceDate(date1, date2) {
-    if (date1 instanceof Date && date2 instanceof Date) {
-      const diff = Math.abs(date1.getTime() - date2.getTime());
-      const diffHours = Math.ceil(diff / (1000 * 3600));
-      return diffHours;
-    }
-    return -1;
-  }
-
+  /**
+   * Timestamp from Firestore
+   */
   get timestamp(): firebase.firestore.FieldValue {
     return firebase.firestore.FieldValue.serverTimestamp();
   }
 
+  /**
+   * Sets a updatedAt and createdAt Date for an object
+   * @param object Object that should be uploaded to Firestore
+   * @param newItem Should the object get a createdAt?
+   */
   itemDate(object: any, newItem: boolean = false): any {
     const date = this.timestamp;
     let newObject = {

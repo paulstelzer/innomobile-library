@@ -1,18 +1,13 @@
-import { Observable } from 'rxjs';
-// Section 1
-import { State, Action, StateContext, Selector, NgxsOnInit } from '@ngxs/store';
-import { UpdateLanguage, CheckLanguage, UseLanguage } from './language.actions';
-import { TranslateService } from '@ngx-translate/core';
-
 import { Inject } from '@angular/core';
-import { LanguageConfig } from '../../fireuser.module';
+import { TranslateService } from '@ngx-translate/core';
+import { Action, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { CheckLanguage, UpdateLanguage, UseLanguage } from './language.actions';
+import { LanguageConfigModel, LanguageStateModel } from './language.model';
 
-// Section 2
-export interface LanguageStateModel {
-    lang: string;
-}
-
-// Section 3
+/**
+ * Language State @ NGXS
+ */
 @State<LanguageStateModel>({
     name: 'language',
     defaults: {
@@ -21,18 +16,26 @@ export interface LanguageStateModel {
 })
 export class LanguageState implements NgxsOnInit {
 
+    /**
+     * Get the current language code
+     * @param state Language state
+     */
     @Selector()
     static getLanguage(state: LanguageStateModel) {
         return state.lang;
     }
 
+    /**
+     * @ignore
+     */
     constructor(
         private translate: TranslateService,
-        @Inject('languageConfig') private languageConfig: LanguageConfig
+        @Inject('languageConfig') private languageConfig: LanguageConfigModel
     ) { }
 
     /**
      * Dispatch CheckSession on start
+     * @ignore
      */
     ngxsOnInit(ctx: StateContext<LanguageStateModel>) {
         this.translate.setDefaultLang(this.languageConfig.defaultLanguage);
@@ -40,9 +43,8 @@ export class LanguageState implements NgxsOnInit {
     }
 
     /**
-     *
-     * @param ctx
-     * @param action
+     * Checks the current language
+     * @ignore
      */
     @Action(CheckLanguage)
     checkLanguage(ctx: StateContext<LanguageStateModel>) {
@@ -55,6 +57,33 @@ export class LanguageState implements NgxsOnInit {
         }
     }
 
+    /**
+     * Update to given language
+     * @param ctx State Context
+     * @param param1 Contains the language
+     * @ignore
+     */
+    @Action(UpdateLanguage, { cancelUncompleted: true })
+    async updateLanguage(ctx: StateContext<LanguageStateModel>, { lang }: UpdateLanguage) {
+        ctx.setState({ lang: lang });
+        ctx.dispatch(new UseLanguage());
+    }
+
+    /**
+     * Use the language
+     * @param ctx State Context
+     * @ignore
+     */
+    @Action(UseLanguage, { cancelUncompleted: true })
+    useLanguage(ctx: StateContext<LanguageStateModel>): Observable<any> {
+        return this.translate.use(ctx.getState().lang);
+    }
+
+
+    /**
+     * Try to find the language from browser and returns the language
+     * if language is available or the defaultLanguage
+     */
     private getSuitableLanguage() {
         const browserLanguage: string = this.translate.getBrowserLang()
             .substring(0, 2).toLowerCase() || this.languageConfig.defaultLanguage;
@@ -62,17 +91,6 @@ export class LanguageState implements NgxsOnInit {
             .some((x: any) => x.code === browserLanguage)
             ? browserLanguage
             : this.languageConfig.defaultLanguage;
-    }
-
-    @Action(UpdateLanguage, { cancelUncompleted: true })
-    async updateLanguage(ctx: StateContext<LanguageStateModel>, { lang }: UpdateLanguage) {
-        ctx.setState({ lang: lang });
-        ctx.dispatch(new UseLanguage());
-    }
-
-    @Action(UseLanguage, { cancelUncompleted: true })
-    useLanguage(ctx: StateContext<LanguageStateModel>): Observable<any> {
-        return this.translate.use(ctx.getState().lang);
     }
 
 }

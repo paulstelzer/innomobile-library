@@ -13,17 +13,20 @@ This library has two main tasks:
 
 ### Add to your app.module
 
+```ts
     import { FireuserModule } from '@innomobile/fireuser';
 
     FireuserModule.forRoot(firebaseConfig, {
         defaultLanguage: 'en',
         availableLanguages: availableLanguages
     }),
+```
 
 Tip: Add ``firebaseConfig`` to your enviroment (firebaseConfig is equal to the output of Firebase Web)
 
 Example for ``availableLanguages`` (you can add more parameters here like ``available: true | false`` which has no meaning by default )
 
+```ts
     export const availableLanguages = [
         {
             code: 'en',
@@ -56,6 +59,7 @@ Example for ``availableLanguages`` (you can add more parameters here like ``avai
             available: false
         }
     ];
+```
 
 ## Use Cases
 
@@ -63,6 +67,7 @@ Example for ``availableLanguages`` (you can add more parameters here like ``avai
 
 You can use a switchMap to get the authenticated user and get user data from firestore
 
+```ts
     this.store.select(AuthState.getUser).pipe(
         switchMap(user => {
             // console.log('AuthUser', user);
@@ -82,7 +87,7 @@ You can use a switchMap to get the authenticated user and get user data from fir
             // Currently no data at Firestore, but the user is authenticated
         }
     });
-
+```
 
 ### Using the AuthService
 

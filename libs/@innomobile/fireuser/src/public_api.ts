@@ -4,14 +4,13 @@
 
 export * from './lib/fireuser.module';
 
-export * from './lib/auth/auth.module';
-
 // Services
 export * from './lib/services/auth.service';
 
 // Language
 export * from './lib/store/language/language.actions';
 export * from './lib/store/language/language.state';
+export * from './lib/store/language/language.model';
 
 // Auth
 export * from './lib/store/auth/auth.actions';
