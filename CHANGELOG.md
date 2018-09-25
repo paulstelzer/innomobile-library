@@ -1,3 +1,25 @@
+<a name="1.4.0"></a>
+# [1.4.0](https://github.com/paulstelzer/innomobile-library/compare/v1.2.14...v1.4.0) (2018-09-25)
+
+
+### Bug Fixes
+
+* **firebase-native:** Add userToken property ([da1b72d](https://github.com/paulstelzer/innomobile-library/commit/da1b72d))
+* **firebase-native:** Token set and get ([fa7e698](https://github.com/paulstelzer/innomobile-library/commit/fa7e698))
+* **fireuser:** Simplified auth module ([6cf93b4](https://github.com/paulstelzer/innomobile-library/commit/6cf93b4))
+
+
+### Features
+
+* **iap:** Check for fake ([c1a0f8e](https://github.com/paulstelzer/innomobile-library/commit/c1a0f8e))
+
+
+
+<a name="1.2.14"></a>
+## [1.2.14](https://github.com/paulstelzer/innomobile-library/compare/v1.2.13...v1.2.14) (2018-09-17)
+
+
+
 <a name="1.2.13"></a>
 ## [1.2.13](https://github.com/paulstelzer/innomobile-library/compare/v1.2.12...v1.2.13) (2018-09-17)
 
