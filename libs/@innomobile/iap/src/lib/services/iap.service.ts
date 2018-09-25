@@ -205,8 +205,20 @@ export class IapService {
                 purchaseToken: product.transaction.purchaseToken || '',
                 purchaseTime: purchaseTime,
                 signature: product.transaction.signature || '',
-                type: product.transaction.type
+                type: product.transaction.type,
+                data: null
             };
+
+            if (p.type === 'android-playstore') {
+                const check: string = p.id;
+                if (!check.startsWith('GPA.')) {
+                    // This must be a fake buy
+                    p.data = {
+                        fake: true
+                    };
+                }
+            }
+
             this.store.dispatch(new IapPurchaseApproved(p));
         });
 
