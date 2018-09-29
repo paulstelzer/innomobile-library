@@ -1,3 +1,14 @@
+<a name="1.4.1"></a>
+## [1.4.1](https://github.com/paulstelzer/innomobile-library/compare/v1.4.0...v1.4.1) (2018-09-29)
+
+
+### Bug Fixes
+
+* **core:** Toast can include more than one css class ([eb3e548](https://github.com/paulstelzer/innomobile-library/commit/eb3e548))
+* **fireuser:** Return added for methods ([d7d5a6b](https://github.com/paulstelzer/innomobile-library/commit/d7d5a6b))
+
+
+
 <a name="1.4.0"></a>
 # [1.4.0](https://github.com/paulstelzer/innomobile-library/compare/v1.2.14...v1.4.0) (2018-09-25)
 
