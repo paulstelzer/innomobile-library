@@ -16,6 +16,7 @@ import {
     FireAuthUserToken
 } from './auth.actions';
 import { AuthStateModel } from './auth.model';
+import { Observable } from 'rxjs';
 
 @State<AuthStateModel>({
     name: 'auth',
@@ -50,7 +51,7 @@ export class AuthState implements NgxsOnInit {
     /**
      * Init
      */
-    ngxsOnInit(ctx: StateContext<AuthStateModel>) {
+    ngxsOnInit(ctx: StateContext<AuthStateModel>): void {
         this.afAuth.authState.subscribe((user: firebase.User) => {
             if (user) {
                 // User is logged in
@@ -69,7 +70,7 @@ export class AuthState implements NgxsOnInit {
 
 
     @Action(FireAuthUserToken)
-    async userToken(ctx: StateContext<AuthStateModel>) {
+    async userToken(ctx: StateContext<AuthStateModel>): Promise<any> {
         if (this.afAuth.auth.currentUser) {
             const token = await this.afAuth.auth.currentUser.getIdToken();
             return ctx.patchState({
@@ -88,7 +89,7 @@ export class AuthState implements NgxsOnInit {
     }
 
     @Action(FireAuthUserSignOut)
-    async signOut(ctx: StateContext<AuthStateModel>) {
+    async signOut(ctx: StateContext<AuthStateModel>): Promise<Observable<void>> {
         try {
             await this.afAuth.auth.signOut();
             // console.log('User Sign Out', data);
@@ -100,7 +101,7 @@ export class AuthState implements NgxsOnInit {
     }
 
     @Action(FireAuthAnonymousSignUp)
-    async signUpAnonymous(ctx: StateContext<AuthStateModel>) {
+    async signUpAnonymous(ctx: StateContext<AuthStateModel>): Promise<Observable<void>>  {
         try {
             const data = await this.afAuth.auth.signInAnonymously();
             return ctx.dispatch(new FireAuthUserCreateSuccess(data));
