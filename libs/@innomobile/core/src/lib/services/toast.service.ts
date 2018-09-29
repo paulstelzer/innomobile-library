@@ -54,6 +54,10 @@ export class ToastService {
             closeButtonText: 'OKAY',
         };
 
+        if (options && options.cssClass) {
+            options.cssClass = options.cssClass + ' toast-' + cssClass;
+        }
+
         toastOptions = Object.assign(toastOptions, options);
 
         const toast = await this.toastCtrl.create(toastOptions);
