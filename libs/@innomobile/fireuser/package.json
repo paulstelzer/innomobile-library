@@ -5,8 +5,8 @@
     "doc": "compodoc -p tsconfig.lib.json -s"
   },
   "peerDependencies": {
-    "@angular/common": "^6.0.0",
-    "@angular/core": "^6.0.0",
+    "@angular/common": "^6.0.0 || ^7.0.0",
+    "@angular/core": "^6.0.0 || ^7.0.0",
     "@ngx-translate/core": "^10.0.0",
     "@ngx-translate/http-loader": "^3.0.0",
     "@ngxs/store": "^3.0.0",
