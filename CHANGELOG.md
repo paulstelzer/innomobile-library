@@ -1,3 +1,14 @@
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/paulstelzer/innomobile-library/compare/v1.4.1...v2.0.0) (2018-10-04)
+
+
+### Features
+
+* **attribution:** Added Web Branch.io ([5a257d1](https://github.com/paulstelzer/innomobile-library/commit/5a257d1))
+* **library:** Update to Angular 7 ([f58c8eb](https://github.com/paulstelzer/innomobile-library/commit/f58c8eb))
+
+
+
 <a name="1.4.1"></a>
 ## [1.4.1](https://github.com/paulstelzer/innomobile-library/compare/v1.4.0...v1.4.1) (2018-09-29)
 
