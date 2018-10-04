@@ -1,6 +1,7 @@
 <a name="2.0.0"></a>
-# [2.0.0](https://github.com/paulstelzer/innomobile-library/compare/v1.4.1...v2.0.0) (2018-10-04)
+# [2.0.0-1](https://github.com/paulstelzer/innomobile-library/compare/v1.4.1...v2.0.0) (2018-10-04)
 
+The library will be available for Angular 7!
 
 ### Features
 
