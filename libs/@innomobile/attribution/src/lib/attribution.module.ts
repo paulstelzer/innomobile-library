@@ -7,7 +7,8 @@ export const APPSFLYER_CONFIG = new InjectionToken<AppsflyerOptions>('Appsflyer 
 export const BRANCH_CONFIG = new InjectionToken<BranchConfigOptions>('Branch Config');
 
 export interface BranchConfigOptions {
-  debug: boolean;
+  debug?: boolean;
+  branchKey?: string;
 }
 
 @NgModule({

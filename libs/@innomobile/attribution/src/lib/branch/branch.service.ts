@@ -24,7 +24,7 @@ export class BranchService {
   }
 
   async initSession(): Promise<BranchIoPromise> {
-    if (!this.platform.is('cordova')) { return; }
+    if (!this.platform.is('cordova')) { return this.initWebSession(); }
     this.branchConfigToken = {
       debug: false,
       ...this.branchConfig
@@ -43,6 +43,33 @@ export class BranchService {
       console.log('[Branch] Error on init', error);
       return null;
     }
+  }
+
+  initBranchWeb(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      window['branch'].init(this.branchConfig.branchKey, null, (error, data) => {
+        if (data) {
+          resolve(data);
+        } else if (error) {
+          reject(error);
+        }
+      });
+    });
+  }
+
+  async initWebSession() {
+    if (!this.branchConfig || !this.branchConfig.branchKey) { return null; }
+
+    try {
+      const data = await this.initBranchWeb();
+      if (data) {
+        const parsed: BranchIoPromise = data.data_parsed;
+        return parsed;
+      }
+    } catch (err) {
+      throw err;
+    }
+    return null;
   }
 
   async getSession(): Promise<BranchIoPromise> {
