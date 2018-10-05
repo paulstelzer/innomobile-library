@@ -1,0 +1,11 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../dest/@innomobile/language",
+  "lib": {
+    "entryFile": "src/public_api.ts",
+    "externals": {
+      "@ngx-translate/core": "ngx-translate-core",
+      "@ngx-translate/core/index": "ngx-translate-core"
+    }
+  }
+}

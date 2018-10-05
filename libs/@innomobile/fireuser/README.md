@@ -1,9 +1,6 @@
-# @innomobile/fireuser - Firebase, NGXS, Language, AuthState
-
-This library has two main tasks:
+# @innomobile/fireuser - Firebase, NGXS, AuthState
 
 - Get the Authentification from Firebase and get the current authenticated user
-- Add language support powered by @ngx-translate and save the current language in LanguageState powered by NGXS
 
 ## Installation
 
@@ -16,50 +13,11 @@ This library has two main tasks:
 ```ts
     import { FireuserModule } from '@innomobile/fireuser';
 
-    FireuserModule.forRoot(firebaseConfig, {
-        defaultLanguage: 'en',
-        availableLanguages: availableLanguages
-    }),
+    FireuserModule.forRoot(firebaseConfig),
 ```
 
 Tip: Add ``firebaseConfig`` to your enviroment (firebaseConfig is equal to the output of Firebase Web)
 
-Example for ``availableLanguages`` (you can add more parameters here like ``available: true | false`` which has no meaning by default )
-
-```ts
-    export const availableLanguages = [
-        {
-            code: 'en',
-            name: 'English',
-            available: true
-        },
-        {
-            code: 'de',
-            name: 'Deutsch',
-            available: true
-        },
-        {
-            code: 'pt',
-            name: 'Português',
-            available: false
-        },
-        {
-            code: 'fr',
-            name: 'Français',
-            available: false
-        },
-        {
-            code: 'es',
-            name: 'Español',
-            available: false
-        },
-        {
-            code: 'ru',
-            name: 'Русский',
-            available: false
-        }
-    ];
-```
 
 ## Use Cases
 

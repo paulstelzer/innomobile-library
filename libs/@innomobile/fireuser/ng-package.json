@@ -3,10 +3,6 @@
   "dest": "../../../dest/@innomobile/fireuser",
   "deleteDestPath": false,
   "lib": {
-    "entryFile": "src/public_api.ts",
-    "externals": {
-      "@ngx-translate/core": "ngx-translate-core",
-      "@ngx-translate/core/index": "ngx-translate-core"
-    }
+    "entryFile": "src/public_api.ts"
   }
 }

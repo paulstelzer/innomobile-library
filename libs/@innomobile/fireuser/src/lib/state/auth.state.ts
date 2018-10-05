@@ -14,8 +14,8 @@ import {
     FireAuthUserSignOut,
     FireAuthUserSuccess,
     FireAuthUserToken
-} from './auth.actions';
-import { AuthStateModel } from './auth.model';
+} from '../actions/auth.actions';
+import { AuthStateModel } from '../model/auth.model';
 import { Observable } from 'rxjs';
 
 @State<AuthStateModel>({

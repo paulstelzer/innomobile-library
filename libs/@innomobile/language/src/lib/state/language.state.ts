@@ -2,8 +2,9 @@ import { Inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Action, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { CheckLanguage, UpdateLanguage, UseLanguage } from './language.actions';
-import { LanguageConfigModel, LanguageStateModel } from './language.model';
+import { CheckLanguage, UpdateLanguage, UseLanguage } from '../actions/language.actions';
+import { LanguageConfigModel, LanguageStateModel } from '../model/language.model';
+import { LANGUAGE_CONFIG } from '../model/language.token';
 
 /**
  * Language State @ NGXS
@@ -30,7 +31,7 @@ export class LanguageState implements NgxsOnInit {
      */
     constructor(
         private translate: TranslateService,
-        @Inject('languageConfig') private languageConfig: LanguageConfigModel
+        @Inject(LANGUAGE_CONFIG) private languageConfig: LanguageConfigModel
     ) { }
 
     /**
