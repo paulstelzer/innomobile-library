@@ -1,6 +1,8 @@
-## Commit Message Format
+## InnoMobile Library
 
-Based on Ionic:
+Modules for Angular 7+ and Ionic 4+ you will need to run a PWA or App (Android / iOS). Please feel free to add new features to this modules or fix issues! I use this library for my own projects (e.g. IQ Test App -> https://iqtest-app.de) and so I will hold this library up-to-date!
+
+## Commit Message Format
 
 `type(scope): subject`
 
@@ -16,7 +18,7 @@ Must be one of the following:
 * **test**: Adding missing tests
 
 #### Scope
-The scope could be anything specifying place of the commit change. For example, the name of the plugin being changed
+The package name (e.g. ``fireuser``)
 
 #### Subject
 The subject contains succinct description of the change:
