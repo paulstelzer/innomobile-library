@@ -119,7 +119,7 @@
     "@types/mapbox-gl": "^0.49.0",
     "@types/node": "^10.11.4",
     "async-promise-queue": "^1.0.4",
-    "codelyzer": "~4.4.4",
+    "codelyzer": "^4.4.4",
     "generate-changelog": "^1.7.1",
     "jasmine-core": "~3.2.1",
     "jasmine-spec-reporter": "~4.2.1",

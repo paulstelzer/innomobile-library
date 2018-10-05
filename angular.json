@@ -575,6 +575,46 @@
           }
         }
       }
+    },
+    "@innomobile/language": {
+      "root": "libs/@innomobile/language",
+      "sourceRoot": "libs/@innomobile/language/src",
+      "projectType": "library",
+      "prefix": "im",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/@innomobile/language/tsconfig.lib.json",
+            "project": "libs/@innomobile/language/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/@innomobile/language/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/@innomobile/language/src/test.ts",
+            "tsConfig": "libs/@innomobile/language/tsconfig.spec.json",
+            "karmaConfig": "libs/@innomobile/language/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/@innomobile/language/tsconfig.lib.json",
+              "libs/@innomobile/language/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "app"
