@@ -34,7 +34,6 @@ export class FireuserModule {
   /**
    * Add this to your app module
    * @param firebaseConfig Firebase Config
-   * @param languageConfig Which languages should be supported
    */
   public static forRoot(firebaseConfig): ModuleWithProviders {
     return {
