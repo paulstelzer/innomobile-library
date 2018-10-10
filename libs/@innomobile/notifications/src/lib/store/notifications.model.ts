@@ -13,11 +13,11 @@ export interface MessageModel {
 
 export interface NotificationsStateModel {
   messages: MessageModel[];
-} 
+}
 
 export interface NotificationsConfig {
   path: {
     user: string;
     notifications: string;
-  }
+  };
 }

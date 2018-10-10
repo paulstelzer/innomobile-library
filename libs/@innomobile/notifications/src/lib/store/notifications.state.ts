@@ -41,7 +41,7 @@ export class NotificationState implements NgxsOnInit {
     static getNotifications(state: NotificationsStateModel): Message[] {
         if (state.messages && state.messages.length) {
             const messages = [];
-            for (let message of state.messages) {
+            for (const message of state.messages) {
                 messages.push(new Message(message));
             }
             return messages;
@@ -51,7 +51,7 @@ export class NotificationState implements NgxsOnInit {
 
     @Selector()
     static countNotifications(state: NotificationsStateModel): number {
-        if (state.messages && state.messages.length) return state.messages.length;
+        if (state.messages && state.messages.length) { return state.messages.length; }
         return 0;
     }
 
@@ -70,12 +70,12 @@ export class NotificationState implements NgxsOnInit {
             switchMap((u) => {
                 if (u && u.uid) {
                     this.notificationRef = this.fs
-                    .collection(this.notificationsConfig.path.user)
-                    .doc(u.uid)
-                    .collection<MessageModel[]>(
-                        this.notificationsConfig.path.notifications,
-                        ref => ref.orderBy('updatedAt', 'desc')
-                    );
+                        .collection(this.notificationsConfig.path.user)
+                        .doc(u.uid)
+                        .collection<MessageModel[]>(
+                            this.notificationsConfig.path.notifications,
+                            ref => ref.orderBy('updatedAt', 'desc')
+                        );
                     return this.notificationRef.snapshotChanges().pipe(
                         map(actions => {
                             return actions.map(a => {

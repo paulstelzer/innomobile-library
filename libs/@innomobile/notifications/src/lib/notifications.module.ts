@@ -5,14 +5,6 @@ import { NotificationState } from './store/notifications.state';
 import { NotificationsConfig } from './store/notifications.model';
 
 
-export interface LanguageConfig {
-  defaultLanguage: string;
-  availableLanguages: {
-    code: string;
-    name: string;
-  }[];
-}
-
 @NgModule({
   imports: [
     NgxsModule.forFeature([
@@ -27,7 +19,9 @@ export interface LanguageConfig {
   ]
 })
 export class NotificationsModule {
-  public static forRoot(notificationsConfig: NotificationsConfig = {path: {user: 'users', notifications: 'notifications'}}): ModuleWithProviders {
+  public static forRoot(
+    notificationsConfig: NotificationsConfig = {path: {user: 'users', notifications: 'notifications'}}
+    ): ModuleWithProviders {
     return {
       ngModule: NotificationsModule,
       providers: [
