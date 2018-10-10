@@ -47,13 +47,17 @@ export class BranchService {
 
   initBranchWeb(): Promise<any> {
     return new Promise((resolve, reject) => {
-      window['branch'].init(this.branchConfig.branchKey, null, (error, data) => {
-        if (data) {
-          resolve(data);
-        } else if (error) {
-          reject(error);
-        }
-      });
+      if (!window['branch']) {
+        reject('no_branch_sdk');
+      } else {
+        window['branch'].init(this.branchConfig.branchKey, null, (error, data) => {
+          if (data) {
+            resolve(data);
+          } else if (error) {
+            reject(error);
+          }
+        });
+      }
     });
   }
 
