@@ -98,12 +98,11 @@
         <ios-team-release value="79MZU6TV5Y" />
     </branch-config>
     <plugin name="cordova-plugin-appsflyer-sdk" spec="^4.4.9" />
-    <plugin name="cordova-admob-sdk" spec="^0.18.0">
-        <variable name="PLAY_SERVICES_VERSION" value="+" />
-    </plugin>
     <plugin name="cordova-plugin-admob-mediation" spec="^1.0.2" />
-    <plugin name="cordova-plugin-admob-free" spec="^0.18.0" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
     <engine name="android" spec="7.1.1" />
     <engine name="ios" spec="4.5.5" />
+    <plugin name="cordova-plugin-admob-free" spec="~0.21.0">
+        <variable name="ADMOB_APP_ID" value="xxx" />
+    </plugin>
 </widget>
