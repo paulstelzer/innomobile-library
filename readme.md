@@ -9,9 +9,9 @@ Modules for Angular 7+ and Ionic 4+ you will need to run a PWA or App (Android /
 - ``@innomobile/language`` ([README.md](https://github.com/paulstelzer/innomobile-library/tree/master/libs/%40innomobile/language)): Save the language of the current user
 - ``@innomobile/iap`` ([README.md](https://github.com/paulstelzer/innomobile-library/tree/master/libs/%40innomobile/iap)): Using cc.fovea.cordova.purchase (cordova plugin) it will register in-app-purchases on Android and iOS and store purchases of the user in NGXS. If you use as PWA, Stripe Elements is integrated
 
-## CHANGES WITH 2.0
+## CHANGES WITH 3.0.0
 
-Starting with version 2.0.0, all packages will have their own release version, so if something changes at ``@innomobile/ads``, there will be no version published for the other packages!
+Starting with version 3.0.0, all packages will have their own release version, so if something changes at ``@innomobile/ads``, there will be no version published for the other packages!
 
 ## Commit Message Format
 
