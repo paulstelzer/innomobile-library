@@ -1,4 +1,4 @@
-import { MessageModel } from "../store/notifications.model";
+import { MessageModel } from '../store/notifications.model';
 
 export class Message implements MessageModel {
     id: string;

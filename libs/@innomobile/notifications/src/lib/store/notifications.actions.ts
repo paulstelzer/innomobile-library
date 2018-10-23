@@ -1,4 +1,4 @@
-import { MessageModel } from "./notifications.model";
+import { MessageModel } from './notifications.model';
 
 // Actions
 export class InitNotifications {
@@ -7,17 +7,17 @@ export class InitNotifications {
 
 export class SetNotifications {
   static type = '[Notifications] Set Notifications';
-  constructor(public messages: MessageModel[]) {}
+  constructor(public messages: MessageModel[]) { }
 }
 
 export class AddMessage {
   static type = '[Notifications] Add Message';
-  constructor(public message: MessageModel) {}
+  constructor(public message: MessageModel) { }
 }
 
 export class UpdateMessage {
   static type = '[Notifications] Update Message';
-  constructor(public id: string, public data: any) {}
+  constructor(public id: string, public data: any) { }
 }
 
 export class RemoveAllNotifications {
@@ -26,5 +26,5 @@ export class RemoveAllNotifications {
 
 export class RemoveNotification {
   static type = '[Notifications] Remove';
-  constructor(public id: string) {}
+  constructor(public id: string) { }
 }

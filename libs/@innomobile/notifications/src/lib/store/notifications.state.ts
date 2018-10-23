@@ -176,7 +176,7 @@ export class NotificationState implements NgxsOnInit {
             newObject = {
                 ...newObject,
                 createdAt: date
-            }
+            };
         }
         return newObject;
     }
