@@ -2,8 +2,8 @@
   "name": "@innomobile/iap",
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "^6.0.0 || ^7.0.0",
-    "@angular/core": "^6.0.0 || ^7.0.0",
+    "@angular/common": ">=6.0.0 <8",
+    "@angular/core": ">=6.0.0 <8",
     "@ngxs/store": "^3.0.0",
     "cc.fovea.cordova.purchase": "^7.1.3",
     "@ionic-native/in-app-purchase-2": "^5.0.0 || >= 5.0.0-beta.18",
