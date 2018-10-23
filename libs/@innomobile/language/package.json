@@ -1,5 +1,6 @@
 {
   "name": "@innomobile/language",
+  "version": "3.0.0",
   "license": "MIT",
   "scripts": {
     "doc": "compodoc -p tsconfig.lib.json -s"

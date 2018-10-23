@@ -1,5 +1,6 @@
 {
   "name": "@innomobile/fireuser",
+  "version": "3.0.0",
   "license": "MIT",
   "scripts": {
     "doc": "compodoc -p tsconfig.lib.json -s"
@@ -8,7 +9,7 @@
     "@angular/common": ">=6.0.0 <8",
     "@angular/core": ">=6.0.0 <8",
     "@ngxs/store": "^3.0.0",
-    "@innomobile/core": "^1.0.0",
+    "@innomobile/core": ">=3.0.0",
     "@angular/fire": "^5.0.0",
     "firebase": "^5.0.0",
     "rxjs": "^6.0.0"
