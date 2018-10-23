@@ -1,11 +1,17 @@
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/paulstelzer/innomobile-library/compare/v2.0.0...v3.0.0) (2018-10-23)
+
+
+### Bug Fixes
+
+* **attribution:** Reject if Branch not exist ([04aad4a](https://github.com/paulstelzer/innomobile-library/commit/04aad4a))
+* **fireuser:** Remove Comment ([ba74168](https://github.com/paulstelzer/innomobile-library/commit/ba74168))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/paulstelzer/innomobile-library/compare/v1.4.1...v2.0.0) (2018-10-04)
 
-### Breaking Change
-
-``@innomobile/language`` is now a seperate module (before it was integrated in ``@innomobile/fireuser``)
-
-The library will be available for Angular 7!
 
 ### Features
 
