@@ -14,7 +14,7 @@ export class MapboxService {
     @Inject('mapboxToken') private mapboxToken: string,
     private http: HttpClient
   ) {
-    Object.getOwnPropertyDescriptor(mapboxgl, "accessToken").set(this.mapboxToken);
+    Object.getOwnPropertyDescriptor(mapboxgl, 'accessToken').set(this.mapboxToken);
   }
 
   getDirections(coordinates: any[], options: MapboxDirectionsOptions = {}): Observable<any> {
@@ -37,10 +37,10 @@ export class MapboxService {
     mOptions.push(`steps=${mapboxOptions.steps}`);
     mOptions.push(`overview=${mapboxOptions.overview}`);
 
-    if (mapboxOptions.alternatives) mOptions.push(`alternatives=${mapboxOptions.alternatives}`);
-    if (mapboxOptions.annotations) mOptions.push(`annotations=${mapboxOptions.annotations}`);
-    if (mapboxOptions.approaches) mOptions.push(`approaches=${mapboxOptions.approaches}`);
-    if (mapboxOptions.banner_instructions) mOptions.push(`banner_instructions=${mapboxOptions.banner_instructions}`);
+    if (mapboxOptions.alternatives) { mOptions.push(`alternatives=${mapboxOptions.alternatives}`); }
+    if (mapboxOptions.annotations) { mOptions.push(`annotations=${mapboxOptions.annotations}`); }
+    if (mapboxOptions.approaches) { mOptions.push(`approaches=${mapboxOptions.approaches}`); }
+    if (mapboxOptions.banner_instructions) { mOptions.push(`banner_instructions=${mapboxOptions.banner_instructions}`); }
 
     mOptions.push(`access_token=${mapboxOptions.access_token}`);
 
@@ -70,7 +70,7 @@ export class MapboxService {
 
   getEncodedRoutes(geo: GeoJson): GeoJson {
     const route = geo.geometry.coordinates;
-    geo.geometry.coordinates = this.polylineDecoder(route)
+    geo.geometry.coordinates = this.polylineDecoder(route);
     return geo;
   }
 
@@ -87,18 +87,20 @@ export class MapboxService {
     const start = (i === 0) ? i * maxElements : i * maxElements - 1;
     const end = i * maxElements + maxElements;
     const arr: any[] = markers.slice(start, end);
-    if (arr.length === 0) return [];
+    if (arr.length === 0) { return []; }
     if (arr.length === 1) {
       const value = (i - 1) * maxElements + maxElements - 1;
-      arr.unshift(markers[value])
+      arr.unshift(markers[value]);
     }
     return arr;
   }
 
+  // tslint:disable:no-bitwise
   polylineDecoder(encoded) {
     // array that holds the points
-    const points = []
-    let index = 0, len = encoded.length;
+    const points = [];
+    let index = 0;
+    const len = encoded.length;
     let lat = 0, lng = 0;
     while (index < len) {
       let b, shift = 0, result = 0;
@@ -109,7 +111,7 @@ export class MapboxService {
         shift += 5;
       } while (b >= 0x20);
 
-      let dlat = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+      const dlat = ((result & 1) !== 0 ? ~(result >> 1) : (result >> 1));
       lat += dlat;
       shift = 0;
       result = 0;
@@ -118,26 +120,26 @@ export class MapboxService {
         result |= (b & 0x1f) << shift;
         shift += 5;
       } while (b >= 0x20);
-      let dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+      const dlng = ((result & 1) !== 0 ? ~(result >> 1) : (result >> 1));
       lng += dlng;
 
       points.push([(lng / 1E5), (lat / 1E5)]);
-      //points.push([(lat / 1E5), (lng / 1E5)]);
+      // points.push([(lat / 1E5), (lng / 1E5)]);
 
     }
-    return points
+    return points;
   }
 
 
   async createGeometry(markers) {
-    if (markers.length < 2) return;
+    if (markers.length < 2) { return; }
 
     const promises = [];
     const splits = this.getSplittedLoops(markers);
 
     for (const i of splits) {
       const arr = this.getSplittedRoute(markers, i);
-      if (arr.length === 0) break;
+      if (arr.length === 0) { break; }
 
       promises.push(this.getDirections(arr).toPromise());
     }
@@ -150,7 +152,7 @@ export class MapboxService {
         duration: 0,
         geometry: [],
         steps: []
-      }
+      };
 
       routes.forEach((route) => {
         if (route.routes[0] && route.code === 'Ok') {
@@ -163,13 +165,13 @@ export class MapboxService {
             obj.steps.push({
               distance: element.distance,
               duration: element.duration
-            })
+            });
           });
         }
 
       });
 
-      //console.log('obj', obj);
+      // console.log('obj', obj);
       return obj;
     }
 

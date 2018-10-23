@@ -27,7 +27,7 @@ export class GeoJson implements GeoJsonModel {
       this.geometry = {
         type: data.type,
         coordinates: data.coordinates
-      }
+      };
     }
 
     if (data.properties) {
@@ -38,6 +38,6 @@ export class GeoJson implements GeoJsonModel {
 }
 
 export class FeatureCollection {
-  type = 'FeatureCollection'
+  type = 'FeatureCollection';
   constructor(public features: Array<GeoJson>) { }
 }

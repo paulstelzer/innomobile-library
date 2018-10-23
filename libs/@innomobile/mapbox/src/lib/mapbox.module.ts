@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   declarations: [
   ]
 })
-export class MapboxModule { 
+export class MapboxModule {
   public static forRoot(mapboxToken: string): ModuleWithProviders {
     return {
       ngModule: MapboxModule,
