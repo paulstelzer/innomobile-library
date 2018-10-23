@@ -34,7 +34,7 @@ import { AdsModule } from '@innomobile/ads';
 import { firebaseConfig, iapKey, adsKey, attributionKey } from '../dest/config';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from '@innomobile/core';
-import { IonicImageLoader } from '@innomobile/ionic-image-loader';
+import { LanguageModule } from '@innomobile/language';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -65,16 +65,16 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgxsModule.forRoot(),
     NgxsStoragePluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    //NgxsLoggerPluginModule.forRoot(),
+    // NgxsLoggerPluginModule.forRoot(),
     CoreModule.forRoot({}, ' | InnoMobile'),
-    FireuserModule.forRoot(firebaseConfig, {
+    FireuserModule.forRoot(firebaseConfig),
+    LanguageModule.forRoot({
       defaultLanguage: 'en',
       availableLanguages: availableLanguages
     }),
     AttributionModule.forRoot(attributionKey),
     AdsModule.forRoot(adsKey),
     IapModule.forRoot(iapKey),
-    IonicImageLoader.forRoot()
   ],
   providers: [
     StatusBar,

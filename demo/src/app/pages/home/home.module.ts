@@ -7,7 +7,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 import { SharedModule } from '../../modules/shared/shared.module';
-import { IonicImageLoader } from '@innomobile/ionic-image-loader';
 
 @NgModule({
   imports: [
@@ -18,7 +17,6 @@ import { IonicImageLoader } from '@innomobile/ionic-image-loader';
     SharedModule,
     AuthModule,
     CoreModule,
-    IonicImageLoader
   ],
   declarations: [HomePage]
 })

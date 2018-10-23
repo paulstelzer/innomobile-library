@@ -376,46 +376,6 @@
         }
       }
     },
-    "@innomobile/ionic-image-loader": {
-      "root": "libs/@innomobile/ionic-image-loader",
-      "sourceRoot": "libs/@innomobile/ionic-image-loader/src",
-      "projectType": "library",
-      "prefix": "im",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "libs/@innomobile/ionic-image-loader/tsconfig.lib.json",
-            "project": "libs/@innomobile/ionic-image-loader/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "libs/@innomobile/ionic-image-loader/ng-package.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "libs/@innomobile/ionic-image-loader/src/test.ts",
-            "tsConfig": "libs/@innomobile/ionic-image-loader/tsconfig.spec.json",
-            "karmaConfig": "libs/@innomobile/ionic-image-loader/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/@innomobile/ionic-image-loader/tsconfig.lib.json",
-              "libs/@innomobile/ionic-image-loader/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
     "@innomobile/firebase-native": {
       "root": "libs/@innomobile/firebase-native",
       "sourceRoot": "libs/@innomobile/firebase-native/src",

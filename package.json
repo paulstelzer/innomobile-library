@@ -47,7 +47,6 @@
     "@innomobile/firebase-native": "file:dest/@innomobile/firebase-native",
     "@innomobile/fireuser": "file:dest/@innomobile/fireuser",
     "@innomobile/iap": "file:dest/@innomobile/iap",
-    "@innomobile/ionic-image-loader": "file:dest/@innomobile/ionic-image-loader",
     "@innomobile/mapbox": "file:dest/@innomobile/mapbox",
     "@innomobile/notifications": "file:dest/@innomobile/notifications",
     "@ionic-native/admob-free": "^5.0.0-beta.21",

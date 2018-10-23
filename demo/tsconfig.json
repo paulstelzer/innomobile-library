@@ -8,7 +8,6 @@
       "@innomobile/firebase-native": ["../dest/@innomobile/firebase-native"],
       "@innomobile/fireuser": ["../dest/@innomobile/fireuser"],
       "@innomobile/iap": ["../dest/@innomobile/iap"],
-      "@innomobile/ionic-image-loader": ["../dest/@innomobile/ionic-image-loader"],
       "@innomobile/mapbox": ["../dest/@innomobile/mapbox"],
       "@innomobile/notifications": ["../dest/@innomobile/notifications"],
       "@innomobile/language": ["../dest/@innomobile/language"]
