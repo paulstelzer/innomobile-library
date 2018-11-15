@@ -39,3 +39,9 @@ export class IapPurchaseExpired {
     constructor(public product: any) {}
 }
 
+export class IapPurchaseVerified {
+    static readonly type = '[IAP] Purchase verified';
+    constructor(public product: any) {}
+}
+
+

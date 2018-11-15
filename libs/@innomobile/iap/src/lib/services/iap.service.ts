@@ -7,7 +7,14 @@ import isObject from 'lodash/isObject';
 import transform from 'lodash/transform';
 import { IapPwaGenerator } from '../classes/iap-pwa-generator.class';
 import { IAP_DEBUG, IAP_PACKAGES, IAP_PWA_PACKAGES, STRIPE_KEY } from '../classes/iap-token';
-import { AddPackage, AddProduct, IapPurchaseApproved, IapPurchaseExpired, IapPurchaseRefunded } from '../store/iap.actions';
+import {
+    AddPackage,
+    AddProduct,
+    IapPurchaseApproved,
+    IapPurchaseExpired,
+    IapPurchaseRefunded,
+    IapPurchaseVerified
+    } from '../store/iap.actions';
 import { IapModel, IapPurchase, IapType } from '../store/iap.model';
 import { IapState } from '../store/iap.state';
 
@@ -44,6 +51,11 @@ export class IapService {
             }
         }
 
+        this.isSupportedNative = false;
+        if (!this.pwaPackages || this.pwaPackages.length === 0) {
+            return null;
+        }
+
         if (this.stripeKey) {
             try {
                 this.stripe = Stripe(this.stripeKey);
@@ -54,7 +66,6 @@ export class IapService {
             }
         }
 
-        this.isSupportedNative = false;
         return this.initPwa();
     }
 
@@ -193,6 +204,10 @@ export class IapService {
 
         this.iapStore.when(id).expired((product: IAPProduct) => {
             this.store.dispatch(new IapPurchaseExpired(product));
+        });
+
+        this.iapStore.when(id).verified((product: IAPProduct) => {
+            this.store.dispatch(new IapPurchaseVerified(product));
         });
 
         this.iapStore.when(id).approved((product: IAPProduct) => {
