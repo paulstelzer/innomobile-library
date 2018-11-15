@@ -216,7 +216,9 @@ export class IapService {
                 const obj = JSON.parse(product.transaction.receipt);
                 purchaseTime = (obj && obj.purchaseTime) ? obj.purchaseTime : new Date().getTime();
             }
+
             const p: IapPurchase = {
+                productId: product.id,
                 alias: product.alias,
                 id: product.transaction.id,
                 purchaseToken: product.transaction.purchaseToken || '',
@@ -236,7 +238,7 @@ export class IapService {
                 }
             }
 
-            this.store.dispatch(new IapPurchaseApproved(p));
+            this.store.dispatch(new IapPurchaseApproved(p, product));
         });
 
         this.iapStore.when(id).updated((product: IAPProduct) => {

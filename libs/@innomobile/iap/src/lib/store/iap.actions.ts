@@ -26,7 +26,7 @@ export class AddProduct {
 
 export class IapPurchaseApproved {
     static readonly type = '[IAP] Purchase approved';
-    constructor(public product: IapPurchase) {}
+    constructor(public product: IapPurchase, public originalData: IAPProduct) {}
 }
 
 export class IapPurchaseRefunded {

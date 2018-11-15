@@ -18,6 +18,7 @@ export interface IapModel {
 }
 
 export interface IapPurchase {
+    productId: string;
     alias: string;
     id: string;
     purchaseToken: string;
