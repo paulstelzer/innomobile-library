@@ -90,6 +90,7 @@ export class StripePaymentComponent implements OnInit, AfterViewInit {
   approved(source) {
     console.log('STRIPE EVENT', event);
     const p: IapPurchase = {
+      productId: this.id,
       alias: this.id,
       id: source.id,
       purchaseToken: source.client_secret,
@@ -97,7 +98,7 @@ export class StripePaymentComponent implements OnInit, AfterViewInit {
       signature: '',
       type: 'stripe',
     };
-    this.store.dispatch(new IapPurchaseApproved(p));
+    this.store.dispatch(new IapPurchaseApproved(p, source));
   }
 
   async mountButton() {
