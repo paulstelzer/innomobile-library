@@ -216,16 +216,24 @@ export class IapService {
 
         this.iapStore.when(id).verified((product: IAPProduct) => {
             let purchaseTime = new Date().getTime();
-            if (product.transaction && product.transaction.receipt) {
-                const obj = JSON.parse(product.transaction.receipt);
-                purchaseTime = (obj && obj.purchaseTime) ? obj.purchaseTime : new Date().getTime();
+            let purchaseToken = '';
+            if (product.transaction) {
+                if (product.transaction.type === 'ios-appstore') {
+                    purchaseToken = product.transaction.appStoreReceipt;
+                } else if (product.transaction.type === 'android-playstore') {
+                    if (product.transaction.receipt) {
+                        const obj = JSON.parse(product.transaction.receipt);
+                        purchaseTime = (obj && obj.purchaseTime) ? obj.purchaseTime : new Date().getTime();
+                    }
+                    purchaseToken = product.transaction.purchaseToken;
+                }
             }
 
             const purchase: IapPurchase = {
                 productId: product.id,
                 alias: product.alias,
                 id: product.transaction.id,
-                purchaseToken: product.transaction.purchaseToken || '',
+                purchaseToken: purchaseToken,
                 purchaseTime: purchaseTime,
                 signature: product.transaction.signature || '',
                 type: product.transaction.type,
