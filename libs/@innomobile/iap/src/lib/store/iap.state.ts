@@ -88,9 +88,9 @@ export class IapState implements NgxsOnInit {
     purchaseVerified(ctx: StateContext<IapStateModel>, action: IapPurchaseVerified) {
         const purchased = ctx.getState().purchased;
 
-        const index = this.getPurchase(purchased, action.product.id);
+        const index = this.getPurchase(purchased, action.purchase.id);
         if (index < 0) {
-            purchased.push(action.product);
+            purchased.push(action.purchase);
 
             return ctx.patchState({
                 purchased: purchased

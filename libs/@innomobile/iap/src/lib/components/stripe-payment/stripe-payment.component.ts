@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { IapService } from '../../services/iap.service';
-import { IapPurchaseApproved } from '../../store/iap.actions';
+import { IapPurchaseApproved, IapPurchaseVerified } from '../../store/iap.actions';
 import { IapPurchase } from '../../store/iap.model';
 
 export interface StripeResponse {
@@ -98,7 +98,7 @@ export class StripePaymentComponent implements OnInit, AfterViewInit {
       signature: '',
       type: 'stripe',
     };
-    this.store.dispatch(new IapPurchaseApproved(p, source));
+    this.store.dispatch(new IapPurchaseVerified(p, source));
   }
 
   async mountButton() {
