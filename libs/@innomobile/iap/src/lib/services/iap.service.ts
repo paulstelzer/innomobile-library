@@ -14,7 +14,7 @@ import {
     IapPurchaseExpired,
     IapPurchaseRefunded,
     IapPurchaseVerified
-    } from '../store/iap.actions';
+} from '../store/iap.actions';
 import { IapModel, IapPurchase, IapType } from '../store/iap.model';
 import { IapState } from '../store/iap.state';
 
@@ -41,13 +41,13 @@ export class IapService {
 
     }
 
-    init() {
+    init(validator = null) {
         this.storePackages = this.store.selectSnapshot(IapState.getPackages);
 
         if (this.platform.is('cordova')) {
             if (this.platform.is('ios') || this.platform.is('android')) {
                 this.isSupportedNative = true;
-                return this.initCordova();
+                return this.initCordova(validator);
             }
         }
 
@@ -112,10 +112,14 @@ export class IapService {
         }
     }
 
-    private initCordova() {
+    private initCordova(validator) {
         // Debug everything
         if (this.debug) {
             this.iapStore.verbosity = this.iapStore.DEBUG;
+        }
+
+        if (validator) {
+            this.iapStore.validator = validator;
         }
 
         for (const iapPackage of this.packages) {
