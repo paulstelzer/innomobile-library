@@ -26,7 +26,7 @@ export class AddProduct {
 
 export class IapPurchaseApproved {
     static readonly type = '[IAP] Purchase approved';
-    constructor(public product: IapPurchase, public originalData: IAPProduct) {}
+    constructor(public product: IAPProduct) {}
 }
 
 export class IapPurchaseRefunded {
@@ -41,7 +41,7 @@ export class IapPurchaseExpired {
 
 export class IapPurchaseVerified {
     static readonly type = '[IAP] Purchase verified';
-    constructor(public product: any) {}
+    constructor(public purchase: IapPurchase, public product: IAPProduct) {}
 }
 
 

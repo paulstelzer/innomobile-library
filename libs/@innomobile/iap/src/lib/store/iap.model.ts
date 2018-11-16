@@ -4,8 +4,6 @@ export interface IapStateModel {
     packages: IAPProductOptions[];
     products: IAPProduct[];
     purchased: any[];
-    expired: any[];
-    refunded: any[];
 }
 
 export interface IapModel {

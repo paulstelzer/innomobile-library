@@ -14,9 +14,7 @@ import {
     IapClear,
     IapClearUser,
     IapInit,
-    IapPurchaseApproved,
-    IapPurchaseExpired,
-    IapPurchaseRefunded
+    IapPurchaseVerified,
     } from './iap.actions';
 import { IapStateModel } from './iap.model';
 
@@ -26,8 +24,6 @@ import { IapStateModel } from './iap.model';
         packages: [],
         products: [],
         purchased: [],
-        expired: [],
-        refunded: []
     }
 })
 export class IapState implements NgxsOnInit {
@@ -47,15 +43,6 @@ export class IapState implements NgxsOnInit {
         return state.purchased;
     }
 
-    @Selector()
-    static expiredItems(state: IapStateModel) {
-        return state.expired;
-    }
-
-    @Selector()
-    static refundedItems(state: IapStateModel) {
-        return state.refunded;
-    }
 
     static getProduct(alias: string) {
         const selector = createSelector([IapState], (state: IapStateModel) => {
@@ -87,8 +74,6 @@ export class IapState implements NgxsOnInit {
             packages: [],
             products: [],
             purchased: [],
-            expired: [],
-            refunded: []
         });
     }
 
@@ -96,13 +81,11 @@ export class IapState implements NgxsOnInit {
     iapClearUser(ctx: StateContext<IapStateModel>) {
         return ctx.patchState({
             purchased: [],
-            expired: [],
-            refunded: []
         });
     }
 
-    @Action(IapPurchaseApproved)
-    purchaseApproved(ctx: StateContext<IapStateModel>, action: IapPurchaseApproved) {
+    @Action(IapPurchaseVerified)
+    purchaseVerified(ctx: StateContext<IapStateModel>, action: IapPurchaseVerified) {
         const purchased = ctx.getState().purchased;
 
         const index = this.getPurchase(purchased, action.product.id);
@@ -114,26 +97,6 @@ export class IapState implements NgxsOnInit {
             });
         }
         return false;
-    }
-
-    @Action(IapPurchaseExpired)
-    purchaseExpired(ctx: StateContext<IapStateModel>, { product }: IapPurchaseExpired) {
-        const arr = ctx.getState().expired;
-
-        arr.push(product);
-        return ctx.patchState({
-            purchased: arr
-        });
-    }
-
-    @Action(IapPurchaseRefunded)
-    purchaseRefunded(ctx: StateContext<IapStateModel>, { product }: IapPurchaseRefunded) {
-        const arr = ctx.getState().refunded;
-
-        arr.push(product);
-        return ctx.patchState({
-            refunded: arr
-        });
     }
 
     @Action(AddPackage)

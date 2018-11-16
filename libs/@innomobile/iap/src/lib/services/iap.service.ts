@@ -120,6 +120,10 @@ export class IapService {
 
         if (validator) {
             this.iapStore.validator = validator;
+        } else {
+            this.iapStore.validator = (product: any, callback) => {
+                callback(true);
+            };
         }
 
         for (const iapPackage of this.packages) {
@@ -211,17 +215,13 @@ export class IapService {
         });
 
         this.iapStore.when(id).verified((product: IAPProduct) => {
-            this.store.dispatch(new IapPurchaseVerified(product));
-        });
-
-        this.iapStore.when(id).approved((product: IAPProduct) => {
             let purchaseTime = new Date().getTime();
             if (product.transaction && product.transaction.receipt) {
                 const obj = JSON.parse(product.transaction.receipt);
                 purchaseTime = (obj && obj.purchaseTime) ? obj.purchaseTime : new Date().getTime();
             }
 
-            const p: IapPurchase = {
+            const purchase: IapPurchase = {
                 productId: product.id,
                 alias: product.alias,
                 id: product.transaction.id,
@@ -232,17 +232,21 @@ export class IapService {
                 data: null
             };
 
-            if (p.type === 'android-playstore') {
-                const check: string = p.id;
+            if (purchase.type === 'android-playstore') {
+                const check: string = purchase.id;
                 if (!check.startsWith('GPA.')) {
                     // This must be a fake buy
-                    p.data = {
+                    purchase.data = {
                         fake: true
                     };
                 }
             }
+            this.store.dispatch(new IapPurchaseVerified(purchase, product));
+        });
 
-            this.store.dispatch(new IapPurchaseApproved(p, product));
+        this.iapStore.when(id).approved((product: IAPProduct) => {
+            this.store.dispatch(new IapPurchaseApproved(product));
+            product.verify();
         });
 
         this.iapStore.when(id).updated((product: IAPProduct) => {
