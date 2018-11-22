@@ -9,13 +9,8 @@
         </ion-button>
       </ion-item-divider>
     </ion-list>
-    <div class="video-container" *ngIf="!hideVideo">
-      <iframe [id]="'yt_player_'+id" width="100%" height="320" [src]="trustedVideoUrl" frameborder="0" allowfullscreen></iframe>
-    </div>
   </ng-container>
-  <ng-container *ngIf="!activateShowHide">
-    <div class="video-container">
-      <iframe [id]="'yt_player_'+id" width="100%" height="320" [src]="trustedVideoUrl" frameborder="0" allowfullscreen></iframe>
-    </div>
-  </ng-container>
+  <div class="video-container" *ngIf="!hideVideo">
+    <iframe [id]="'yt_player_'+id" width="100%" height="320" [src]="trustedVideoUrl" frameborder="0" allowfullscreen></iframe>
+  </div>
 </ng-container>
