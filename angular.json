@@ -575,6 +575,41 @@
           }
         }
       }
+    },
+    "@innomobile/ion-img-viewer": {
+      "root": "libs/@innomobile/ion-img-viewer",
+      "sourceRoot": "libs/@innomobile/ion-img-viewer/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/@innomobile/ion-img-viewer/tsconfig.lib.json",
+            "project": "libs/@innomobile/ion-img-viewer/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/@innomobile/ion-img-viewer/src/test.ts",
+            "tsConfig": "libs/@innomobile/ion-img-viewer/tsconfig.spec.json",
+            "karmaConfig": "libs/@innomobile/ion-img-viewer/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/@innomobile/ion-img-viewer/tsconfig.lib.json",
+              "libs/@innomobile/ion-img-viewer/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "app"

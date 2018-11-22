@@ -16,6 +16,14 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@innomobile/ion-img-viewer": [
+        "dist/innomobile/ion-img-viewer"
+      ],
+      "@innomobile/ion-img-viewer/*": [
+        "dist/innomobile/ion-img-viewer/*"
+      ]
+    }
   }
 }

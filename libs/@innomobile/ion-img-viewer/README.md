@@ -1,0 +1,1 @@
+Fork of https://www.npmjs.com/package/ionic-img-viewer
