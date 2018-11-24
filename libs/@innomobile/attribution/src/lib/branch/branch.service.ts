@@ -4,6 +4,7 @@ import { Platform } from '@ionic/angular';
 
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { BranchIo, BranchIoPromise, BranchIoAnalytics, BranchIoProperties } from '@ionic-native/branch-io/ngx';
+import { BranchShareOptions } from './model/branch.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +52,7 @@ export class BranchService {
         reject('no_branch_sdk');
       } else {
         window['branch'].init(this.branchConfig.branchKey, null, (error, data) => {
+          this.initialized = true;
           if (data) {
             resolve(data);
           } else if (error) {
@@ -71,7 +73,7 @@ export class BranchService {
         return parsed;
       }
     } catch (err) {
-      throw err;
+      console.log('BRANCH ERROR', err);
     }
     return null;
   }
@@ -88,19 +90,65 @@ export class BranchService {
 
     this.lastUserId = userId;
 
-    return this.branch.setIdentity(userId);
+    if (this.platform.is('cordova')) {
+      return this.branch.setIdentity(userId);
+    } else {
+      return window['branch'].setIdentity(userId);
+    }
+  }
+
+  async shareLink(options: BranchShareOptions) {
+    if (this.platform.is('cordova')) {
+      const properties: BranchIoProperties = {
+        canonicalIdentifier: options.canonicalIdentifier,
+        contentMetadata: options.contentMetadata
+      };
+      return this.share(options.subject, options.message, options.analytics, properties);
+    } else {
+      if (options.openShareScreen instanceof Function) {
+        let link = '';
+        try {
+          link = await this.linkBranchWeb(options.analytics, options.contentMetadata, options.ogData);
+        } catch (error) {
+          link = options.defaultLink;
+        }
+
+        return options.openShareScreen(options.subject, options.message, link);
+      }
+    }
+    return null;
+  }
+
+  private linkBranchWeb(analytics, contentMetadata, ogData): Promise<string> {
+    return new Promise((resolve, reject) => {
+      if (!window['branch']) {
+        reject('no_branch_sdk');
+      } else {
+        window['branch'].link({
+          ...analytics,
+          data: {
+            ...contentMetadata,
+            ...ogData,
+          }
+        }, (err, link: string) => {
+          if (!link || err) {
+            reject('no_link');
+          }
+          resolve(link);
+        });
+      }
+    });
   }
 
   async share(subject: string, message: string, analytics: BranchIoAnalytics, properties: BranchIoProperties): Promise<void> {
+    if (!this.platform.is('cordova')) { return; }
     if (!this.initialized) { return; }
-
 
     try {
       const branchUniversalObj = await this.branch.createBranchUniversalObject(properties);
       const response1 = await branchUniversalObj.generateShortUrl(analytics, properties);
-      // branchUniversalObj.showShareSheet(analytics, properties, message)
 
-      await this.socialSharing.shareWithOptions({
+      return await this.socialSharing.shareWithOptions({
         message: message + ' ' + response1.url,
         subject: subject
       });
