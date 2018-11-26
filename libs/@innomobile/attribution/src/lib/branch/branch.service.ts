@@ -46,7 +46,7 @@ export class BranchService {
     }
   }
 
-  initBranchWeb(): Promise<any> {
+  private initBranchWeb(): Promise<any> {
     return new Promise((resolve, reject) => {
       if (!window['branch']) {
         reject('no_branch_sdk');
@@ -63,7 +63,7 @@ export class BranchService {
     });
   }
 
-  async initWebSession() {
+  private async initWebSession() {
     if (!this.branchConfig || !this.branchConfig.branchKey) { return null; }
 
     try {
@@ -119,6 +119,24 @@ export class BranchService {
     return null;
   }
 
+  async share(subject: string, message: string, analytics: BranchIoAnalytics, properties: BranchIoProperties): Promise<void> {
+    if (!this.platform.is('cordova')) { return; }
+    if (!this.initialized) { return; }
+
+    try {
+      const branchUniversalObj = await this.branch.createBranchUniversalObject(properties);
+      const response1 = await branchUniversalObj.generateShortUrl(analytics, properties);
+
+      return await this.socialSharing.shareWithOptions({
+        message: message + ' ' + response1.url,
+        subject: subject
+      });
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   private linkBranchWeb(analytics, contentMetadata, ogData): Promise<string> {
     return new Promise((resolve, reject) => {
       if (!window['branch']) {
@@ -138,23 +156,5 @@ export class BranchService {
         });
       }
     });
-  }
-
-  async share(subject: string, message: string, analytics: BranchIoAnalytics, properties: BranchIoProperties): Promise<void> {
-    if (!this.platform.is('cordova')) { return; }
-    if (!this.initialized) { return; }
-
-    try {
-      const branchUniversalObj = await this.branch.createBranchUniversalObject(properties);
-      const response1 = await branchUniversalObj.generateShortUrl(analytics, properties);
-
-      return await this.socialSharing.shareWithOptions({
-        message: message + ' ' + response1.url,
-        subject: subject
-      });
-
-    } catch (err) {
-      console.log(err);
-    }
   }
 }
