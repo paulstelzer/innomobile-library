@@ -21,7 +21,7 @@ You have to install the following packages:
 - `cordova-plugin-appsflyer-sdk`: `^4.4.0`
 - `@ionic-native/appsflyer`: `^5.0.0 || >= 5.0.0-beta.18`
 
-### Add to your app.module
+### Add to your app.module.ts
 
 ```ts
     import { AttributionModule } from '@innomobile/attribution';
@@ -47,9 +47,13 @@ export const branchConfig = {
 }
 ```
 
+### Initialize Appsflyer and Branch.io
+
+I recommend to initialize Appsflyer and Branch.io in your app.component.ts. For Branch, a BranchHandleService is good use case (see below). For Appsflyer, add `private appslfyer: AppsflyerService` to your constructor and after the platform is ready, add `this.appsflyer.init()`.
+
 ## Additional information
 
-Appsflyer is only for Android and iOS. Branch.io is ready for Android, iOS and Web! See use cases for the implementation!
+Appsflyer is Android and iOS only. Branch.io is ready for Android, iOS and Web! See use cases for the implementation!
 
 ## Use Cases
 

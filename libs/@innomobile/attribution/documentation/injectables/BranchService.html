@@ -1,0 +1,1222 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>@innomobile/attribution documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">@innomobile/attribution documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>BranchService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/lib/branch/branch.service.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Branch Service</p>
+
+            </p>
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#branchConfigToken">branchConfigToken</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#initialized">initialized</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#lastUserId">lastUserId</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getSession">getSession</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#initBranchWeb">initBranchWeb</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#initSession">initSession</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#initWebSession">initWebSession</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#linkBranchWeb">linkBranchWeb</a>
+                            </li>
+                            <li>
+                                <a href="#setIdentity">setIdentity</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#share">share</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#shareLink">shareLink</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(platform: Platform, branch: BranchIo, socialSharing: SocialSharing, branchConfig: <a href="../interfaces/BranchConfigOptions.html">BranchConfigOptions</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/lib/branch/branch.service.ts:26</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Creates an instance of BranchService.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>platform</td>
+                                                  
+                                                        <td>
+                                                                    <code>Platform</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Ionic</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>branch</td>
+                                                  
+                                                        <td>
+                                                                    <code>BranchIo</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Ionic Native</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>socialSharing</td>
+                                                  
+                                                        <td>
+                                                                    <code>SocialSharing</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Ionic Native</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>branchConfig</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../interfaces/BranchConfigOptions.html" target="_self" >BranchConfigOptions</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Branch Config token</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getSession"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            getSession
+                            </b>
+                            <a href="#getSession"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>getSession()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/lib/branch/branch.service.ts:110</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Get Branch Session</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Promise&lt;BranchIoPromise&gt;</code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="initBranchWeb"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            initBranchWeb
+                            </b>
+                            <a href="#initBranchWeb"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>initBranchWeb()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/lib/branch/branch.service.ts:72</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Get Branch Web SDK</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="initSession"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            initSession
+                            </b>
+                            <a href="#initSession"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>initSession()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/lib/branch/branch.service.ts:47</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Init Branch Session - important add to your app.component.ts</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Promise&lt;BranchIoPromise&gt;</code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="initWebSession"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                                <span class="modifier">Async</span>
+                            initWebSession
+                            </b>
+                            <a href="#initWebSession"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>initWebSession()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/lib/branch/branch.service.ts:92</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Init Web Session</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>{}</code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="linkBranchWeb"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            linkBranchWeb
+                            </b>
+                            <a href="#linkBranchWeb"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>linkBranchWeb(analytics, contentMetadata, ogData)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/lib/branch/branch.service.ts:189</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Share link via Web SDK</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>analytics</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Branch analytics</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>contentMetadata</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Branch content data</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>ogData</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>OG Data like image, title and description</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Promise&lt;string&gt;</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="setIdentity"></a>
+                        <span class="name">
+                            <b>
+                            setIdentity
+                            </b>
+                            <a href="#setIdentity"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>setIdentity(userId)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/lib/branch/branch.service.ts:118</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Track a user</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>userId</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>User Id</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="share"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            share
+                            </b>
+                            <a href="#share"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>share(subject: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, message: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, analytics: BranchIoAnalytics, properties: BranchIoProperties)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/lib/branch/branch.service.ts:165</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Share Branch link NATIVE (Android and iOS only)</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>subject</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Subject</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>message</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Message</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>analytics</td>
+                                                        <td>
+                                                                    <code>BranchIoAnalytics</code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Branch Analytics Data</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>properties</td>
+                                                        <td>
+                                                                    <code>BranchIoProperties</code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Branch Properties</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="shareLink"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            shareLink
+                            </b>
+                            <a href="#shareLink"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>shareLink(options: <a href="../interfaces/BranchShareOptions.html">BranchShareOptions</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/lib/branch/branch.service.ts:136</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Share a link via Branch.io (Android, iOS, Web)</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>options</td>
+                                                        <td>
+                                                                    <code><a href="../interfaces/BranchShareOptions.html" target="_self" >BranchShareOptions</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Share options</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>{}</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="branchConfigToken"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            branchConfigToken
+                            </b>
+                            <a href="#branchConfigToken"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>branchConfigToken:     <code><a href="../interfaces/BranchConfigOptions.html" target="_self" >BranchConfigOptions</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../interfaces/BranchConfigOptions.html" target="_self" >BranchConfigOptions</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/lib/branch/branch.service.ts:26</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Branch Config token</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="initialized"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            initialized
+                            </b>
+                            <a href="#initialized"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>initialized:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/lib/branch/branch.service.ts:18</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Is branch initialized?</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="lastUserId"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            lastUserId
+                            </b>
+                            <a href="#lastUserId"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>lastUserId:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/lib/branch/branch.service.ts:22</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Last user id set to Branch</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable, Optional } from &#x27;@angular/core&#x27;;
+import { BranchIo, BranchIoAnalytics, BranchIoPromise, BranchIoProperties } from &#x27;@ionic-native/branch-io/ngx&#x27;;
+import { SocialSharing } from &#x27;@ionic-native/social-sharing/ngx&#x27;;
+import { Platform } from &#x27;@ionic/angular&#x27;;
+import { BRANCH_CONFIG, BranchConfigOptions } from &#x27;./../attribution.module&#x27;;
+import { BranchShareOptions } from &#x27;./model/branch.interface&#x27;;
+
+/**
+ * Branch Service
+ */
+@Injectable({
+  providedIn: &#x27;root&#x27;
+})
+export class BranchService {
+  /**
+   * Is branch initialized?
+   */
+  private initialized &#x3D; false;
+  /**
+   * Last user id set to Branch
+   */
+  private lastUserId &#x3D; &#x27;&#x27;;
+  /**
+   * Branch Config token
+   */
+  private branchConfigToken: BranchConfigOptions &#x3D; null;
+
+  /**
+   * Creates an instance of BranchService.
+   * @param {Platform} platform Ionic
+   * @param {BranchIo} branch Ionic Native
+   * @param {SocialSharing} socialSharing Ionic Native
+   * @param {BranchConfigOptions} branchConfig Branch Config token
+   */
+  constructor(
+    private platform: Platform,
+    private branch: BranchIo,
+    private socialSharing: SocialSharing,
+    @Optional() @Inject(BRANCH_CONFIG) private branchConfig: BranchConfigOptions,
+  ) {
+
+  }
+
+  /**
+   * Init Branch Session - important add to your app.component.ts
+   */
+  async initSession(): Promise&lt;BranchIoPromise&gt; {
+    if (!this.platform.is(&#x27;cordova&#x27;)) { return this.initWebSession(); }
+    this.branchConfigToken &#x3D; {
+      debug: false,
+      ...this.branchConfig
+    };
+    await this.platform.ready();
+
+    if (this.branchConfigToken &amp;&amp; this.branchConfigToken.debug) {
+      this.branch.setDebug(this.branchConfigToken.debug);
+    }
+
+    try {
+      const data &#x3D; await this.branch.initSession();
+      this.initialized &#x3D; true;
+      return data;
+    } catch (error) {
+      console.log(&#x27;[Branch] Error on init&#x27;, error);
+      return null;
+    }
+  }
+
+  /**
+   * Get Branch Web SDK
+   */
+  private initBranchWeb(): Promise&lt;any&gt; {
+    return new Promise((resolve, reject) &#x3D;&gt; {
+      if (!window[&#x27;branch&#x27;]) {
+        reject(&#x27;no_branch_sdk&#x27;);
+      } else {
+        window[&#x27;branch&#x27;].init(this.branchConfig.branchKey, null, (error, data) &#x3D;&gt; {
+          this.initialized &#x3D; true;
+          if (data) {
+            resolve(data);
+          } else if (error) {
+            reject(error);
+          }
+        });
+      }
+    });
+  }
+
+  /**
+   * Init Web Session
+   */
+  private async initWebSession() {
+    if (!this.branchConfig || !this.branchConfig.branchKey) { return null; }
+
+    try {
+      const data &#x3D; await this.initBranchWeb();
+      if (data) {
+        const parsed: BranchIoPromise &#x3D; data.data_parsed;
+        return parsed;
+      }
+    } catch (err) {
+      console.log(&#x27;BRANCH ERROR&#x27;, err);
+    }
+    return null;
+  }
+
+  /**
+   * Get Branch Session
+   */
+  async getSession(): Promise&lt;BranchIoPromise&gt; {
+    return await this.branch.initSession();
+  }
+
+  /**
+   * Track a user
+   * @param userId User Id
+   */
+  setIdentity(userId): Promise&lt;any&gt; {
+    if (!this.initialized) { return; }
+
+    if (this.lastUserId &#x3D;&#x3D;&#x3D; userId) { return; }
+
+    this.lastUserId &#x3D; userId;
+
+    if (this.platform.is(&#x27;cordova&#x27;)) {
+      return this.branch.setIdentity(userId);
+    } else {
+      return window[&#x27;branch&#x27;].setIdentity(userId);
+    }
+  }
+
+  /**
+   * Share a link via Branch.io (Android, iOS, Web)
+   * @param options Share options
+   */
+  async shareLink(options: BranchShareOptions) {
+    if (this.platform.is(&#x27;cordova&#x27;)) {
+      const properties: BranchIoProperties &#x3D; {
+        canonicalIdentifier: options.canonicalIdentifier,
+        contentMetadata: options.contentMetadata
+      };
+      return this.share(options.subject, options.message, options.analytics, properties);
+    } else {
+      if (options.openShareScreen instanceof Function) {
+        let link &#x3D; &#x27;&#x27;;
+        try {
+          link &#x3D; await this.linkBranchWeb(options.analytics, options.contentMetadata, options.ogData);
+        } catch (error) {
+          link &#x3D; options.defaultLink;
+        }
+
+        return options.openShareScreen(options.subject, options.message, link);
+      }
+    }
+    return null;
+  }
+
+  /**
+   * Share Branch link NATIVE (Android and iOS only)
+   * @param subject Subject
+   * @param message Message
+   * @param analytics Branch Analytics Data
+   * @param properties Branch Properties
+   */
+  async share(subject: string, message: string, analytics: BranchIoAnalytics, properties: BranchIoProperties): Promise&lt;void&gt; {
+    if (!this.platform.is(&#x27;cordova&#x27;)) { return; }
+    if (!this.initialized) { return; }
+
+    try {
+      const branchUniversalObj &#x3D; await this.branch.createBranchUniversalObject(properties);
+      const response1 &#x3D; await branchUniversalObj.generateShortUrl(analytics, properties);
+
+      return await this.socialSharing.shareWithOptions({
+        message: message + &#x27; &#x27; + response1.url,
+        subject: subject
+      });
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  /**
+   * Share link via Web SDK
+   * @param analytics Branch analytics
+   * @param contentMetadata Branch content data
+   * @param ogData OG Data like image, title and description
+   */
+  private linkBranchWeb(analytics, contentMetadata, ogData): Promise&lt;string&gt; {
+    return new Promise((resolve, reject) &#x3D;&gt; {
+      if (!window[&#x27;branch&#x27;]) {
+        reject(&#x27;no_branch_sdk&#x27;);
+      } else {
+        window[&#x27;branch&#x27;].link({
+          ...analytics,
+          data: {
+            ...contentMetadata,
+            ...ogData,
+          }
+        }, (err, link: string) &#x3D;&gt; {
+          if (!link || err) {
+            reject(&#x27;no_link&#x27;);
+          }
+          resolve(link);
+        });
+      }
+    });
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'BranchService.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

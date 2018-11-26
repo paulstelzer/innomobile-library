@@ -3,18 +3,37 @@ import { Injectable, Inject, Optional } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { APPSFLYER_CONFIG } from '../attribution.module';
 
+/**
+ * Appsflyer Service
+ *
+ * @export
+ * @class AppsflyerService
+ */
 @Injectable({
     providedIn: 'root'
 })
 export class AppsflyerService {
-    initialized = false;
+    /**
+     * Is Appsflyer SDK initialized?
+     */
+    private initialized = false;
 
+    /**
+     * Creates an instance of AppsflyerService.
+     * @param {Platform} platform Ionic Platform
+     * @param {Appsflyer} appsflyer Ionic Native Appsflyer
+     * @param {AppsflyerOptions} appsflyerConfig Appsflyer Config token
+     * @memberof AppsflyerService
+     */
     constructor(
         private platform: Platform,
         public appsflyer: Appsflyer,
         @Optional() @Inject(APPSFLYER_CONFIG) private appsflyerConfig: AppsflyerOptions,
     ) { }
 
+    /**
+     * initialize Appsflyer - add this to your app.component.ts
+     */
     async init() {
         if (!this.platform.is('cordova')) { return; }
         if (!this.appsflyerConfig) {
@@ -36,6 +55,13 @@ export class AppsflyerService {
         }
     }
 
+    /**
+     * Log an Event in Appsflyer
+     *
+     * @param {string} type Name of the event
+     * @param {*} data data of your event
+     * @returns void
+     */
     log(type: string, data: any) {
         if (!this.initialized) { return; }
         this.appsflyer.trackEvent(type, data);

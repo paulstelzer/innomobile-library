@@ -1,20 +1,37 @@
-import { BRANCH_CONFIG, BranchConfigOptions } from './../attribution.module';
-import { Injectable, Optional, Inject } from '@angular/core';
-import { Platform } from '@ionic/angular';
-
+import { Inject, Injectable, Optional } from '@angular/core';
+import { BranchIo, BranchIoAnalytics, BranchIoPromise, BranchIoProperties } from '@ionic-native/branch-io/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
-import { BranchIo, BranchIoPromise, BranchIoAnalytics, BranchIoProperties } from '@ionic-native/branch-io/ngx';
+import { Platform } from '@ionic/angular';
+import { BRANCH_CONFIG, BranchConfigOptions } from './../attribution.module';
 import { BranchShareOptions } from './model/branch.interface';
 
+/**
+ * Branch Service
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class BranchService {
-  initialized = false;
-  debug = false;
-  lastUserId = '';
-  branchConfigToken: BranchConfigOptions = null;
+  /**
+   * Is branch initialized?
+   */
+  private initialized = false;
+  /**
+   * Last user id set to Branch
+   */
+  private lastUserId = '';
+  /**
+   * Branch Config token
+   */
+  private branchConfigToken: BranchConfigOptions = null;
 
+  /**
+   * Creates an instance of BranchService.
+   * @param {Platform} platform Ionic
+   * @param {BranchIo} branch Ionic Native
+   * @param {SocialSharing} socialSharing Ionic Native
+   * @param {BranchConfigOptions} branchConfig Branch Config token
+   */
   constructor(
     private platform: Platform,
     private branch: BranchIo,
@@ -24,6 +41,9 @@ export class BranchService {
 
   }
 
+  /**
+   * Init Branch Session - important add to your app.component.ts
+   */
   async initSession(): Promise<BranchIoPromise> {
     if (!this.platform.is('cordova')) { return this.initWebSession(); }
     this.branchConfigToken = {
@@ -46,6 +66,9 @@ export class BranchService {
     }
   }
 
+  /**
+   * Get Branch Web SDK
+   */
   private initBranchWeb(): Promise<any> {
     return new Promise((resolve, reject) => {
       if (!window['branch']) {
@@ -63,6 +86,9 @@ export class BranchService {
     });
   }
 
+  /**
+   * Init Web Session
+   */
   private async initWebSession() {
     if (!this.branchConfig || !this.branchConfig.branchKey) { return null; }
 
@@ -78,11 +104,17 @@ export class BranchService {
     return null;
   }
 
+  /**
+   * Get Branch Session
+   */
   async getSession(): Promise<BranchIoPromise> {
     return await this.branch.initSession();
   }
 
-
+  /**
+   * Track a user
+   * @param userId User Id
+   */
   setIdentity(userId): Promise<any> {
     if (!this.initialized) { return; }
 
@@ -97,6 +129,10 @@ export class BranchService {
     }
   }
 
+  /**
+   * Share a link via Branch.io (Android, iOS, Web)
+   * @param options Share options
+   */
   async shareLink(options: BranchShareOptions) {
     if (this.platform.is('cordova')) {
       const properties: BranchIoProperties = {
@@ -119,6 +155,13 @@ export class BranchService {
     return null;
   }
 
+  /**
+   * Share Branch link NATIVE (Android and iOS only)
+   * @param subject Subject
+   * @param message Message
+   * @param analytics Branch Analytics Data
+   * @param properties Branch Properties
+   */
   async share(subject: string, message: string, analytics: BranchIoAnalytics, properties: BranchIoProperties): Promise<void> {
     if (!this.platform.is('cordova')) { return; }
     if (!this.initialized) { return; }
@@ -137,6 +180,12 @@ export class BranchService {
     }
   }
 
+  /**
+   * Share link via Web SDK
+   * @param analytics Branch analytics
+   * @param contentMetadata Branch content data
+   * @param ogData OG Data like image, title and description
+   */
   private linkBranchWeb(analytics, contentMetadata, ogData): Promise<string> {
     return new Promise((resolve, reject) => {
       if (!window['branch']) {
