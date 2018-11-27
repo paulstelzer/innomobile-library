@@ -285,7 +285,7 @@ export class AuthService {
 
   // #region Reset Password
   /**
-   * Reset password fpr user
+   * Reset password for user
    * @param email Email
    */
   async resetPassword(email: string): Promise<boolean> {
