@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/messaging';
 import { Firebase } from '@ionic-native/firebase/ngx';
 import { Platform } from '@ionic/angular';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { PwaDataModel } from '../model/pwa-data.model';
 
 @Injectable({
     providedIn: 'root'
@@ -10,6 +11,9 @@ import { Observable } from 'rxjs';
 export class FirebasePlatformService {
     userToken = null;
     messaging: firebase.messaging.Messaging;
+    private messages: Observable<any>;
+    private backgroundMessageHandler: Observable<any>;
+    private debug = false;
 
     constructor(
         private platform: Platform,
@@ -19,11 +23,38 @@ export class FirebasePlatformService {
 
     }
 
-    async init(registerServiceWorker?) {
+    async init(pwaData?: PwaDataModel) {
         if (!this.platform.is('cordova')) {
-            if (registerServiceWorker) {
+            const defaultPwaData: PwaDataModel = {
+                registerServiceWorker: null,
+                messages: false,
+                backgroundMessageHandler: false,
+            };
+            if (!pwaData) {
+                pwaData = {};
+            }
+            const pwaConfig: PwaDataModel = {
+                ...defaultPwaData,
+                ...pwaData
+            };
+            if (pwaConfig.registerServiceWorker) {
                 this.messaging = await this.afMessaging.messaging.toPromise();
-                this.messaging.useServiceWorker(registerServiceWorker);
+                this.messaging.useServiceWorker(pwaConfig.registerServiceWorker);
+
+                if (pwaConfig.messages) {
+                    this.messages = new Observable((observer) => {
+                        this.messaging.onMessage(payload => {
+                            observer.next(payload);
+                        });
+                    });
+                }
+                if (pwaConfig.backgroundMessageHandler) {
+                    this.backgroundMessageHandler = new Observable((observer) => {
+                        this.messaging.setBackgroundMessageHandler(payload => {
+                            observer.next(payload);
+                        });
+                    });
+                }
             }
             return;
         }
@@ -55,7 +86,9 @@ export class FirebasePlatformService {
         // console.log('Firebase - Type', type, 'value', value);
 
         if (!type || !value) {
-            console.log('Value or type is empty');
+            if (this.debug) {
+                console.log('[@innomobile/attribution] Value or type is empty');
+            }
             return;
         }
 
@@ -64,7 +97,6 @@ export class FirebasePlatformService {
             this.firebaseNative.logEvent('select_content', { content_type: 'page_view', item_id: value });
         } else {
             this.firebaseNative.logEvent(type, { id: value });
-
         }
 
     }
@@ -73,10 +105,14 @@ export class FirebasePlatformService {
         try {
             await this.messaging.requestPermission();
             const token = await this.messaging.getToken();
-            console.log('[@innomobile/attribution] Token', token);
+            if (this.debug) {
+                console.log('[@innomobile/attribution] Token', token);
+            }
             return token;
         } catch (error) {
-            console.log('[@innomobile/attribution] Error', error);
+            if (this.debug) {
+                console.log('[@innomobile/attribution] Error', error);
+            }
         }
         return null;
     }
@@ -150,9 +186,15 @@ export class FirebasePlatformService {
      */
     listenToNotifications(): Observable<any> {
         if (!this.platform.is('cordova')) {
-            return this.afMessaging.messages;
+            return this.messages;
         }
         return this.firebaseNative.onNotificationOpen();
     }
 
+    setBackgroundMessageHandler(): Observable<any> {
+        if (!this.platform.is('cordova')) {
+            return this.backgroundMessageHandler;
+        }
+        return of(null);
+    }
 }
