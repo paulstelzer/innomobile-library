@@ -157,7 +157,8 @@ export class AuthService {
         this.fbUser.email,
         password
       );
-      return await this.fbUser.reauthenticateWithCredential(credential);
+      await this.fbUser.reauthenticateWithCredential(credential);
+      return true;
     } catch (error) {
       this.showError(error);
       return false;
@@ -182,13 +183,11 @@ export class AuthService {
   }
 
   /**
-   * Update the password of the user
-   * @param oldPassword Old Password
+   * Update the password of the user - reauthenticate the user before
    * @param newPassword New Password
    */
-  async updatePassword(oldPassword, newPassword): Promise<boolean> {
+  async updatePassword(newPassword): Promise<boolean> {
     try {
-      await this.reAuthenticateUser(oldPassword);
       await this.fbUser.updatePassword(newPassword);
       this.showSuccess('PASSWORD_CHANGED');
       return true;
@@ -199,7 +198,7 @@ export class AuthService {
   }
 
   /**
-   * Update Email and verify new email
+   * Update Email and verify new email - reauthenticate the user before
    * @param email Email
    */
   async updateFbEmail(email): Promise<boolean> {
