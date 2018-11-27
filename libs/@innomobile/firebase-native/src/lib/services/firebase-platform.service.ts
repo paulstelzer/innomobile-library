@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class FirebasePlatformService {
     userToken = null;
+    messaging: firebase.messaging.Messaging;
 
     constructor(
         private platform: Platform,
@@ -18,8 +19,14 @@ export class FirebasePlatformService {
 
     }
 
-    init() {
-        if (!this.platform.is('cordova')) { return; }
+    async init(registerServiceWorker?) {
+        if (!this.platform.is('cordova')) {
+            if (registerServiceWorker) {
+                this.messaging = await this.afMessaging.messaging.toPromise();
+                this.messaging.useServiceWorker(registerServiceWorker);
+            }
+            return;
+        }
         this.firebaseNative.setBadgeNumber(0);
     }
 
@@ -64,7 +71,8 @@ export class FirebasePlatformService {
 
     private async getWebToken() {
         try {
-            const token = await this.afMessaging.requestToken.toPromise();
+            await this.messaging.requestPermission();
+            const token = await this.messaging.getToken();
             console.log('[@innomobile/attribution] Token', token);
             return token;
         } catch (error) {
