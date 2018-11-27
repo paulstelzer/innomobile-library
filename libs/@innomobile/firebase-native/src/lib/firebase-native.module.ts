@@ -1,9 +1,10 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { Firebase } from '@ionic-native/firebase/ngx';
 
 @NgModule({
   imports: [
-
+    AngularFireMessagingModule
   ],
   declarations: [
 

@@ -1,5 +1,6 @@
-import { Firebase } from '@ionic-native/firebase/ngx';
 import { Injectable } from '@angular/core';
+import { AngularFireMessaging } from '@angular/fire/messaging';
+import { Firebase } from '@ionic-native/firebase/ngx';
 import { Platform } from '@ionic/angular';
 import { Observable } from 'rxjs';
 
@@ -9,7 +10,11 @@ import { Observable } from 'rxjs';
 export class FirebasePlatformService {
     userToken = null;
 
-    constructor(private platform: Platform, private firebaseNative: Firebase) {
+    constructor(
+        private platform: Platform,
+        private firebaseNative: Firebase,
+        private afMessaging: AngularFireMessaging,
+    ) {
 
     }
 
@@ -57,8 +62,22 @@ export class FirebasePlatformService {
 
     }
 
+    private async getWebToken() {
+        try {
+            const token = await this.afMessaging.requestToken.toPromise();
+            console.log('[@innomobile/attribution] Token', token);
+            return token;
+        } catch (error) {
+            console.log('[@innomobile/attribution] Error', error);
+        }
+        return null;
+    }
+
+
     async getToken() {
-        if (!this.platform.is('cordova')) { return; }
+        if (!this.platform.is('cordova')) {
+            return await this.getWebToken();
+        }
 
         try {
             if (this.platform.is('android')) {
@@ -71,14 +90,14 @@ export class FirebasePlatformService {
 
             return this.userToken;
         } catch (err) {
-            return false;
+            return null;
         }
     }
 
     /**
-   * Returns the new fcmToken or false if no token can be determined or is already in the list
-   * @param fcmTokens Object of FCM Tokens
-   */
+    * Returns the new fcmToken or false if no token can be determined or is already in the list
+    * @param fcmTokens Object of FCM Tokens
+    */
     async setToken(fcmTokens: { [token: string]: true | false }) {
         const userToken = this.userToken || await this.getToken();
         if (userToken) {
@@ -91,7 +110,18 @@ export class FirebasePlatformService {
                 return tokens;
             }
         }
-        return false;
+        return null;
+    }
+
+    async patchToken(fcmTokens: { [token: string]: true | false }) {
+        const userToken = this.userToken || await this.getToken();
+        if (userToken) {
+            const hasToken = this.hasToken(fcmTokens, userToken);
+            if (!hasToken) {
+                return userToken;
+            }
+        }
+        return null;
     }
 
     hasToken(fcmTokens, userToken) {
@@ -104,10 +134,16 @@ export class FirebasePlatformService {
                 return true;
             }
         }
-        return false;
+        return null;
     }
 
+    /**
+     * Listen to notifications
+     */
     listenToNotifications(): Observable<any> {
+        if (!this.platform.is('cordova')) {
+            return this.afMessaging.messages;
+        }
         return this.firebaseNative.onNotificationOpen();
     }
 
