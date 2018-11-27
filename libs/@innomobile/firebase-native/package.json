@@ -1,6 +1,6 @@
 {
   "name": "@innomobile/firebase-native",
-  "version": "3.1.3",
+  "version": "3.1.4",
   "peerDependencies": {
     "@angular/common": ">=6.0.0 <8",
     "@angular/core": ">=6.0.0 <8",
