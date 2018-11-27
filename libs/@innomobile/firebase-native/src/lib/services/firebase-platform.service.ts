@@ -12,7 +12,6 @@ export class FirebasePlatformService {
     userToken = null;
     messaging: firebase.messaging.Messaging;
     private messages: Observable<any>;
-    private backgroundMessageHandler: Observable<any>;
     private debug = false;
 
     constructor(
@@ -28,7 +27,6 @@ export class FirebasePlatformService {
             const defaultPwaData: PwaDataModel = {
                 registerServiceWorker: null,
                 messages: false,
-                backgroundMessageHandler: false,
             };
             if (!pwaData) {
                 pwaData = {};
@@ -48,17 +46,11 @@ export class FirebasePlatformService {
                         });
                     });
                 }
-                if (pwaConfig.backgroundMessageHandler) {
-                    this.backgroundMessageHandler = new Observable((observer) => {
-                        this.messaging.setBackgroundMessageHandler(payload => {
-                            observer.next(payload);
-                        });
-                    });
-                }
             }
-            return;
+            return true;
         }
         this.firebaseNative.setBadgeNumber(0);
+        return true;
     }
 
     logError(message) {
@@ -189,12 +181,5 @@ export class FirebasePlatformService {
             return this.messages;
         }
         return this.firebaseNative.onNotificationOpen();
-    }
-
-    setBackgroundMessageHandler(): Observable<any> {
-        if (!this.platform.is('cordova')) {
-            return this.backgroundMessageHandler;
-        }
-        return of(null);
     }
 }
