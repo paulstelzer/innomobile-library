@@ -33,12 +33,25 @@ export class BranchService {
    * @param {BranchConfigOptions} branchConfig Branch Config token
    */
   constructor(
+    public branch: BranchIo,
     private platform: Platform,
-    private branch: BranchIo,
     private socialSharing: SocialSharing,
     @Optional() @Inject(BRANCH_CONFIG) private branchConfig: BranchConfigOptions,
   ) {
 
+  }
+
+  /**
+   * Diable Tracking (Web, Android, iOS)
+   * @param bool True or false to disable
+   */
+  disableTracking(bool) {
+    if (!this.platform.is('cordova')) {
+      if (window['branch']) {
+        window['branch'].disableTracking(bool);
+      }
+    }
+    return this.branch.disableTracking(bool);
   }
 
   /**
