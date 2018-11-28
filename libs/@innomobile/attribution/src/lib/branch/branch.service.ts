@@ -27,10 +27,10 @@ export class BranchService {
 
   /**
    * Creates an instance of BranchService.
-   * @param {Platform} platform Ionic
-   * @param {BranchIo} branch Ionic Native
-   * @param {SocialSharing} socialSharing Ionic Native
-   * @param {BranchConfigOptions} branchConfig Branch Config token
+   * @param platform Ionic
+   * @param branch Ionic Native
+   * @param socialSharing Ionic Native
+   * @param branchConfig Branch Config token
    */
   constructor(
     public branch: BranchIo,

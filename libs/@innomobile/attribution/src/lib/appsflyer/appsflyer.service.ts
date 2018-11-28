@@ -5,9 +5,6 @@ import { APPSFLYER_CONFIG } from '../attribution.module';
 
 /**
  * Appsflyer Service
- *
- * @export
- * @class AppsflyerService
  */
 @Injectable({
     providedIn: 'root'
@@ -20,10 +17,9 @@ export class AppsflyerService {
 
     /**
      * Creates an instance of AppsflyerService.
-     * @param {Platform} platform Ionic Platform
-     * @param {Appsflyer} appsflyer Ionic Native Appsflyer
-     * @param {AppsflyerOptions} appsflyerConfig Appsflyer Config token
-     * @memberof AppsflyerService
+     * @param platform Ionic Platform
+     * @param appsflyer Ionic Native Appsflyer
+     * @param appsflyerConfig Appsflyer Config token
      */
     constructor(
         private platform: Platform,
@@ -58,9 +54,8 @@ export class AppsflyerService {
     /**
      * Log an Event in Appsflyer
      *
-     * @param {string} type Name of the event
-     * @param {*} data data of your event
-     * @returns void
+     * @param type Name of the event
+     * @param data data of your event
      */
     log(type: string, data: any) {
         if (!this.initialized) { return; }
