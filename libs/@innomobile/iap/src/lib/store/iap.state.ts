@@ -6,7 +6,7 @@ import {
     Selector,
     State,
     StateContext
-    } from '@ngxs/store';
+} from '@ngxs/store';
 import { Observable } from 'rxjs';
 import {
     AddPackage,
@@ -15,8 +15,10 @@ import {
     IapClearUser,
     IapInit,
     IapPurchaseVerified,
-    } from './iap.actions';
+} from './iap.actions';
 import { IapStateModel } from './iap.model';
+import { IAP_DEBUG } from '../classes/iap-token';
+import { Inject } from '@angular/core';
 
 @State<IapStateModel>({
     name: 'iap',
@@ -43,7 +45,6 @@ export class IapState implements NgxsOnInit {
         return state.purchased;
     }
 
-
     static getProduct(alias: string) {
         const selector = createSelector([IapState], (state: IapStateModel) => {
             const products: IAPProduct[] = state.products.filter(ele => ele.alias === alias);
@@ -55,7 +56,9 @@ export class IapState implements NgxsOnInit {
         return selector;
     }
 
-    constructor() { }
+    constructor(
+        @Inject(IAP_DEBUG) private debug,
+    ) { }
 
     ngxsOnInit(ctx: StateContext<IapStateModel>) {
         ctx.dispatch(new IapInit());
@@ -85,12 +88,13 @@ export class IapState implements NgxsOnInit {
     }
 
     @Action(IapPurchaseVerified)
-    purchaseVerified(ctx: StateContext<IapStateModel>, action: IapPurchaseVerified) {
+    purchaseVerified(ctx: StateContext<IapStateModel>, {purchase}: IapPurchaseVerified) {
         const purchased = ctx.getState().purchased;
 
-        const index = this.getPurchase(purchased, action.purchase.id);
+        const index = purchased.findIndex(ele => ele.id === purchase.id);
+
         if (index < 0) {
-            purchased.push(action.purchase);
+            purchased.push(purchase);
 
             return ctx.patchState({
                 purchased: purchased
@@ -100,20 +104,18 @@ export class IapState implements NgxsOnInit {
     }
 
     @Action(AddPackage)
-    addPackage(ctx: StateContext<IapStateModel>, action: AddPackage) {
+    addPackage(ctx: StateContext<IapStateModel>, { iap }: AddPackage) {
         const packages = ctx.getState().packages;
 
-        let included = false;
+        if (this.debug) {
+            console.log('[@innomobile/iap] Add package', iap);
+        }
 
-        packages.forEach(p => {
-            if (p.alias === action.iap.alias) {
-                included = true;
-                return;
-            }
-        });
+        const included = packages.find(ele => ele.alias === iap.alias);
 
         if (!included) {
-            packages.push(action.iap);
+            console.log('[@innomobile/iap] Package not included');
+            packages.push(iap);
             return ctx.patchState({
                 packages: packages
             });
@@ -122,49 +124,24 @@ export class IapState implements NgxsOnInit {
     }
 
     @Action(AddProduct)
-    addProduct(ctx: StateContext<IapStateModel>, action: AddProduct) {
+    addProduct(ctx: StateContext<IapStateModel>, { product }: AddProduct) {
         const products = ctx.getState().products;
-        const index = this.getIndex(products, action.product.alias);
+
+        const index = products.findIndex(ele => ele.alias === product.alias);
+
+        if (this.debug) {
+            console.log('[@innomobile/iap] Add product', index, product);
+        }
 
         if (index >= 0) {
-            products[index] = action.product;
-
+            products[index] = product;
         } else {
-            products.push(action.product);
+            products.push(product);
         }
 
         return ctx.patchState({
             products: products
         });
     }
-
-    private getIndex(products: any[], value: string) {
-        let index = 0;
-        if (products.length > 0) {
-            for (let i = 0; i < products.length; i++) {
-                if (products[index].alias === value) {
-                    return index;
-                }
-                index++;
-            }
-
-        }
-        return -1;
-    }
-
-    private getPurchase(purchases: any[], value: string) {
-        let index = 0;
-        if (purchases.length > 0) {
-            for (let i = 0; i < purchases.length; i++) {
-                if (purchases[index].id === value) {
-                    return index;
-                }
-                index++;
-            }
-
-        }
-        return -1;
-    }
-
 
 }

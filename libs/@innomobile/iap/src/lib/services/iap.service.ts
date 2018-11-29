@@ -149,15 +149,19 @@ export class IapService {
             this.registerPackage(p);
         }
 
-        // Overall Store Error
-        this.iapStore.error((error) => {
-            console.log('[@innomobile/iap] Store Error ', error);
-        });
+        if (this.debug) {
+            // Overall Store Error
+            this.iapStore.error((error) => {
+                console.log('[@innomobile/iap] Store Error ', error);
+            });
+        }
 
         this.refresh();
 
         this.iapStore.ready(() => {
-            console.log('[@innomobile/iap]  IAP Store is ready');
+            if (this.debug) {
+                console.log('[@innomobile/iap] IAP Store is ready');
+            }
         });
     }
 
@@ -169,6 +173,9 @@ export class IapService {
     }
 
     private addProduct(product: IAPProduct) {
+        if (this.debug) {
+            console.log('[@innomobile/iap] Add Product', product);
+        }
         this.store.dispatch(new AddProduct(product));
     }
 
