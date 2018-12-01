@@ -4,8 +4,10 @@ import { NavigationExtras, UrlTree } from '@angular/router';
 import { NavController, Platform } from '@ionic/angular';
 import isEqual from 'lodash/isEqual';
 import isObject from 'lodash/isObject';
-import transform from 'lodash/transform';
+import isPlainObject from 'lodash/isPlainObject';
+import reduce from 'lodash/reduce';
 import set from 'lodash/set';
+import transform from 'lodash/transform';
 import { StoreConfig } from './../core.module';
 
 @Injectable({
@@ -186,6 +188,23 @@ export class CoreService {
       });
     };
     return changes(obj1, obj2);
+  }
+
+  /**
+ * V2: Deep diff between two object, using lodash
+ * @param  object Object compared
+ * @param  base   Object to compare with
+ * @return         Return a new object who represent the diff
+ */
+  getObjectDiff(obj1, obj2) {
+    return reduce(obj1, (result, value, key) => {
+      if (isPlainObject(value)) {
+        result[key] = this.getObjectDiff(value, obj2[key]);
+      } else if (!isEqual(value, obj2[key])) {
+        result[key] = value;
+      }
+      return result;
+    }, {});
   }
 
   setObject(obj, paths) {
