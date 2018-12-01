@@ -122,7 +122,7 @@ export class IapService {
             this.iapStore.validator = validator;
         } else {
             this.iapStore.validator = (product: any, callback) => {
-                callback(true);
+                callback(true, {});
             };
         }
 
