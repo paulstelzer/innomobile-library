@@ -199,7 +199,10 @@ export class CoreService {
   getObjectDiff(obj1, obj2) {
     return reduce(obj1, (result, value, key) => {
       if (isPlainObject(value)) {
-        result[key] = this.getObjectDiff(value, obj2[key]);
+        const updates = this.getObjectDiff(value, obj2[key]);
+        if (updates && Object.keys(updates).length > 0) {
+          result[key] = updates;
+        }
       } else if (!isEqual(value, obj2[key])) {
         result[key] = value;
       }
