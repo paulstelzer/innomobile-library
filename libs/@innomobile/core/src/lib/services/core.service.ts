@@ -1,10 +1,12 @@
-
-import { StoreConfig } from './../core.module';
-import { Injectable, Inject } from '@angular/core';
-import { Platform, NavController } from '@ionic/angular';
+import { Inject, Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NavigationExtras, UrlTree } from '@angular/router';
-
+import { NavController, Platform } from '@ionic/angular';
+import isEqual from 'lodash/isEqual';
+import isObject from 'lodash/isObject';
+import transform from 'lodash/transform';
+import set from 'lodash/set';
+import { StoreConfig } from './../core.module';
 
 @Injectable({
   providedIn: 'root'
@@ -89,6 +91,21 @@ export class CoreService {
   }
 
   /**
+   * Checks if two dates are the some
+   * @param date1 Date
+   * @param date2 Date
+   * @returns True if exact time
+   */
+  isSameDate(date1: Date, date2: Date) {
+    if (date1 instanceof Date && date2 instanceof Date) {
+      if (date1.getTime() === date2.getTime()) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
    * Get the difference between two dates in hours
    * @param date1 Date
    * @param date2 Date
@@ -101,6 +118,21 @@ export class CoreService {
       return diffHours;
     }
     return -1;
+  }
+
+  /**
+ * Get the difference between two dates in Minutes
+ * @param date1 Date
+ * @param date2 Date
+ * @returns Difference in Minutes
+ */
+  getDifferenceDateMinutes(date1: Date, date2: Date): number {
+    if (date1 instanceof Date && date2 instanceof Date) {
+      const diff = date1.getTime() - date2.getTime();
+      const diffHours = Math.ceil(diff / (1000 * 60));
+      return diffHours;
+    }
+    return 0;
   }
 
   /**
@@ -138,6 +170,30 @@ export class CoreService {
       vars[hash[0]] = hash[1];
     }
     return vars;
+  }
+
+  /**
+   * Deep diff between two object, using lodash
+   * @param  object Object compared
+   * @param  base   Object to compare with
+   * @return         Return a new object who represent the diff
+   */
+  getDifferenceBetweenObjects(obj1, obj2) {
+    const changes = (object, base) => {
+      return transform(object, (result, value, key) => {
+        if (!isEqual(value, base[key])) {
+          result[key] = (isObject(value) && isObject(base[key])) ? changes(value, base[key]) : value;
+        }
+      });
+    };
+    return changes(obj1, obj2);
+  }
+
+  setObject(obj, paths) {
+    for (const p of Object.keys(paths)) {
+      obj = set(obj, p, paths[p]);
+    }
+    return obj;
   }
 
 }
