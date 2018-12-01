@@ -1,6 +1,6 @@
 {
   "name": "@innomobile/iap",
-  "version": "3.0.9",
+  "version": "3.0.10",
   "license": "MIT",
   "peerDependencies": {
     "@ngxs/store": "^3.0.0",
