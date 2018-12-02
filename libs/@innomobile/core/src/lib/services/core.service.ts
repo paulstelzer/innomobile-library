@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NavigationExtras, UrlTree } from '@angular/router';
-import { NavController, Platform } from '@ionic/angular';
+import { NavController, Platform, LoadingController } from '@ionic/angular';
 import isEqual from 'lodash/isEqual';
 import isObject from 'lodash/isObject';
 import isPlainObject from 'lodash/isPlainObject';
@@ -9,6 +9,7 @@ import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import transform from 'lodash/transform';
 import { StoreConfig } from './../core.module';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,8 @@ export class CoreService {
     private title: Title,
     private platform: Platform,
     private nav: NavController,
+    private loading: LoadingController,
+    private translate: TranslateService,
     @Inject('storeConfig') private storeConfig: StoreConfig,
     @Inject('titleConfig') private titleConfig: string,
   ) { }
@@ -215,6 +218,19 @@ export class CoreService {
       obj = set(obj, p, paths[p]);
     }
     return obj;
+  }
+
+  async createLoader(message, options) {
+    const loadingOptions = {
+      message: await this.translate.get(message).toPromise(),
+      spinner: 'crescent',
+      duration: 20000,
+      ...options
+    };
+
+    const loadingElement = await this.loading.create(loadingOptions);
+    await loadingElement.present();
+    return loadingElement;
   }
 
 }
