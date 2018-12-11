@@ -30,6 +30,11 @@ export class CoreService {
     this.title.setTitle(`${name} ${this.titleConfig}`);
   }
 
+  async setTitleTranslation(name: string) {
+    const sitename: string = await this.translate.get(this.titleConfig).toPromise();
+    this.title.setTitle(`${name} ${sitename}`);
+  }
+
   async navigateForward(link: any[] | string | UrlTree, animated: boolean = true, extras?: NavigationExtras) {
     // this.router.navigate([link]);
     this.nav.navigateForward(link, animated, extras);

@@ -9,54 +9,37 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ToastService {
 
-    constructor(private translate: TranslateService, private toastCtrl: ToastController) { }
+    constructor(
+        private translate: TranslateService,
+        private toastCtrl: ToastController,
+    ) { }
 
 
-    async sendToastTranslation(type: string, message: string, options: ToastOptions = null) {
+    async sendToastTranslation(color: string, message: string, options: ToastOptions = null) {
         const res: string = await this.translate.get(message).toPromise();
 
         const closeButtonText: string = await this.translate.get('TOAST.OKAY').toPromise();
         options = {
-            closeButtonText: closeButtonText,
+            closeButtonText,
             ...options,
         };
-        return this.sendToast(type, res, options);
+        return this.sendToast(color, res, options);
     }
 
     /**
      * Sendet einen Toast
-     * @param type error, success
+     * @param color primary, danger
      * @param message
      * @param options
      */
-    async sendToast(type: string, message: string, options?: ToastOptions) {
-        let cssClass = 'default';
-        switch (type) {
-            case 'error':
-                cssClass = 'error';
-                break;
-            case 'success':
-                cssClass = 'success';
-                break;
-            case 'info':
-                cssClass = 'info';
-                break;
-            default:
-                cssClass = 'default';
-                break;
-        }
-
+    async sendToast(color: string, message: string, options?: ToastOptions) {
         let toastOptions: ToastOptions = {
-            message: message,
-            cssClass: 'toast-' + cssClass,
+            message,
+            color,
             duration: 6000,
             showCloseButton: true,
             closeButtonText: 'OKAY',
         };
-
-        if (options && options.cssClass) {
-            options.cssClass = options.cssClass + ' toast-' + cssClass;
-        }
 
         toastOptions = Object.assign(toastOptions, options);
 
