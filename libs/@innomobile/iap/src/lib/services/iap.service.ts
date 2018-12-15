@@ -45,10 +45,8 @@ export class IapService {
         this.storePackages = this.store.selectSnapshot(IapState.getPackages);
 
         if (this.platform.is('cordova')) {
-            if (this.platform.is('ios') || this.platform.is('android')) {
-                this.isSupportedNative = true;
-                return this.initCordova(validator);
-            }
+            this.isSupportedNative = true;
+            return this.initCordova(validator);
         }
 
         this.isSupportedNative = false;
