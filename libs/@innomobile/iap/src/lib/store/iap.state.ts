@@ -105,7 +105,7 @@ export class IapState implements NgxsOnInit {
 
     @Action(AddPackage)
     addPackage(ctx: StateContext<IapStateModel>, { iap }: AddPackage) {
-        const packages = ctx.getState().packages;
+        const packages = [...ctx.getState().packages];
 
         if (this.debug) {
             console.log('[@innomobile/iap] Add package', iap);
@@ -125,7 +125,7 @@ export class IapState implements NgxsOnInit {
 
     @Action(AddProduct)
     addProduct(ctx: StateContext<IapStateModel>, { product }: AddProduct) {
-        const products = ctx.getState().products;
+        const products = [...ctx.getState().products];
 
         const index = products.findIndex(ele => ele.alias === product.alias);
 
