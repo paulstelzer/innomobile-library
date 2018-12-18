@@ -79,7 +79,7 @@ export class CoreService {
     return false;
   }
 
-  getDate(input) {
+  getDate(input: Date | number | any): Date {
     if (input) {
       if (input instanceof Date) {
         return input;
