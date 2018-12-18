@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { Platform, Slides } from '@ionic/angular';
+import { Platform, IonSlides } from '@ionic/angular';
 
 // NGXS
 import { Store } from '@ngxs/store';
 
-import { UpdateLanguage, AuthService, FireAuthUserSignOut, FireAuthAnonymousSignUp } from '@innomobile/fireuser';
+import { AuthService, FireAuthUserSignOut, FireAuthAnonymousSignUp } from '@innomobile/fireuser';
 import { BranchService, AppsflyerService } from '@innomobile/attribution';
 import { ToastService } from '@innomobile/core';
 
@@ -15,7 +15,7 @@ import { ToastService } from '@innomobile/core';
     styleUrls: ['home.page.scss']
 })
 export class HomePage implements OnInit {
-    @ViewChild(Slides) slides: Slides;
+    @ViewChild(IonSlides) slides: IonSlides;
     version = '';
     branchData = null;
 
@@ -38,9 +38,6 @@ export class HomePage implements OnInit {
 
     ngOnInit() {
         this.version = environment.version;
-
-        this.slides.update();
-        this.slides.lockSwipes(true);
     }
 
     async init() {
@@ -59,7 +56,6 @@ export class HomePage implements OnInit {
     }
 
     setLanguage(lang) {
-        this.store.dispatch(new UpdateLanguage(lang));
         this.toast.sendToastTranslation('error', 'Test it');
     }
 

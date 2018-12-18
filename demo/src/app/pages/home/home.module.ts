@@ -1,5 +1,4 @@
 import { CoreModule } from '@innomobile/core';
-import { AuthModule } from '@innomobile/fireuser';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -15,7 +14,6 @@ import { SharedModule } from '../../modules/shared/shared.module';
     FormsModule,
     RouterModule.forChild([{ path: '', component: HomePage }]),
     SharedModule,
-    AuthModule,
     CoreModule,
   ],
   declarations: [HomePage]

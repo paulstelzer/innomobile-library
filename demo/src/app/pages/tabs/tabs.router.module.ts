@@ -13,24 +13,21 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        outlet: 'home',
         component: HomePage
       },
       {
         path: 'about',
-        outlet: 'about',
         component: AboutPage
       },
       {
         path: 'contact',
-        outlet: 'contact',
         component: ContactPage
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/(home:home)',
+    redirectTo: '/tabs/home',
     pathMatch: 'full'
   }
 ];
