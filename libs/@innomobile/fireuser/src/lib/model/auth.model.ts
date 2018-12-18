@@ -1,9 +1,19 @@
-import * as firebase from 'firebase/app';
-
 /**
  * NGXS Auth state model
  */
 export interface AuthStateModel {
-  authUser?: firebase.User;
+  authUser?: FireUserModel;
   token?: string;
+}
+
+export interface FireUserModel {
+  displayName: string;
+  email: string;
+  emailVerified: boolean;
+  isAnonymous: boolean;
+  phoneNumber: string;
+  photoURL: string;
+  providerData: any[];
+  refreshToken: string;
+  uid: string;
 }

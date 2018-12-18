@@ -101,7 +101,7 @@ export class AuthState implements NgxsOnInit {
     }
 
     @Action(FireAuthAnonymousSignUp)
-    async signUpAnonymous(ctx: StateContext<AuthStateModel>): Promise<Observable<void>>  {
+    async signUpAnonymous(ctx: StateContext<AuthStateModel>): Promise<Observable<void>> {
         try {
             const data = await this.afAuth.auth.signInAnonymously();
             return ctx.dispatch(new FireAuthUserCreateSuccess(data));
@@ -115,10 +115,27 @@ export class AuthState implements NgxsOnInit {
      */
 
     @Action(FireAuthUserSuccess)
-    setUserStateOnSuccess(ctx: StateContext<AuthStateModel>, event: FireAuthUserSuccess) {
-        return ctx.patchState({
-            authUser: event.user
-        });
+    setUserStateOnSuccess(ctx: StateContext<AuthStateModel>, { user }: FireAuthUserSuccess) {
+        try {
+            const { displayName, email, emailVerified, isAnonymous, phoneNumber, photoURL, providerData, refreshToken, uid } = user;
+
+            return ctx.patchState({
+                authUser: {
+                    displayName,
+                    email,
+                    emailVerified,
+                    isAnonymous,
+                    phoneNumber,
+                    photoURL,
+                    providerData,
+                    refreshToken,
+                    uid,
+                }
+            });
+        } catch (error) {
+            console.log('[innomobile/fireuser] Error on updating user', error);
+        }
+        return false;
     }
 
     @Action([FireAuthUserNull, FireAuthUserFailed])
