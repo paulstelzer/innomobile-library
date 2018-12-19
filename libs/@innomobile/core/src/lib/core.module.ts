@@ -14,6 +14,11 @@ export interface StoreConfig {
   pwa?: string;
 }
 
+export interface TitleConfig {
+  appName: string;
+  separator: string;
+}
+
 @NgModule({
   imports: [
     CommonModule,

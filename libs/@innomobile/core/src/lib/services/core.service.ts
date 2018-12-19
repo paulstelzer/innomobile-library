@@ -8,7 +8,7 @@ import isPlainObject from 'lodash/isPlainObject';
 import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import transform from 'lodash/transform';
-import { StoreConfig } from './../core.module';
+import { StoreConfig, TitleConfig } from './../core.module';
 import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
@@ -23,7 +23,7 @@ export class CoreService {
     private loading: LoadingController,
     private translate: TranslateService,
     @Inject('storeConfig') private storeConfig: StoreConfig,
-    @Inject('titleConfig') private titleConfig: string,
+    @Inject('titleConfig') private titleConfig: TitleConfig,
   ) { }
 
   setTitle(name: string) {
@@ -31,8 +31,11 @@ export class CoreService {
   }
 
   async setTitleTranslation(name: string) {
-    const sitename: string = await this.translate.get(this.titleConfig).toPromise();
-    this.title.setTitle(`${name} ${sitename}`);
+    if (this.titleConfig) {
+      const { appName, separator } = this.titleConfig;
+      const sitename: string = await this.translate.get(appName).toPromise();
+      this.title.setTitle(`${name} ${separator} ${sitename}`);
+    }
   }
 
   async navigateForward(link: any[] | string | UrlTree, animated: boolean = true, extras?: NavigationExtras) {
@@ -127,7 +130,7 @@ export class CoreService {
       const diffHours = Math.ceil(diff / (1000 * 3600));
       return diffHours;
     }
-    return -1;
+    return undefined;
   }
 
   /**
@@ -142,7 +145,7 @@ export class CoreService {
       const diffHours = Math.ceil(diff / (1000 * 60));
       return diffHours;
     }
-    return 0;
+    return undefined;
   }
 
   /**

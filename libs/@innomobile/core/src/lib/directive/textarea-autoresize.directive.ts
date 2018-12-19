@@ -1,7 +1,7 @@
 import { Directive, HostListener, OnInit, ElementRef } from '@angular/core';
 
 @Directive({
-  selector: '[innomobileAutoresize]' // Attribute selector
+  selector: '[imAutoresize]' // Attribute selector
 })
 export class TextareaAutoresizeDirective implements OnInit {
 
