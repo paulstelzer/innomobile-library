@@ -37,14 +37,14 @@ export class CoreService {
     this.title.setTitle(`${name} ${separator} ${sitename}`);
   }
 
-  async navigateForward(link: any[] | string | UrlTree, animated: boolean = true, extras?: NavigationExtras) {
+  async navigateForward(link: any[] | string | UrlTree, extras?: any) {
     // this.router.navigate([link]);
-    this.nav.navigateForward(link, animated, extras);
+    this.nav.navigateForward(link, extras);
   }
 
-  async navigateRoot(link: any[] | string | UrlTree, animated: boolean = true, extras?: NavigationExtras) {
+  async navigateRoot(link: any[] | string | UrlTree, extras?: any) {
     // this.router.navigate([link]);
-    this.nav.navigateRoot(link, animated, extras);
+    this.nav.navigateRoot(link, extras);
   }
 
 
