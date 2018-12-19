@@ -31,11 +31,9 @@ export class CoreService {
   }
 
   async setTitleTranslation(name: string) {
-    if (this.titleConfig) {
-      const { appName, separator } = this.titleConfig;
-      const sitename: string = await this.translate.get(appName).toPromise();
-      this.title.setTitle(`${name} ${separator} ${sitename}`);
-    }
+    const { appName, separator } = this.titleConfig;
+    const sitename: string = await this.translate.get(appName).toPromise();
+    this.title.setTitle(`${name} ${separator} ${sitename}`);
   }
 
   async navigateForward(link: any[] | string | UrlTree, animated: boolean = true, extras?: NavigationExtras) {
