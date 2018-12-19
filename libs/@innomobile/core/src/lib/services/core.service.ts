@@ -27,7 +27,8 @@ export class CoreService {
   ) { }
 
   setTitle(name: string) {
-    this.title.setTitle(`${name} ${this.titleConfig}`);
+    const { appName, separator } = this.titleConfig;
+    this.title.setTitle(`${name} ${separator} ${appName}`);
   }
 
   async setTitleTranslation(name: string) {
