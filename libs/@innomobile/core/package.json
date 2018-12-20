@@ -1,11 +1,11 @@
 {
   "name": "@innomobile/core",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": ">=6.0.0 <8",
     "@angular/core": ">=6.0.0 <8",
     "@ionic/angular": "^4.0.0 || >= 4.0.0-beta.6",
-    "lodash": "^4.17.0"
+    "lodash-es": "^4.17.0"
   }
 }

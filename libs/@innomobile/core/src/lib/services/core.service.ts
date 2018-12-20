@@ -1,15 +1,18 @@
 import { Inject, Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NavigationExtras, UrlTree } from '@angular/router';
-import { NavController, Platform, LoadingController } from '@ionic/angular';
-import isEqual from 'lodash/isEqual';
-import isObject from 'lodash/isObject';
-import isPlainObject from 'lodash/isPlainObject';
-import reduce from 'lodash/reduce';
-import set from 'lodash/set';
-import transform from 'lodash/transform';
-import { StoreConfig, TitleConfig } from './../core.module';
+import { LoadingController, NavController, Platform } from '@ionic/angular';
+import { NavigationOptions } from '@ionic/angular/dist/providers/nav-controller';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  isEqual,
+  isObject,
+  isPlainObject,
+  reduce,
+  set,
+  transform
+  } from 'lodash-es';
+import { StoreConfig, TitleConfig } from './../core.module';
 
 @Injectable({
   providedIn: 'root'
@@ -37,12 +40,12 @@ export class CoreService {
     this.title.setTitle(`${name} ${separator} ${sitename}`);
   }
 
-  async navigateForward(link: any[] | string | UrlTree, extras?: any) {
+  async navigateForward(link: any[] | string | UrlTree, extras?: NavigationOptions) {
     // this.router.navigate([link]);
     this.nav.navigateForward(link, extras);
   }
 
-  async navigateRoot(link: any[] | string | UrlTree, extras?: any) {
+  async navigateRoot(link: any[] | string | UrlTree, extras?: NavigationOptions) {
     // this.router.navigate([link]);
     this.nav.navigateRoot(link, extras);
   }
