@@ -2,7 +2,9 @@ import { Inject, Injectable } from '@angular/core';
 import { IAPProduct, IAPProductOptions, InAppPurchase2 } from '@ionic-native/in-app-purchase-2/ngx';
 import { Platform } from '@ionic/angular';
 import { Store } from '@ngxs/store';
-import { isEqual, isObject, transform } from 'lodash-es';
+import isEqual from 'lodash/isEqual';
+import isObject from 'lodash/isObject';
+import transform from 'lodash/transform';
 import { IapPwaGenerator } from '../classes/iap-pwa-generator.class';
 import { IAP_DEBUG, IAP_PACKAGES, IAP_PWA_PACKAGES, STRIPE_KEY } from '../classes/iap-token';
 import {

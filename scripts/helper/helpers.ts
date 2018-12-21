@@ -2,7 +2,7 @@ import * as fs from 'fs-extra';
 import * as path from 'path';
 import * as Listr from 'listr';
 import * as execa from 'execa';
-import { merge } from 'lodash-es';
+import { merge } from 'lodash';
 
 // tslint:disable-next-line:no-var-requires
 export const MAIN_PACKAGE_JSON = require('../../package.json');
