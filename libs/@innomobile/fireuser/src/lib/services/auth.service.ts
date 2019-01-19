@@ -425,8 +425,12 @@ export class AuthService {
       case 'auth/network-request-failed':
         errorMessage = 'NETWORK';
         break;
+      case 'auth/expired-action-code':
+        errorMessage = 'EXPIRED_ACTION_CODE';
+        break;
       default:
         errorMessage = 'DEFAULT';
+        console.log('CODE', error.code);
         break;
 
     }

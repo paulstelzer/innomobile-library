@@ -33,7 +33,8 @@
       "QUOTA": "We have not enough space to place the data for this app!",
       "RECENT_LOGIN": "Your last login is too far away. Please logout and login again!",
       "NO_NEW_POSITION": "Your position has not changed",
-      "INVALID_CODE": "The code to verfigy your Email is wrong or you have already verified your Email!"
+      "INVALID_CODE": "The code to verify your Email is wrong or you have already verified your Email!",
+      "EXPIRED_ACTION_CODE": "The link expired. Please create a new one!"
     },
     "SUCCESS": {
       "USER_SAVING": "Your account details will be saved",

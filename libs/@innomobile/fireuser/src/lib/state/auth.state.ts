@@ -45,7 +45,6 @@ export class AuthState implements NgxsOnInit {
     constructor(
         private afAuth: AngularFireAuth
     ) {
-        firebase.firestore().settings({ timestampsInSnapshots: true });
     }
 
     /**
