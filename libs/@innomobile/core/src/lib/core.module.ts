@@ -7,6 +7,7 @@ import { YoutubeVideoPlayerComponent } from './components/youtube-video-player/y
 import { CommonModule } from '@angular/common';
 import { ContactButtonComponent } from './components/contact-button/contact-button';
 import { TextareaAutoresizeDirective } from './directive/textarea-autoresize.directive';
+import { VimeoVideoPlayerComponent } from './components/vimeo-video-player/vimeo-video-player.component';
 
 export interface StoreConfig {
   android?: string;
@@ -30,14 +31,16 @@ export interface TitleConfig {
     ObjectValuesCommaPipe,
     YoutubeVideoPlayerComponent,
     ContactButtonComponent,
-    TextareaAutoresizeDirective
+    TextareaAutoresizeDirective,
+    VimeoVideoPlayerComponent,
   ],
   exports: [
     NumberCounterPipe,
     ObjectValuesCommaPipe,
     YoutubeVideoPlayerComponent,
     ContactButtonComponent,
-    TextareaAutoresizeDirective
+    TextareaAutoresizeDirective,
+    VimeoVideoPlayerComponent,
   ]
 })
 export class CoreModule {

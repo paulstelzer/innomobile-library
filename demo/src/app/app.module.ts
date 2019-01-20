@@ -1,40 +1,35 @@
-import { availableLanguages } from './../environments/environment.prod';
-import { FireuserModule } from '@innomobile/fireuser';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule, EnablePersistenceToken } from '@angular/fire/firestore';
+import { AngularFireFunctionsModule, FunctionsRegionToken } from '@angular/fire/functions';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouteReuseStrategy } from '@angular/router';
-
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { AdsModule } from '@innomobile/ads';
+import { AttributionModule } from '@innomobile/attribution';
+import { CoreModule } from '@innomobile/core';
+import { FireuserModule } from '@innomobile/fireuser';
+import { IapModule } from '@innomobile/iap';
+import { LanguageModule } from '@innomobile/language';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
-
-
-
-// Translate
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslateLoader } from '@ngx-translate/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-
-// NGXS
-import { NgxsModule } from '@ngxs/store';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
-
-// INNOMOBILE LIBRARIES
-import { AttributionModule } from '@innomobile/attribution';
-import { IapModule } from '@innomobile/iap';
-import { AdsModule } from '@innomobile/ads';
-import { firebaseConfig, iapKey, adsKey, attributionKey } from '../dest/config';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CoreModule } from '@innomobile/core';
-import { LanguageModule } from '@innomobile/language';
+import { NgxsModule } from '@ngxs/store';
+import { adsKey, attributionKey, firebaseConfig, iapKey } from '../dest/config';
+import { environment } from '../environments/environment';
+import { availableLanguages } from './../environments/environment.prod';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -66,8 +61,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgxsStoragePluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     // NgxsLoggerPluginModule.forRoot(),
-    CoreModule.forRoot({}, ' | InnoMobile'),
-    FireuserModule.forRoot(firebaseConfig),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    CoreModule.forRoot({}, {appName: 'InnoMobile', separator: '|'}),
+    FireuserModule,
     LanguageModule.forRoot({
       defaultLanguage: 'en',
       availableLanguages: availableLanguages
