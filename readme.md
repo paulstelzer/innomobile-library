@@ -2,12 +2,12 @@
 
 Modules for Angular 7+ and Ionic 4+ you will need to run a PWA or App (Android / iOS). Please feel free to add new features to this modules or fix issues! I use this library for my own projects (e.g. IQ Test App -> https://iqtest-app.de) and so I will hold this library up-to-date!
 
-- ``@innomobile/core`` ([README.md](https://github.com/paulstelzer/innomobile-library/tree/master/libs/%40innomobile/core)): Components, directives, pipes and services you always will need in a project. The services contains a core service (navigation, set the title, open a store, check dates) and a toast service (send an toast based on Ionic 4 with and without translation).
-- ``@innomobile/ads`` ([README.md](https://github.com/paulstelzer/innomobile-library/tree/master/libs/%40innomobile/ads)): To present Admob ads using cordova-plugin-admob-free
-- ``@innomobile/attribution`` ([README.md](https://github.com/paulstelzer/innomobile-library/tree/master/libs/%40innomobile/attribution)): To include Branch.io and Appsflyer to track the user inside the app and where they come from
-- ``@innomobile/fireuser`` ([README.md](https://github.com/paulstelzer/innomobile-library/tree/master/libs/%40innomobile/fireuser)): Getting the user from Firebase Authentification and store the user in NGXS store (has to be extended later)
-- ``@innomobile/language`` ([README.md](https://github.com/paulstelzer/innomobile-library/tree/master/libs/%40innomobile/language)): Save the language of the current user
-- ``@innomobile/iap`` ([README.md](https://github.com/paulstelzer/innomobile-library/tree/master/libs/%40innomobile/iap)): Using cc.fovea.cordova.purchase (cordova plugin) it will register in-app-purchases on Android and iOS and store purchases of the user in NGXS. If you use as PWA, Stripe Elements is integrated
+- ``@innomobile/core`` ([README.md](https://github.com/paulstelzer/innomobile-library/tree/master/libs/core)): Components, directives, pipes and services you always will need in a project. The services contains a core service (navigation, set the title, open a store, check dates) and a toast service (send an toast based on Ionic 4 with and without translation).
+- ``@innomobile/ads`` ([README.md](https://github.com/paulstelzer/innomobile-library/tree/master/libs/ads)): To present Admob ads using cordova-plugin-admob-free
+- ``@innomobile/attribution`` ([README.md](https://github.com/paulstelzer/innomobile-library/tree/master/libs/attribution)): To include Branch.io and Appsflyer to track the user inside the app and where they come from
+- ``@innomobile/fireuser`` ([README.md](https://github.com/paulstelzer/innomobile-library/tree/master/libs/fireuser)): Getting the user from Firebase Authentification and store the user in NGXS store (has to be extended later)
+- ``@innomobile/language`` ([README.md](https://github.com/paulstelzer/innomobile-library/tree/master/libs/language)): Save the language of the current user
+- ``@innomobile/iap`` ([README.md](https://github.com/paulstelzer/innomobile-library/tree/master/libs/iap)): Using cc.fovea.cordova.purchase (cordova plugin) it will register in-app-purchases on Android and iOS and store purchases of the user in NGXS. If you use as PWA, Stripe Elements is integrated
 
 ## CHANGES WITH 3.0.0
 
