@@ -1,7 +1,0 @@
-{
-  "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../../dest/@innomobile/ion-img-viewer",
-  "lib": {
-    "entryFile": "src/public_api.ts"
-  }
-}

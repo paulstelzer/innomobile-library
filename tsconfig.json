@@ -1,29 +1,29 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
+    "baseUrl": ".",
     "paths": {
-      "@innomobile/ion-img-viewer": [
-        "dist/innomobile/ion-img-viewer"
-      ],
-      "@innomobile/ion-img-viewer/*": [
-        "dist/innomobile/ion-img-viewer/*"
-      ]
+      "@innomobile/core": ["dist/libs/core"],
+      "@innomobile/iap": ["libs/iap/src/index.ts"],
+      "@innomobile/fireuser": ["libs/fireuser/src/index.ts"],
+      "@innomobile/ads": ["libs/ads/src/index.ts"],
+      "@innomobile/tinymce": ["libs/tinymce/src/index.ts"],
+      "@innomobile/attribution": ["libs/attribution/src/index.ts"],
+      "@innomobile/countdown-timer": ["libs/countdown-timer/src/index.ts"],
+      "@innomobile/language": ["libs/language/src/index.ts"],
+      "@innomobile/notifications": ["libs/notifications/src/index.ts"],
+      "@innomobile/firebase-native": ["libs/firebase-native/src/index.ts"]
     }
-  }
+  },
+  "exclude": ["node_modules", "tmp"]
 }

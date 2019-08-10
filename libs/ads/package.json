@@ -1,0 +1,12 @@
+{
+  "name": "@innomobile/ads",
+  "version": "4.0.0-rc.0",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": ">=6.0.0",
+    "@angular/core": ">=6.0.0",
+    "cordova-plugin-admob-free": ">= 0.18.0",
+    "@ionic-native/admob-free": "^5.0.0",
+    "@ionic/angular": "^4.0.0"
+  }
+}

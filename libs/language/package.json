@@ -1,0 +1,15 @@
+{
+  "name": "@innomobile/language",
+  "version": "4.0.0-rc.0",
+  "license": "MIT",
+  "scripts": {
+    "doc": "compodoc -p tsconfig.lib.json -s"
+  },
+  "peerDependencies": {
+    "@angular/core": ">=6.0.0",
+    "@ngx-translate/core": ">=10.0.0",
+    "@ngx-translate/http-loader": ">=3.0.0",
+    "@ngxs/store": "^3.0.0",
+    "rxjs": "^6.0.0"
+  }
+}

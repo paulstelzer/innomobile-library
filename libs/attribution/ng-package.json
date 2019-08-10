@@ -1,0 +1,22 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/libs/attribution",
+  "lib": {
+    "entryFile": "src/index.ts",
+    "umdModuleIds": {
+      "@ionic/angular": "ionic-angular",
+      "cordova-plugin-admob-free": "cordova-plugin-admob-free",
+      "@ionic-native/admob-free/ngx": "ionic-native-admob-free",
+      "@ionic-native/admob-free/ngx/index": "ionic-native-admob-free-index",
+      "cordova-plugin-x-socialsharing": "cordova-plugin-x-socialsharing",
+      "@ionic-native/social-sharing/ngx": "ionic-native-social-sharing",
+      "@ionic-native/social-sharing/ngx/index": "ionic-native-social-sharing-index",
+      "innomobile-branch-cordova-sdk": "innomobile-branch-cordova-sdk",
+      "@ionic-native/branch-io/ngx": "ionic-native-branch-io",
+      "@ionic-native/branch-io/ngx/index": "ionic-native-branch-io-index",
+      "cordova-plugin-appsflyer-sdk": "cordova-plugin-appsflyer-sdk",
+      "@ionic-native/appsflyer/ngx": "ionic-native-appsflyer",
+      "@ionic-native/appsflyer/ngx/index": "ionic-native-appsflyer-index"
+    }
+  }
+}

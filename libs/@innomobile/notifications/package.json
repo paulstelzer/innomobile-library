@@ -1,8 +1,0 @@
-{
-  "name": "@innomobile/notifications",
-  "version": "4.0.0-beta.0",
-  "peerDependencies": {
-    "@angular/common": ">=6.0.0 <8",
-    "@angular/core": ">=6.0.0 <8"
-  }
-}

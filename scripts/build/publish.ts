@@ -13,8 +13,8 @@ async function publish() {
     const tasks = [];
 
     // Add all packages to publish
-    getPackages(pack).forEach(name => {
-        tasks.push(publishPackage(name));
+    getPackages(pack).forEach((name: string) => {
+      tasks.push(publishPackage(name));
     });
 
     const listr = new Listr(tasks);

@@ -1,0 +1,14 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/libs/firebase-native",
+  "lib": {
+    "entryFile": "src/index.ts",
+    "umdModuleIds": {
+      "@ionic/angular": "ionic-angular",
+      "cordova-plugin-firebase-lib": "cordova-plugin-firebase-lib",
+      "@ionic-native/firebase/ngx": "ionic-native-firebase",
+      "@ionic-native/firebase/ngx/index": "ionic-native-firebase-index",
+      "@angular/fire": "angular-fire"
+    }
+  }
+}

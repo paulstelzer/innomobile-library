@@ -1,8 +1,0 @@
-{
-  "name": "@innomobile/countdown-timer",
-  "version": "4.0.0-beta.0",
-  "peerDependencies": {
-    "@angular/common": "^4.0.0 || ^5.0.0 || >=6.0.0 <8",
-    "@angular/core": "^4.0.0 || ^5.0.0 || >=6.0.0 <8"
-  }
-}

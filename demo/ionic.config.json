@@ -1,7 +1,0 @@
-{
-  "name": "innomobile",
-  "type": "angular",
-  "integrations": {
-    "cordova": {}
-  }
-}

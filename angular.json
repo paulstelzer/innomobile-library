@@ -1,60 +1,45 @@
 {
-  "$schema": "./node_modules/@angular-devkit/core/src/workspace/workspace-schema.json",
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
+  "newProjectRoot": "",
   "projects": {
-    "app": {
-      "root": "demo",
-      "sourceRoot": "demo/src",
+    "demo-demo": {
+      "root": "apps/demo/demo/",
+      "sourceRoot": "apps/demo/demo/src",
       "projectType": "application",
-      "prefix": "app",
+      "prefix": "innomobile",
       "schematics": {
-        "@schematics/angular:component": {
-          "styleext": "scss",
-          "spec": false
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
         }
       },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "progress": false,
-            "outputPath": "demo/www",
-            "index": "demo/src/index.html",
-            "main": "demo/src/main.ts",
-            "polyfills": "demo/src/polyfills.ts",
-            "tsConfig": "demo/src/tsconfig.app.json",
+            "outputPath": "dist/apps/demo/demo",
+            "index": "apps/demo/demo/src/index.html",
+            "main": "apps/demo/demo/src/main.ts",
+            "polyfills": "apps/demo/demo/src/polyfills.ts",
+            "tsConfig": "apps/demo/demo/tsconfig.app.json",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "demo/src/assets",
-                "output": "assets"
-              },
+              "apps/demo/demo/src/favicon.ico",
+              "apps/demo/demo/src/assets",
               {
                 "glob": "**/*.svg",
                 "input": "node_modules/ionicons/dist/ionicons/svg",
                 "output": "./svg"
-              },
-              "demo/src/manifest.json"
-            ],
-            "styles": [
-              {
-                "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
-              },
-              {
-                "input": "demo/src/theme/variables.scss"
-              },
-              {
-                "input": "demo/src/global.scss"
               }
             ],
+            "styles": ["apps/demo/demo/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "demo/src/environments/environment.ts",
-                  "with": "demo/src/environments/environment.prod.ts"
+                  "replace": "apps/demo/demo/src/environments/environment.ts",
+                  "with": "apps/demo/demo/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -66,53 +51,45 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "serviceWorker": true
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "app:build"
+            "browserTarget": "demo-demo:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "app:build:production"
+              "browserTarget": "demo-demo:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "app:build"
+            "browserTarget": "demo-demo:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "demo/src/test.ts",
-            "polyfills": "demo/src/polyfills.ts",
-            "tsConfig": "demo/src/tsconfig.spec.json",
-            "karmaConfig": "demo/src/karma.conf.js",
-            "styles": [
-              {
-                "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
-              },
-              "styles.css"
-            ],
+            "main": "apps/demo/demo/src/test.ts",
+            "polyfills": "apps/demo/demo/src/polyfills.ts",
+            "tsConfig": "apps/demo/demo/tsconfig.spec.json",
+            "karmaConfig": "apps/demo/demo/karma.conf.js",
+            "styles": ["apps/demo/demo/src/styles.scss"],
             "scripts": [],
             "assets": [
-              {
-                "glob": "favicon.ico",
-                "input": "demo/src/",
-                "output": "/"
-              },
-              {
-                "glob": "**/*",
-                "input": "demo/src/assets",
-                "output": "/assets"
-              },
-              "src/manifest.json"
+              "apps/demo/demo/src/favicon.ico",
+              "apps/demo/demo/src/assets"
             ]
           }
         },
@@ -120,497 +97,443 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "demo/src/tsconfig.app.json",
-              "demo/src/tsconfig.spec.json"
+              "apps/demo/demo/tsconfig.app.json",
+              "apps/demo/demo/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        },
-        "ionic-cordova-build": {
-          "builder": "@ionic/angular-toolkit:cordova-build",
-          "options": {
-            "browserTarget": "app:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "app:build:production"
-            }
-          }
-        },
-        "ionic-cordova-serve": {
-          "builder": "@ionic/angular-toolkit:cordova-serve",
-          "options": {
-            "cordovaBuildTarget": "app:ionic-cordova-build",
-            "devServerTarget": "app:serve"
-          },
-          "configurations": {
-            "production": {
-              "cordovaBuildTarget": "app:ionic-cordova-build:production",
-              "devServerTarget": "app:serve:production"
-            }
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
     },
-    "app-e2e": {
-      "root": "e2e/",
+    "demo-demo-e2e": {
+      "root": "apps/demo/demo-e2e",
       "projectType": "application",
+      "prefix": "",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "demo/e2e/protractor.conf.js",
-            "devServerTarget": "app:serve"
+            "protractorConfig": "apps/demo/demo-e2e/protractor.conf.js",
+            "devServerTarget": "demo-demo:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "demo-demo:serve:production"
+            }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "demo/e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": "apps/demo/demo-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
     },
-    "@innomobile/fireuser": {
-      "root": "libs/@innomobile/fireuser",
-      "sourceRoot": "libs/@innomobile/fireuser/src",
+    "core": {
+      "root": "libs/core",
+      "sourceRoot": "libs/core/src",
+      "projectType": "library",
+      "prefix": "innomobile",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/core/tsconfig.lib.json",
+            "project": "libs/core/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/core/src/test.ts",
+            "tsConfig": "libs/core/tsconfig.spec.json",
+            "karmaConfig": "libs/core/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/core/tsconfig.lib.json",
+              "libs/core/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "iap": {
+      "root": "libs/iap",
+      "sourceRoot": "libs/iap/src",
+      "projectType": "library",
+      "prefix": "innomobile",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/iap/tsconfig.lib.json",
+            "project": "libs/iap/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/iap/src/test.ts",
+            "tsConfig": "libs/iap/tsconfig.spec.json",
+            "karmaConfig": "libs/iap/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/iap/tsconfig.lib.json",
+              "libs/iap/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "fireuser": {
+      "root": "libs/fireuser",
+      "sourceRoot": "libs/fireuser/src",
       "projectType": "library",
       "prefix": "im",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "libs/@innomobile/fireuser/tsconfig.lib.json",
-            "project": "libs/@innomobile/fireuser/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "libs/@innomobile/fireuser/ng-package.prod.json"
-            }
+            "tsConfig": "libs/fireuser/tsconfig.lib.json",
+            "project": "libs/fireuser/ng-package.json"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/@innomobile/fireuser/src/test.ts",
-            "tsConfig": "libs/@innomobile/fireuser/tsconfig.spec.json",
-            "karmaConfig": "libs/@innomobile/fireuser/karma.conf.js"
+            "main": "libs/fireuser/src/test.ts",
+            "tsConfig": "libs/fireuser/tsconfig.spec.json",
+            "karmaConfig": "libs/fireuser/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/@innomobile/fireuser/tsconfig.lib.json",
-              "libs/@innomobile/fireuser/tsconfig.spec.json"
+              "libs/fireuser/tsconfig.lib.json",
+              "libs/fireuser/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
         }
       }
     },
-    "@innomobile/core": {
-      "root": "libs/@innomobile/core",
-      "sourceRoot": "libs/@innomobile/core/src",
+    "ads": {
+      "root": "libs/ads",
+      "sourceRoot": "libs/ads/src",
       "projectType": "library",
       "prefix": "im",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "libs/@innomobile/core/tsconfig.lib.json",
-            "project": "libs/@innomobile/core/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "libs/@innomobile/core/ng-package.prod.json"
-            }
+            "tsConfig": "libs/ads/tsconfig.lib.json",
+            "project": "libs/ads/ng-package.json"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/@innomobile/core/src/test.ts",
-            "tsConfig": "libs/@innomobile/core/tsconfig.spec.json",
-            "karmaConfig": "libs/@innomobile/core/karma.conf.js"
+            "main": "libs/ads/src/test.ts",
+            "tsConfig": "libs/ads/tsconfig.spec.json",
+            "karmaConfig": "libs/ads/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/@innomobile/core/tsconfig.lib.json",
-              "libs/@innomobile/core/tsconfig.spec.json"
+              "libs/ads/tsconfig.lib.json",
+              "libs/ads/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
         }
       }
     },
-    "@innomobile/attribution": {
-      "root": "libs/@innomobile/attribution",
-      "sourceRoot": "libs/@innomobile/attribution/src",
+    "tinymce": {
+      "root": "libs/tinymce",
+      "sourceRoot": "libs/tinymce/src",
+      "projectType": "library",
+      "prefix": "innomobile",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/tinymce/tsconfig.lib.json",
+            "project": "libs/tinymce/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/tinymce/src/test.ts",
+            "tsConfig": "libs/tinymce/tsconfig.spec.json",
+            "karmaConfig": "libs/tinymce/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/tinymce/tsconfig.lib.json",
+              "libs/tinymce/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "attribution": {
+      "root": "libs/attribution",
+      "sourceRoot": "libs/attribution/src",
       "projectType": "library",
       "prefix": "im",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "libs/@innomobile/attribution/tsconfig.lib.json",
-            "project": "libs/@innomobile/attribution/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "libs/@innomobile/attribution/ng-package.prod.json"
-            }
+            "tsConfig": "libs/attribution/tsconfig.lib.json",
+            "project": "libs/attribution/ng-package.json"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/@innomobile/attribution/src/test.ts",
-            "tsConfig": "libs/@innomobile/attribution/tsconfig.spec.json",
-            "karmaConfig": "libs/@innomobile/attribution/karma.conf.js"
+            "main": "libs/attribution/src/test.ts",
+            "tsConfig": "libs/attribution/tsconfig.spec.json",
+            "karmaConfig": "libs/attribution/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/@innomobile/attribution/tsconfig.lib.json",
-              "libs/@innomobile/attribution/tsconfig.spec.json"
+              "libs/attribution/tsconfig.lib.json",
+              "libs/attribution/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
         }
       }
     },
-    "@innomobile/ads": {
-      "root": "libs/@innomobile/ads",
-      "sourceRoot": "libs/@innomobile/ads/src",
+    "countdown-timer": {
+      "root": "libs/countdown-timer",
+      "sourceRoot": "libs/countdown-timer/src",
       "projectType": "library",
       "prefix": "im",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "libs/@innomobile/ads/tsconfig.lib.json",
-            "project": "libs/@innomobile/ads/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "libs/@innomobile/ads/ng-package.prod.json"
-            }
+            "tsConfig": "libs/countdown-timer/tsconfig.lib.json",
+            "project": "libs/countdown-timer/ng-package.json"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/@innomobile/ads/src/test.ts",
-            "tsConfig": "libs/@innomobile/ads/tsconfig.spec.json",
-            "karmaConfig": "libs/@innomobile/ads/karma.conf.js"
+            "main": "libs/countdown-timer/src/test.ts",
+            "tsConfig": "libs/countdown-timer/tsconfig.spec.json",
+            "karmaConfig": "libs/countdown-timer/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/@innomobile/ads/tsconfig.lib.json",
-              "libs/@innomobile/ads/tsconfig.spec.json"
+              "libs/countdown-timer/tsconfig.lib.json",
+              "libs/countdown-timer/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
         }
       }
     },
-    "@innomobile/iap": {
-      "root": "libs/@innomobile/iap",
-      "sourceRoot": "libs/@innomobile/iap/src",
+    "language": {
+      "root": "libs/language",
+      "sourceRoot": "libs/language/src",
       "projectType": "library",
       "prefix": "im",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "libs/@innomobile/iap/tsconfig.lib.json",
-            "project": "libs/@innomobile/iap/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "libs/@innomobile/iap/ng-package.prod.json"
-            }
+            "tsConfig": "libs/language/tsconfig.lib.json",
+            "project": "libs/language/ng-package.json"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/@innomobile/iap/src/test.ts",
-            "tsConfig": "libs/@innomobile/iap/tsconfig.spec.json",
-            "karmaConfig": "libs/@innomobile/iap/karma.conf.js"
+            "main": "libs/language/src/test.ts",
+            "tsConfig": "libs/language/tsconfig.spec.json",
+            "karmaConfig": "libs/language/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/@innomobile/iap/tsconfig.lib.json",
-              "libs/@innomobile/iap/tsconfig.spec.json"
+              "libs/language/tsconfig.lib.json",
+              "libs/language/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
         }
       }
     },
-    "@innomobile/firebase-native": {
-      "root": "libs/@innomobile/firebase-native",
-      "sourceRoot": "libs/@innomobile/firebase-native/src",
+    "notifications": {
+      "root": "libs/notifications",
+      "sourceRoot": "libs/notifications/src",
       "projectType": "library",
       "prefix": "im",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "libs/@innomobile/firebase-native/tsconfig.lib.json",
-            "project": "libs/@innomobile/firebase-native/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "libs/@innomobile/firebase-native/ng-package.prod.json"
-            }
+            "tsConfig": "libs/notifications/tsconfig.lib.json",
+            "project": "libs/notifications/ng-package.json"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/@innomobile/firebase-native/src/test.ts",
-            "tsConfig": "libs/@innomobile/firebase-native/tsconfig.spec.json",
-            "karmaConfig": "libs/@innomobile/firebase-native/karma.conf.js"
+            "main": "libs/notifications/src/test.ts",
+            "tsConfig": "libs/notifications/tsconfig.spec.json",
+            "karmaConfig": "libs/notifications/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/@innomobile/firebase-native/tsconfig.lib.json",
-              "libs/@innomobile/firebase-native/tsconfig.spec.json"
+              "libs/notifications/tsconfig.lib.json",
+              "libs/notifications/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
         }
       }
     },
-    "@innomobile/notifications": {
-      "root": "libs/@innomobile/notifications",
-      "sourceRoot": "libs/@innomobile/notifications/src",
+    "firebase-native": {
+      "root": "libs/firebase-native",
+      "sourceRoot": "libs/firebase-native/src",
       "projectType": "library",
       "prefix": "im",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "libs/@innomobile/notifications/tsconfig.lib.json",
-            "project": "libs/@innomobile/notifications/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "libs/@innomobile/notifications/ng-package.prod.json"
-            }
+            "tsConfig": "libs/firebase-native/tsconfig.lib.json",
+            "project": "libs/firebase-native/ng-package.json"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/@innomobile/notifications/src/test.ts",
-            "tsConfig": "libs/@innomobile/notifications/tsconfig.spec.json",
-            "karmaConfig": "libs/@innomobile/notifications/karma.conf.js"
+            "main": "libs/firebase-native/src/test.ts",
+            "tsConfig": "libs/firebase-native/tsconfig.spec.json",
+            "karmaConfig": "libs/firebase-native/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/@innomobile/notifications/tsconfig.lib.json",
-              "libs/@innomobile/notifications/tsconfig.spec.json"
+              "libs/firebase-native/tsconfig.lib.json",
+              "libs/firebase-native/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
-      }
-    },
-    "@innomobile/mapbox": {
-      "root": "libs/@innomobile/mapbox",
-      "sourceRoot": "libs/@innomobile/mapbox/src",
-      "projectType": "library",
-      "prefix": "im",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "libs/@innomobile/mapbox/tsconfig.lib.json",
-            "project": "libs/@innomobile/mapbox/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "libs/@innomobile/mapbox/ng-package.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "libs/@innomobile/mapbox/src/test.ts",
-            "tsConfig": "libs/@innomobile/mapbox/tsconfig.spec.json",
-            "karmaConfig": "libs/@innomobile/mapbox/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/@innomobile/mapbox/tsconfig.lib.json",
-              "libs/@innomobile/mapbox/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "@innomobile/countdown-timer": {
-      "root": "libs/@innomobile/countdown-timer",
-      "sourceRoot": "libs/@innomobile/countdown-timer/src",
-      "projectType": "library",
-      "prefix": "im",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "libs/@innomobile/countdown-timer/tsconfig.lib.json",
-            "project": "libs/@innomobile/countdown-timer/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "libs/@innomobile/countdown-timer/ng-package.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "libs/@innomobile/countdown-timer/src/test.ts",
-            "tsConfig": "libs/@innomobile/countdown-timer/tsconfig.spec.json",
-            "karmaConfig": "libs/@innomobile/countdown-timer/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/@innomobile/countdown-timer/tsconfig.lib.json",
-              "libs/@innomobile/countdown-timer/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "@innomobile/language": {
-      "root": "libs/@innomobile/language",
-      "sourceRoot": "libs/@innomobile/language/src",
-      "projectType": "library",
-      "prefix": "im",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "libs/@innomobile/language/tsconfig.lib.json",
-            "project": "libs/@innomobile/language/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "libs/@innomobile/language/ng-package.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "libs/@innomobile/language/src/test.ts",
-            "tsConfig": "libs/@innomobile/language/tsconfig.spec.json",
-            "karmaConfig": "libs/@innomobile/language/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/@innomobile/language/tsconfig.lib.json",
-              "libs/@innomobile/language/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "@innomobile/ion-img-viewer": {
-      "root": "libs/@innomobile/ion-img-viewer",
-      "sourceRoot": "libs/@innomobile/ion-img-viewer/src",
-      "projectType": "library",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "libs/@innomobile/ion-img-viewer/tsconfig.lib.json",
-            "project": "libs/@innomobile/ion-img-viewer/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "libs/@innomobile/ion-img-viewer/src/test.ts",
-            "tsConfig": "libs/@innomobile/ion-img-viewer/tsconfig.spec.json",
-            "karmaConfig": "libs/@innomobile/ion-img-viewer/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/@innomobile/ion-img-viewer/tsconfig.lib.json",
-              "libs/@innomobile/ion-img-viewer/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
         }
       }
     }
   },
-  "defaultProject": "app"
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/schematics",
+    "packageManager": "npm"
+  },
+  "schematics": {
+    "@nrwl/schematics:application": {
+      "style": "scss"
+    },
+    "@nrwl/schematics:library": {
+      "style": "scss"
+    },
+    "@nrwl/angular:application": {
+      "unitTestRunner": "karma",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "karma"
+    }
+  },
+  "defaultProject": "demo-demo"
 }

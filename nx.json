@@ -1,0 +1,48 @@
+{
+  "npmScope": "innomobile",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "demo-demo": {
+      "tags": ["client"]
+    },
+    "demo-demo-e2e": {
+      "tags": []
+    },
+    "core": {
+      "tags": ["utils"]
+    },
+    "iap": {
+      "tags": ["client"]
+    },
+    "fireuser": {
+      "tags": ["client"]
+    },
+    "ads": {
+      "tags": ["client"]
+    },
+    "tinymce": {
+      "tags": ["client"]
+    },
+    "attribution": {
+      "tags": ["client"]
+    },
+    "countdown-timer": {
+      "tags": ["client"]
+    },
+    "language": {
+      "tags": ["client"]
+    },
+    "notifications": {
+      "tags": ["client"]
+    },
+    "firebase-native": {
+      "tags": ["client"]
+    }
+  }
+}

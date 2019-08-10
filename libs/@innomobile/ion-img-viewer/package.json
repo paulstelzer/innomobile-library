@@ -1,9 +1,0 @@
-{
-  "name": "@innomobile/ion-img-viewer",
-  "version": "0.0.1",
-  "peerDependencies": {
-    "@angular/common": ">=6.0.0 <8",
-    "@angular/core": ">=6.0.0 <8",
-    "@ionic/angular": "^4.0.0 || >= 4.0.0-beta.16"
-  }
-}
