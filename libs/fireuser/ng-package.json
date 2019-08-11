@@ -7,8 +7,7 @@
       "@ngxs/store": "ngxs-store",
       "@innomobile/core": "innomobile-core",
       "@angular/fire": "angular-fire",
-      "firebase": "firebase",
-      "firebase/app": "firebase-app"
+      "firebase/app": "firebase"
     }
   }
 }

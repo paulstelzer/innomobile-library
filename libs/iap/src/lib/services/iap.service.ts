@@ -25,7 +25,7 @@ declare var Stripe: any;
 })
 export class IapService {
   isSupportedNative = true;
-  private storePackages: IAPProductOptions[];
+  private storePackages: IAPProductOptions[] = [];
 
   stripe = null;
 
@@ -188,6 +188,7 @@ export class IapService {
   }
 
   private addPackage(p: IAPProductOptions) {
+    console.log('ADDPACKAGE', this.storePackages)
     const index = this.findIndex(p.id, this.storePackages);
     if (index >= 0) {
       const changes = this.getDifferenceBetweenObjects(this.storePackages[index], p);

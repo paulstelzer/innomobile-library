@@ -6,8 +6,7 @@
     "umdModuleIds": {
       "@ngxs/store": "ngxs-store",
       "@angular/fire": "angular-fire",
-      "firebase": "firebase",
-      "firebase/app": "firebase-app"
+      "firebase/app": "firebase"
     }
   }
 }
