@@ -5,9 +5,9 @@
     "entryFile": "src/index.ts",
     "umdModuleIds": {
       "@ionic/angular": "ionic-angular",
-      "cordova-plugin-firebase-lib": "cordova-plugin-firebase-lib",
-      "@ionic-native/firebase/ngx": "ionic-native-firebase",
-      "@ionic-native/firebase/ngx/index": "ionic-native-firebase-index",
+      "cordova-plugin-firebasex": "cordova-plugin-firebasex",
+      "@ionic-native/firebase-x/ngx": "ionic-native-firebase-x",
+      "@ionic-native/firebase-x/ngx/index": "ionic-native-firebase-x-index",
       "@angular/fire": "angular-fire"
     }
   }

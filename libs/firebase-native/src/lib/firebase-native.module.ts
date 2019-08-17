@@ -1,6 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
-import { Firebase } from '@ionic-native/firebase/ngx';
+import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 
 @NgModule({
   imports: [
@@ -18,7 +18,7 @@ export class FirebaseNativeModule {
     return {
       ngModule: FirebaseNativeModule,
       providers: [
-        Firebase
+        FirebaseX
       ]
     };
   }

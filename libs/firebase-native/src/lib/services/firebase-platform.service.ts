@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/messaging';
-import { Firebase } from '@ionic-native/firebase/ngx';
+import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 import { Platform } from '@ionic/angular';
 import { Observable, of } from 'rxjs';
 import { PwaDataModel } from '../model/pwa-data.model';
@@ -16,7 +16,7 @@ export class FirebasePlatformService {
 
     constructor(
         private platform: Platform,
-        private firebaseNative: Firebase,
+        private firebaseNative: FirebaseX,
         private afMessaging: AngularFireMessaging,
     ) {
 
@@ -180,6 +180,6 @@ export class FirebasePlatformService {
         if (!this.platform.is('cordova')) {
             return this.messages;
         }
-        return this.firebaseNative.onNotificationOpen();
+        return this.firebaseNative.onMessageReceived();
     }
 }
