@@ -230,7 +230,7 @@ export class AuthService {
   async emailUpgrade(email, password): Promise<any> {
     try {
       const credential = firebase.auth.EmailAuthProvider.credential(email, password);
-      return await this.fbUser.linkAndRetrieveDataWithCredential(credential);
+      return await this.fbUser.linkWithCredential(credential);
     } catch (error) {
       this.showError(error);
       throw error;
