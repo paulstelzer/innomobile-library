@@ -1,13 +1,13 @@
-import { Component, OnInit, Input, OnChanges, ViewChild, ElementRef } from '@angular/core';
-import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
+import { Component, Input, OnChanges, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import Player from '@vimeo/player';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'im-vimeo-video-player',
   templateUrl: './vimeo-video-player.component.html',
   styleUrls: ['./vimeo-video-player.component.scss']
 })
-export class VimeoVideoPlayerComponent implements OnChanges {
+export class VimeoVideoPlayerComponent implements OnDestroy, OnChanges {
   @ViewChild('video', { static: true }) video: ElementRef<HTMLDivElement>;
   @Input() id: number;
   @Input() language = 'en';
@@ -20,10 +20,17 @@ export class VimeoVideoPlayerComponent implements OnChanges {
   try = 0;
 
   loadedVideoId = null;
+  private destroy$ = new Subject()
 
   constructor(
   ) {
 
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next()
+    this.destroy$.complete()
+    this.destroy$.unsubscribe()
   }
 
   ngOnChanges() {

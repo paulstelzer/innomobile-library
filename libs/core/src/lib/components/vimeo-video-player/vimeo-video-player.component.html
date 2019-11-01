@@ -1,7 +1,7 @@
 <ng-container *ngIf="activateShowHide">
   <ion-list class="inno-list-no-margin">
     <ion-item-divider color="primary">
-      <ion-label text-left>{{'INNOMOBILE.VIDEOPLAYER.TITLE' | translate}}</ion-label>
+      <ion-label class="ion-text-left">{{'INNOMOBILE.VIDEOPLAYER.TITLE' | translate}}</ion-label>
       <ion-button slot="end" fill="outline" color="white" (click)="switch()">
         <ng-container *ngIf="!hideVideo">{{'INNOMOBILE.VIDEOPLAYER.HIDE' | translate}}</ng-container>
         <ng-container *ngIf="hideVideo">{{'INNOMOBILE.VIDEOPLAYER.SHOW' | translate}}</ng-container>
