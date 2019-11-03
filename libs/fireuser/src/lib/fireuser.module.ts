@@ -6,7 +6,7 @@ import { NgxsModule } from '@ngxs/store';
 import { AuthState } from './state/auth.state';
 
 /**
- * Add this module via FireuserModule.forRoot(firebaseConfig) to your app.module.ts
+ * Add this module via FireuserModule to your app.module.ts
  */
 @NgModule({
   imports: [
