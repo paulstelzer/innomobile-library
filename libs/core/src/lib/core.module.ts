@@ -44,7 +44,7 @@ export interface TitleConfig {
   ]
 })
 export class CoreModule {
-  public static forRoot(storeConfig: StoreConfig, titleConfig: TitleConfig): ModuleWithProviders {
+  public static forRoot(storeConfig: StoreConfig, titleConfig: TitleConfig): ModuleWithProviders<CoreModule> {
     return {
       ngModule: CoreModule,
       providers: [
