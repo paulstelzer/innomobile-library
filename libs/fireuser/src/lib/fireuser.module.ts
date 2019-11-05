@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 
 // Ngxs
@@ -12,7 +11,7 @@ import { AuthState } from './state/auth.state';
   imports: [
     NgxsModule.forFeature([
       AuthState,
-    ])
+    ]),
   ],
   declarations: [
 

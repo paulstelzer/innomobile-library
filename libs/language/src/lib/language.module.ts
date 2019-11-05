@@ -29,7 +29,7 @@ export class LanguageModule {
    * Add this to your app module
    * @param languageConfig Which languages should be supported
    */
-  public static forRoot(languageConfig: LanguageConfigModel): ModuleWithProviders {
+  public static forRoot(languageConfig: LanguageConfigModel): ModuleWithProviders<LanguageModule> {
     return {
       ngModule: LanguageModule,
       providers: [

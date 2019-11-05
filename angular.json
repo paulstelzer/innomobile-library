@@ -32,7 +32,9 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["apps/demo/demo/src/styles.scss"],
+            "styles": [
+              "apps/demo/demo/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -90,7 +92,9 @@
             "polyfills": "apps/demo/demo/src/polyfills.ts",
             "tsConfig": "apps/demo/demo/tsconfig.spec.json",
             "karmaConfig": "apps/demo/demo/karma.conf.js",
-            "styles": ["apps/demo/demo/src/styles.scss"],
+            "styles": [
+              "apps/demo/demo/src/styles.scss"
+            ],
             "scripts": [],
             "assets": [
               "apps/demo/demo/src/favicon.ico",
@@ -105,7 +109,9 @@
               "apps/demo/demo/tsconfig.app.json",
               "apps/demo/demo/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -131,7 +137,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/demo/demo-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -147,13 +155,13 @@
           "options": {
             "tsConfig": "libs/core/tsconfig.lib.json",
             "project": "libs/core/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "libs/core/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -169,7 +177,9 @@
               "libs/core/tsconfig.lib.json",
               "libs/core/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       },
@@ -190,13 +200,13 @@
           "options": {
             "tsConfig": "libs/iap/tsconfig.lib.json",
             "project": "libs/iap/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "libs/iap/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -212,7 +222,9 @@
               "libs/iap/tsconfig.lib.json",
               "libs/iap/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       },
@@ -233,13 +245,13 @@
           "options": {
             "tsConfig": "libs/fireuser/tsconfig.lib.json",
             "project": "libs/fireuser/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "libs/fireuser/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -255,7 +267,9 @@
               "libs/fireuser/tsconfig.lib.json",
               "libs/fireuser/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       },
@@ -276,13 +290,13 @@
           "options": {
             "tsConfig": "libs/ads/tsconfig.lib.json",
             "project": "libs/ads/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "libs/ads/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -298,7 +312,9 @@
               "libs/ads/tsconfig.lib.json",
               "libs/ads/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       },
@@ -319,13 +335,13 @@
           "options": {
             "tsConfig": "libs/tinymce/tsconfig.lib.json",
             "project": "libs/tinymce/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "libs/tinymce/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -341,7 +357,9 @@
               "libs/tinymce/tsconfig.lib.json",
               "libs/tinymce/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       },
@@ -362,13 +380,13 @@
           "options": {
             "tsConfig": "libs/attribution/tsconfig.lib.json",
             "project": "libs/attribution/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "libs/attribution/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -384,7 +402,9 @@
               "libs/attribution/tsconfig.lib.json",
               "libs/attribution/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       },
@@ -405,13 +425,13 @@
           "options": {
             "tsConfig": "libs/countdown-timer/tsconfig.lib.json",
             "project": "libs/countdown-timer/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "libs/countdown-timer/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -427,7 +447,9 @@
               "libs/countdown-timer/tsconfig.lib.json",
               "libs/countdown-timer/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       },
@@ -448,13 +470,13 @@
           "options": {
             "tsConfig": "libs/language/tsconfig.lib.json",
             "project": "libs/language/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "libs/language/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -470,7 +492,9 @@
               "libs/language/tsconfig.lib.json",
               "libs/language/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       },
@@ -491,13 +515,13 @@
           "options": {
             "tsConfig": "libs/notifications/tsconfig.lib.json",
             "project": "libs/notifications/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "libs/notifications/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -513,7 +537,9 @@
               "libs/notifications/tsconfig.lib.json",
               "libs/notifications/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       },
@@ -534,13 +560,13 @@
           "options": {
             "tsConfig": "libs/firebase-native/tsconfig.lib.json",
             "project": "libs/firebase-native/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "libs/firebase-native/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -556,7 +582,9 @@
               "libs/firebase-native/tsconfig.lib.json",
               "libs/firebase-native/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       },
@@ -573,7 +601,8 @@
       "versionMismatch": false
     },
     "defaultCollection": "@nrwl/schematics",
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": false
   },
   "schematics": {
     "@nrwl/schematics:application": {

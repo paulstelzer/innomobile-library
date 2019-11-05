@@ -20,7 +20,7 @@
       "@innomobile/tinymce": ["libs/tinymce/src/index.ts"],
       "@innomobile/attribution": ["libs/attribution/src/index.ts"],
       "@innomobile/countdown-timer": ["libs/countdown-timer/src/index.ts"],
-      "@innomobile/language": ["libs/language/src/index.ts"],
+      "@innomobile/language": ["dist/libs/language"],
       "@innomobile/notifications": ["libs/notifications/src/index.ts"],
       "@innomobile/firebase-native": ["libs/firebase-native/src/index.ts"]
     }

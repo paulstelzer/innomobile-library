@@ -23,9 +23,9 @@ import {
 
 import { Message } from '../classes/message.class';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Inject } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 
-
+@Injectable()
 @State<NotificationsStateModel>({
     name: 'notifications',
     defaults: {

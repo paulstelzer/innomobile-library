@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { Action, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
@@ -18,6 +19,7 @@ import {
 import { AuthStateModel } from '../model/auth.model';
 import { Observable } from 'rxjs';
 
+@Injectable()
 @State<AuthStateModel>({
     name: 'auth',
     defaults: {

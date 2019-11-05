@@ -18,8 +18,9 @@ import {
 } from './iap.actions';
 import {IapStateModel} from './iap.model';
 import {IAP_DEBUG} from '../classes/iap-token';
-import {Inject} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 
+@Injectable()
 @State<IapStateModel>({
   name: 'iap',
   defaults: {

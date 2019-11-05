@@ -1,4 +1,4 @@
-import { Inject } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Action, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
 import { Observable } from 'rxjs';
@@ -9,6 +9,7 @@ import { LANGUAGE_CONFIG } from '../model/language.token';
 /**
  * Language State @ NGXS
  */
+@Injectable()
 @State<LanguageStateModel>({
     name: 'language',
     defaults: {
