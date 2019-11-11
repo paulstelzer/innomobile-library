@@ -26,7 +26,7 @@ export class IapModule {
     iapPwaPackages: IAPPwaProductModel[] = [],
     stripeKey: string = null,
     iapDebug: boolean = false,
-  ): ModuleWithProviders {
+  ): ModuleWithProviders<IapModule> {
     return {
       ngModule: IapModule,
       providers: [
