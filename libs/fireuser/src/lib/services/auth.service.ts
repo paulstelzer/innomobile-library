@@ -60,7 +60,22 @@ export class AuthService {
       this.showError(error);
       return false;
     }
+  }
 
+  async createUserWithEmailAndPassword(email, password, showMessage = true) {
+    try {
+      const signUp = await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+      return {
+        success: true,
+        data: signUp,
+      }
+    } catch (error) {
+      this.showError(error, showMessage);
+      return {
+        success: false,
+        data: error,
+      }
+    }
   }
 
   // #endregion
@@ -376,7 +391,7 @@ export class AuthService {
    * Sends a translated error message
    * @param error Error Code or Message for the toast
    */
-  showError(error): void {
+  showError(error, showMessage = true): string {
     if (typeof error !== 'object') {
       const errorCode = error;
       error = {
@@ -434,7 +449,10 @@ export class AuthService {
         break;
 
     }
-    this.toast.sendToastTranslation('error', 'FIREBASE.ERROR.' + errorMessage);
+    if (showMessage) {
+      this.toast.sendToastTranslation('error', 'FIREBASE.ERROR.' + errorMessage);
+    }
+    return errorMessage
   }
   // #endregion
 
