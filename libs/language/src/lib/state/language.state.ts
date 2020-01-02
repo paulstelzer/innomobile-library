@@ -40,7 +40,6 @@ export class LanguageState implements NgxsOnInit {
      * @ignore
      */
     ngxsOnInit(ctx: StateContext<LanguageStateModel>) {
-      console.log('LANGUAGE INIT')
         this.translate.setDefaultLang(this.languageConfig.defaultLanguage);
         ctx.dispatch(new CheckLanguage());
     }
@@ -52,7 +51,6 @@ export class LanguageState implements NgxsOnInit {
     @Action(CheckLanguage)
     checkLanguage(ctx: StateContext<LanguageStateModel>) {
         const saved = ctx.getState().lang;
-        console.log('LANGUAGE checkLanguage', saved)
         if (saved) {
             ctx.dispatch(new UpdateLanguage(saved));
         } else {
