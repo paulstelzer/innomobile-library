@@ -18,6 +18,10 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { LanguageModule } from '@innomobile/language';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+import 'firebase/auth'
+import 'firebase/firestore'
+
 export const availableLanguages = [
   {
       code: 'en',
@@ -77,7 +81,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AngularFireAuthModule,
     AngularFirestoreModule,
     FireuserModule,
-    
+
     LanguageModule.forRoot({
       defaultLanguage: 'en',
       availableLanguages

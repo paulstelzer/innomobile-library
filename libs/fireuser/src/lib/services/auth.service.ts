@@ -4,7 +4,6 @@ import { ToastService, CoreService } from '@innomobile/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 import * as firebase from 'firebase/app';
-import 'firebase/auth';
 
 /** Networks for Firebase Signin and Signup */
 export type NetworkValue = 'github' | 'google' | 'facebook' | 'twitter';
@@ -67,12 +66,14 @@ export class AuthService {
       const signUp = await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
       return {
         success: true,
+        message: null,
         data: signUp,
       }
     } catch (error) {
-      this.showError(error, showMessage);
+      const errorMessage = this.showError(error, showMessage);
       return {
         success: false,
+        message: errorMessage,
         data: error,
       }
     }
