@@ -3,7 +3,7 @@ import { ToastService, CoreService } from '@innomobile/core';
 
 import { AngularFireAuth } from '@angular/fire/auth';
 
-import * as firebase from 'firebase/app';
+import { User, auth, firestore } from 'firebase/app';
 
 /** Networks for Firebase Signin and Signup */
 export type NetworkValue = 'github' | 'google' | 'facebook' | 'twitter';
@@ -27,22 +27,26 @@ export class AuthService {
   /**
    * Get the current Firebase Auth User
    */
-  get fbUser(): firebase.User {
-    return this.afAuth.auth.currentUser;
+  async getCurrentUser(): Promise<User> {
+    return await this.afAuth.currentUser;
   }
 
   /**
    * Get current token of the Firebase Auth User
    */
-  get currentToken(): Promise<string> {
-    return this.afAuth.auth.currentUser.getIdToken();
+  async getCurrentToken(): Promise<string> {
+    const user = await this.getCurrentUser();
+    if (user) {
+      return user.getIdToken();
+    }
+    return null;
   }
 
   /**
    * After signin get the results
    */
-  getRedirectResult(): Promise<any> {
-    return this.afAuth.auth.getRedirectResult();
+  async getRedirectResult(): Promise<any> {
+    return await this.afAuth.getRedirectResult();
   }
 
   // #region Sign Up
@@ -54,7 +58,7 @@ export class AuthService {
    */
   async emailSignUp(email, password): Promise<any> {
     try {
-      return await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+      return await this.afAuth.createUserWithEmailAndPassword(email, password);
     } catch (error) {
       this.showError(error);
       return false;
@@ -63,7 +67,7 @@ export class AuthService {
 
   async createUserWithEmailAndPassword(email, password, showMessage = true) {
     try {
-      const signUp = await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+      const signUp = await this.afAuth.createUserWithEmailAndPassword(email, password);
       return {
         success: true,
         message: null,
@@ -91,20 +95,20 @@ export class AuthService {
     let provider = null;
     switch (service) {
       case 'github':
-        provider = new firebase.auth.GithubAuthProvider();
+        provider = new auth.GithubAuthProvider();
         break;
       case 'google':
-        provider = new firebase.auth.GoogleAuthProvider();
+        provider = new auth.GoogleAuthProvider();
         break;
       case 'facebook':
-        provider = new firebase.auth.FacebookAuthProvider();
+        provider = new auth.FacebookAuthProvider();
         break;
       case 'twitter':
-        provider = new firebase.auth.TwitterAuthProvider();
+        provider = new auth.TwitterAuthProvider();
         break;
     }
     try {
-      return await this.afAuth.auth.signInWithRedirect(provider);
+      return await this.afAuth.signInWithRedirect(provider);
     } catch (error) {
       this.showError(error);
       return false;
@@ -120,7 +124,7 @@ export class AuthService {
   async emailLogin(email: string, password: string): Promise<any> {
     email = email.replace(/\s/g, '');
     try {
-      return await this.afAuth.auth.signInWithEmailAndPassword(email, password);
+      return await this.afAuth.signInWithEmailAndPassword(email, password);
     } catch (error) {
       this.showError(error);
       return false;
@@ -133,9 +137,9 @@ export class AuthService {
    * @param phoneNumber Telephone number of user
    * @param verifier Application verifier
    */
-  async phoneLogin(phoneNumber: string, verifier: firebase.auth.ApplicationVerifier): Promise<any> {
+  async phoneLogin(phoneNumber: string, verifier: auth.ApplicationVerifier): Promise<any> {
     try {
-      const data = await this.afAuth.auth.signInWithPhoneNumber(phoneNumber, verifier);
+      const data = await this.afAuth.signInWithPhoneNumber(phoneNumber, verifier);
       this.showSuccess('SMS_SEND');
       return data;
     } catch (error) {
@@ -150,7 +154,7 @@ export class AuthService {
    */
   async customTokenLogin(token: string): Promise<any> {
     try {
-      const data = await this.afAuth.auth.signInWithCustomToken(token);
+      const data = await this.afAuth.signInWithCustomToken(token);
       this.showSuccess('LOGIN_SUCCESFUL');
       return data;
     } catch (error) {
@@ -169,11 +173,12 @@ export class AuthService {
    */
   async reAuthenticateUser(password): Promise<any> {
     try {
-      const credential = firebase.auth.EmailAuthProvider.credential(
-        this.fbUser.email,
+      const user = await this.getCurrentUser()
+      const credential = auth.EmailAuthProvider.credential(
+        user.email,
         password
       );
-      await this.fbUser.reauthenticateWithCredential(credential);
+      await user.reauthenticateWithCredential(credential);
       return true;
     } catch (error) {
       this.showError(error);
@@ -188,7 +193,8 @@ export class AuthService {
    */
   async updateFirebaseUserDisplayName(name, photoURL): Promise<any> {
     try {
-      return await this.fbUser.updateProfile({
+      const user = await this.getCurrentUser()
+      return await user.updateProfile({
         displayName: name,
         photoURL: photoURL
       });
@@ -204,7 +210,8 @@ export class AuthService {
    */
   async updatePassword(newPassword): Promise<boolean> {
     try {
-      await this.fbUser.updatePassword(newPassword);
+      const user = await this.getCurrentUser()
+      await user.updatePassword(newPassword);
       this.showSuccess('PASSWORD_CHANGED');
       return true;
     } catch (error) {
@@ -225,7 +232,8 @@ export class AuthService {
     }
 
     try {
-      await this.fbUser.updateEmail(email);
+      const user = await this.getCurrentUser()
+      await user.updateEmail(email);
       await this.sendEmailVerification();
       return true;
     } catch (error) {
@@ -245,8 +253,9 @@ export class AuthService {
    */
   async emailUpgrade(email, password): Promise<any> {
     try {
-      const credential = firebase.auth.EmailAuthProvider.credential(email, password);
-      return await this.fbUser.linkWithCredential(credential);
+      const credential = auth.EmailAuthProvider.credential(email, password);
+      const user = await this.getCurrentUser()
+      return await user.linkWithCredential(credential);
     } catch (error) {
       this.showError(error);
       throw error;
@@ -258,9 +267,10 @@ export class AuthService {
    * @param phoneNumber Telephone number of user
    * @param verifier Application verifier
    */
-  async phoneUpgrade(phoneNumber: string, verifier: firebase.auth.ApplicationVerifier): Promise<any> {
+  async phoneUpgrade(phoneNumber: string, verifier: auth.ApplicationVerifier): Promise<any> {
     try {
-      const data = await this.fbUser.linkWithPhoneNumber(phoneNumber, verifier);
+      const user = await this.getCurrentUser()
+      const data = await user.linkWithPhoneNumber(phoneNumber, verifier);
       this.showSuccess('SMS_SEND');
       return data;
     } catch (error) {
@@ -278,19 +288,20 @@ export class AuthService {
       let provider = null;
       switch (service) {
         case 'github':
-          provider = new firebase.auth.GithubAuthProvider();
+          provider = new auth.GithubAuthProvider();
           break;
         case 'google':
-          provider = new firebase.auth.GoogleAuthProvider();
+          provider = new auth.GoogleAuthProvider();
           break;
         case 'facebook':
-          provider = new firebase.auth.FacebookAuthProvider();
+          provider = new auth.FacebookAuthProvider();
           break;
         case 'twitter':
-          provider = new firebase.auth.TwitterAuthProvider();
+          provider = new auth.TwitterAuthProvider();
           break;
       }
-      return await this.fbUser.linkWithRedirect(provider);
+      const user = await this.getCurrentUser()
+      return await user.linkWithRedirect(provider);
     } catch (error) {
       this.showError(error);
       return false;
@@ -306,7 +317,7 @@ export class AuthService {
    */
   async resetPassword(email: string): Promise<boolean> {
     try {
-      await firebase.auth().sendPasswordResetEmail(email);
+      await auth().sendPasswordResetEmail(email);
       this.showSuccess('MAIL_RESET_PASSWORD');
       return true;
     } catch (error) {
@@ -323,7 +334,7 @@ export class AuthService {
    */
   async verifyEmail(code: string): Promise<boolean> {
     try {
-      await this.afAuth.auth.applyActionCode(code);
+      await this.afAuth.applyActionCode(code);
       this.showSuccess('MAIL_VERIFIED');
       return true;
     } catch (error) {
@@ -338,7 +349,7 @@ export class AuthService {
    */
   async recoverEmail(code: string): Promise<boolean> {
     try {
-      await this.afAuth.auth.applyActionCode(code);
+      await this.afAuth.applyActionCode(code);
       this.showSuccess('MAIL_RECOVERED');
       return true;
     } catch (error) {
@@ -354,7 +365,7 @@ export class AuthService {
    */
   async setNewPassword(password: string, code: string): Promise<boolean> {
     try {
-      await this.afAuth.auth.confirmPasswordReset(code, password);
+      await this.afAuth.confirmPasswordReset(code, password);
       this.showSuccess('PASSWORD_CHANGED');
       return true;
     } catch (error) {
@@ -368,7 +379,8 @@ export class AuthService {
    */
   async sendEmailVerification(): Promise<boolean> {
     try {
-      await this.fbUser.sendEmailVerification();
+      const user = await this.getCurrentUser()
+      await user.sendEmailVerification();
       this.showSuccess('MAIL_VERIFICATION');
       return true;
     } catch (error) {
@@ -460,8 +472,8 @@ export class AuthService {
   /**
    * Timestamp from Firestore
    */
-  get timestamp(): firebase.firestore.FieldValue {
-    return firebase.firestore.FieldValue.serverTimestamp();
+  get timestamp(): firestore.FieldValue {
+    return firestore.FieldValue.serverTimestamp();
   }
 
   /**

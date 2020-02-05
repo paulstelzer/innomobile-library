@@ -25,5 +25,8 @@
       "@innomobile/firebase-native": ["libs/firebase-native/src/index.ts"]
     }
   },
+  "angularCompilerOptions": {
+    "disableTypeScriptVersionCheck": true
+  },
   "exclude": ["node_modules", "tmp"]
 }

@@ -1,8 +1,7 @@
+import { AuthService } from '../services/auth.service';
 import { Injectable } from '@angular/core';
 import { Action, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
 import { AngularFireAuth } from '@angular/fire/auth';
-import * as firebase from 'firebase/app';
-import 'firebase/firestore';
 import {
     FireAuthAnonymousSignUp,
     FireAuthUserCreateFailed,
@@ -45,7 +44,8 @@ export class AuthState implements NgxsOnInit {
     }
 
     constructor(
-        private afAuth: AngularFireAuth
+      private authService: AuthService,
+      private afAuth: AngularFireAuth
     ) {
     }
 
@@ -72,10 +72,10 @@ export class AuthState implements NgxsOnInit {
 
     @Action(FireAuthUserToken)
     async userToken(ctx: StateContext<AuthStateModel>): Promise<any> {
-        if (this.afAuth.auth.currentUser) {
-            const token = await this.afAuth.auth.currentUser.getIdToken();
+        const token = await this.authService.getCurrentToken();
+        if (token) {
             return ctx.patchState({
-                token: token
+                token
             });
         }
         return false;
@@ -83,8 +83,9 @@ export class AuthState implements NgxsOnInit {
 
     @Action(FireAuthUserDelete)
     async userDelete() {
-        if (this.afAuth.auth.currentUser) {
-            return await this.afAuth.auth.currentUser.delete();
+        const user = await this.authService.getCurrentUser();
+        if (user) {
+            return await user.delete();
         }
         return false;
     }
@@ -92,7 +93,7 @@ export class AuthState implements NgxsOnInit {
     @Action(FireAuthUserSignOut)
     async signOut(ctx: StateContext<AuthStateModel>): Promise<Observable<void>> {
         try {
-            await this.afAuth.auth.signOut();
+            await this.afAuth.signOut();
             // console.log('User Sign Out', data);
             return ctx.dispatch(new FireAuthUserSignedOutSuccess());
         } catch (err) {
@@ -104,7 +105,7 @@ export class AuthState implements NgxsOnInit {
     @Action(FireAuthAnonymousSignUp)
     async signUpAnonymous(ctx: StateContext<AuthStateModel>): Promise<Observable<void>> {
         try {
-            const data = await this.afAuth.auth.signInAnonymously();
+            const data = await this.afAuth.signInAnonymously();
             return ctx.dispatch(new FireAuthUserCreateSuccess(data));
         } catch (error) {
             return ctx.dispatch(new FireAuthUserCreateFailed(error));
