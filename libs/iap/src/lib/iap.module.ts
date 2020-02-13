@@ -6,6 +6,7 @@ import { StripePaymentComponent } from './components/stripe-payment/stripe-payme
 import { IapModel } from './store/iap.model';
 import { IapState } from './store/iap.state';
 import { IAP_PACKAGES, IAP_PWA_PACKAGES, STRIPE_KEY, IAP_DEBUG } from './classes/iap-token';
+import {IapService} from "./services/iap.service"
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ export class IapModule {
     return {
       ngModule: IapModule,
       providers: [
+        IapService,
         InAppPurchase2,
         { provide: IAP_PACKAGES, useValue: iapPackages },
         { provide: IAP_PWA_PACKAGES, useValue: iapPwaPackages },

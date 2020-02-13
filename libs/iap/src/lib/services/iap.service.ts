@@ -20,9 +20,7 @@ import { IapState } from '../store/iap.state';
 
 declare var Stripe: any;
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class IapService {
   isSupportedNative = true;
   private storePackages: IAPProductOptions[] = [];
