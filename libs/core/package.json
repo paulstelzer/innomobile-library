@@ -5,7 +5,7 @@
   "peerDependencies": {
     "@angular/common": ">=7.0.0",
     "@angular/core": ">=7.0.0",
-    "@ionic/angular": "^4.0.0",
+    "@ionic/angular": ">=4.0.0",
     "lodash": "^4.17.0",
     "@vimeo/player": "^2.0.0"
   }

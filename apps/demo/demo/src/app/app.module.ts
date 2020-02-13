@@ -21,6 +21,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import 'firebase/auth'
 import 'firebase/firestore'
+import {IapModule} from "@innomobile/iap"
 
 export const availableLanguages = [
   {
@@ -86,6 +87,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       defaultLanguage: 'en',
       availableLanguages
     }),
+
+    IapModule.forRoot()
   ],
   bootstrap: [AppComponent]
 })

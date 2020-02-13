@@ -14,7 +14,7 @@
     "baseUrl": ".",
     "paths": {
       "@innomobile/core": ["dist/libs/core"],
-      "@innomobile/iap": ["libs/iap/src/index.ts"],
+      "@innomobile/iap": ["dist/libs/iap"],
       "@innomobile/fireuser": ["libs/fireuser/src/index.ts"],
       "@innomobile/ads": ["libs/ads/src/index.ts"],
       "@innomobile/tinymce": ["libs/tinymce/src/index.ts"],

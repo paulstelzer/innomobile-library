@@ -1,12 +1,12 @@
 {
   "name": "@innomobile/iap",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "license": "MIT",
   "peerDependencies": {
     "@ngxs/store": "^3.0.0",
     "cc.fovea.cordova.purchase": ">=7.0.0",
     "@ionic-native/in-app-purchase-2": "^5.0.0",
     "lodash": "^4.17.0",
-    "@ionic/angular": "^4.0.0"
+    "@ionic/angular": ">=4.0.0"
   }
 }
