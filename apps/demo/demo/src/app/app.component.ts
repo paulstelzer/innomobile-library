@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import {AuthService, FireAuthAnonymousSignUp} from "@innomobile/fireuser"
 import { Store } from '@ngxs/store';
 import {IapService} from "@innomobile/iap"
+import { ToastService } from '@innomobile/core';
 
 @Component({
   selector: 'innomobile-root',
@@ -20,7 +21,8 @@ export class AppComponent {
   constructor(
     private authService: AuthService,
     private store: Store,
-    private iap: IapService
+    private iap: IapService,
+    private toast: ToastService,
   ) {
     this.iap.init()
   }
@@ -31,5 +33,9 @@ export class AppComponent {
 
   createAccount() {
     this.store.dispatch(new FireAuthAnonymousSignUp())
+  }
+
+  sendToast() {
+    this.toast.sendToastTranslation('sucess', 'It is working').then()
   }
 }
