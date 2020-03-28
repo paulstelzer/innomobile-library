@@ -288,7 +288,7 @@ export function callCordovaPlugin(
 
   if (availabilityCheck === true) {
     const pluginInstance = getPlugin(pluginObj.constructor.getPluginRef());
-    return pluginInstance[methodName].apply(pluginInstance, args);
+    return pluginInstance[methodName](args);
   } else {
     return availabilityCheck;
   }
@@ -305,7 +305,7 @@ export function callInstance(
   args = setIndex(args, opts, resolve, reject);
 
   if (instanceAvailability(pluginObj, methodName)) {
-    return pluginObj._objectInstance[methodName].apply(pluginObj._objectInstance, args);
+    return pluginObj._objectInstance[methodName](args);
   }
 }
 
@@ -380,8 +380,7 @@ export const wrap = (pluginObj: any, methodName: string, opts: CordovaOptions = 
   }
 };
 
-export function wrapInstance(pluginObj: any, methodName: string, opts: any = {}): Function {
-  return (...args: any[]) => {
+export const wrapInstance = (pluginObj: any, methodName: string, opts: any = {}, ...args: any[]) => {
     if (opts.sync) {
       return callInstance(pluginObj, methodName, args, opts);
     } else if (opts.observable) {
@@ -484,5 +483,4 @@ export function wrapInstance(pluginObj: any, methodName: string, opts: any = {})
       }
       return p;
     }
-  };
 }
