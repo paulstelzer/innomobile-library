@@ -26,6 +26,8 @@
     "build:iap": "ng build iap --prod",
     "build:language": "ng build language --prod",
     "build:notifications": "ng build notifications --prod",
+    "build:native-core": "ng build native-core --prod",
+    "build:native-plugins": "ng build native-plugins --prod",
     "build:tinymce": "ng build tinymce --prod && cpx \"libs/tinymce/assets/**\" \"dist/libs/tinymce/assets\"",
     "dep-graph": "nx dep-graph",
     "e2e": "ng e2e",
