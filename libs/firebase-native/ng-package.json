@@ -6,8 +6,6 @@
     "umdModuleIds": {
       "@ionic/angular": "ionic-angular",
       "cordova-plugin-firebasex": "cordova-plugin-firebasex",
-      "@ionic-native/firebase-x/ngx": "ionic-native-firebase-x",
-      "@ionic-native/firebase-x/ngx/index": "ionic-native-firebase-x-index",
       "@angular/fire": "angular-fire"
     }
   }

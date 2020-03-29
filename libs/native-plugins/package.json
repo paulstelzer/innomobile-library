@@ -1,0 +1,7 @@
+{
+  "name": "@innomobile-native/plugins",
+  "version": "6.0.0",
+  "peerDependencies": {
+    "@innomobile-native/core": "^6.0.0"
+  }
+}

@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { IAPProduct, IAPProductOptions, InAppPurchase2 } from '@ionic-native/in-app-purchase-2/ngx';
+import { IAPProduct, IAPProductOptions, InAppPurchase2 } from '@innomobile-native/plugins';
 import { Platform } from '@ionic/angular';
 import { Store } from '@ngxs/store';
 import isEqual from 'lodash/isEqual';
@@ -20,7 +20,7 @@ import { IapState } from '../store/iap.state';
 
 declare var Stripe: any;
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class IapService {
   isSupportedNative = true;
   private storePackages: IAPProductOptions[] = [];

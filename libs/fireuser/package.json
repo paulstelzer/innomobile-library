@@ -1,6 +1,6 @@
 {
   "name": "@innomobile/fireuser",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "license": "MIT",
   "scripts": {
     "doc": "compodoc -p tsconfig.lib.json -s"

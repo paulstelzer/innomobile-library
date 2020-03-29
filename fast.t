@@ -1,1 +1,1 @@
-ng generate lib ads --publishable --tags=client --prefix=im
+ng generate lib native-plugins --publishable --tags=client --prefix=im

@@ -1,4 +1,4 @@
-import { Appsflyer, AppsflyerOptions } from '@ionic-native/appsflyer/ngx';
+import { Appsflyer, AppsflyerOptions } from '@innomobile-native/plugins';
 import { Injectable, Inject, Optional } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { APPSFLYER_CONFIG } from '../attribution.module';

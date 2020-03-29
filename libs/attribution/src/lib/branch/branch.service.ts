@@ -1,6 +1,5 @@
 import { Inject, Injectable, Optional } from '@angular/core';
-import { BranchIo, BranchIoAnalytics, BranchIoPromise, BranchIoProperties } from '@ionic-native/branch-io/ngx';
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { SocialSharing, BranchIo, BranchIoAnalytics, BranchIoPromise, BranchIoProperties } from '@innomobile-native/plugins';
 import { Platform } from '@ionic/angular';
 import { BRANCH_CONFIG, BranchConfigOptions } from './../attribution.module';
 import { BranchShareOptions } from './model/branch.interface';

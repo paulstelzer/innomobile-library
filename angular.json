@@ -32,9 +32,7 @@
                 "output": "./svg"
               }
             ],
-            "styles": [
-              "apps/demo/demo/src/styles.scss"
-            ],
+            "styles": ["apps/demo/demo/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -92,9 +90,7 @@
             "polyfills": "apps/demo/demo/src/polyfills.ts",
             "tsConfig": "apps/demo/demo/tsconfig.spec.json",
             "karmaConfig": "apps/demo/demo/karma.conf.js",
-            "styles": [
-              "apps/demo/demo/src/styles.scss"
-            ],
+            "styles": ["apps/demo/demo/src/styles.scss"],
             "scripts": [],
             "assets": [
               "apps/demo/demo/src/favicon.ico",
@@ -109,9 +105,7 @@
               "apps/demo/demo/tsconfig.app.json",
               "apps/demo/demo/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -137,9 +131,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/demo/demo-e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -177,9 +169,7 @@
               "libs/core/tsconfig.lib.json",
               "libs/core/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       },
@@ -222,9 +212,7 @@
               "libs/iap/tsconfig.lib.json",
               "libs/iap/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       },
@@ -267,9 +255,7 @@
               "libs/fireuser/tsconfig.lib.json",
               "libs/fireuser/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       },
@@ -312,9 +298,7 @@
               "libs/ads/tsconfig.lib.json",
               "libs/ads/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       },
@@ -357,9 +341,7 @@
               "libs/tinymce/tsconfig.lib.json",
               "libs/tinymce/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       },
@@ -402,9 +384,7 @@
               "libs/attribution/tsconfig.lib.json",
               "libs/attribution/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       },
@@ -447,9 +427,7 @@
               "libs/countdown-timer/tsconfig.lib.json",
               "libs/countdown-timer/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       },
@@ -492,9 +470,7 @@
               "libs/language/tsconfig.lib.json",
               "libs/language/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       },
@@ -537,9 +513,7 @@
               "libs/notifications/tsconfig.lib.json",
               "libs/notifications/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       },
@@ -582,14 +556,98 @@
               "libs/firebase-native/tsconfig.lib.json",
               "libs/firebase-native/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       },
       "schematics": {
         "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "native-core": {
+      "projectType": "library",
+      "root": "libs/native-core",
+      "sourceRoot": "libs/native-core/src",
+      "prefix": "im",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/native-core/tsconfig.lib.json",
+            "project": "libs/native-core/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/native-core/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/native-core/tsconfig.lib.json",
+              "libs/native-core/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/native-core/**"]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/native-core/src/test.ts",
+            "tsConfig": "libs/native-core/tsconfig.spec.json",
+            "karmaConfig": "libs/native-core/karma.conf.js"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "native-plugins": {
+      "projectType": "library",
+      "root": "libs/native-plugins",
+      "sourceRoot": "libs/native-plugins/src",
+      "prefix": "im",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/native-plugins/tsconfig.lib.json",
+            "project": "libs/native-plugins/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/native-plugins/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/native-plugins/tsconfig.lib.json",
+              "libs/native-plugins/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/native-plugins/**"]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/native-plugins/src/test.ts",
+            "tsConfig": "libs/native-plugins/tsconfig.spec.json",
+            "karmaConfig": "libs/native-plugins/karma.conf.js"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
           "styleext": "scss"
         }
       }

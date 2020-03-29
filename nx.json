@@ -43,6 +43,12 @@
     },
     "firebase-native": {
       "tags": ["client"]
+    },
+    "native-core": {
+      "tags": ["client"]
+    },
+    "native-plugins": {
+      "tags": ["client"]
     }
   }
 }
