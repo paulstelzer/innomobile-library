@@ -1,5 +1,5 @@
 
-import { BranchIoAnalytics } from '@ionic-native/branch-io/ngx';
+import { BranchIoAnalytics } from '@innomobile-native/plugins';
 
 /**
  * Share a link with Branch.io

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/messaging';
-import { FirebaseX } from '@ionic-native/firebase-x/ngx';
+import { FirebaseX } from '@innomobile-native/plugins';
 import { Platform } from '@ionic/angular';
 import { Observable, of } from 'rxjs';
 import { PwaDataModel } from '../model/pwa-data.model';
@@ -10,7 +10,6 @@ import { PwaDataModel } from '../model/pwa-data.model';
 })
 export class FirebasePlatformService {
     userToken = null;
-    messaging: firebase.messaging.Messaging;
     private messages: Observable<any>;
     private debug = false;
 
@@ -36,12 +35,11 @@ export class FirebasePlatformService {
                 ...pwaData
             };
             if (pwaConfig.registerServiceWorker) {
-                this.messaging = await this.afMessaging.messaging.toPromise();
-                this.messaging.useServiceWorker(pwaConfig.registerServiceWorker);
+                await this.afMessaging.useServiceWorker(pwaConfig.registerServiceWorker);
 
                 if (pwaConfig.messages) {
                     this.messages = new Observable((observer) => {
-                        this.messaging.onMessage(payload => {
+                        this.afMessaging.onMessage(payload => {
                             observer.next(payload);
                         });
                     });
@@ -95,8 +93,8 @@ export class FirebasePlatformService {
 
     private async getWebToken() {
         try {
-            await this.messaging.requestPermission();
-            const token = await this.messaging.getToken();
+            await this.afMessaging.requestPermission.toPromise();
+            const token = await this.afMessaging.getToken.toPromise();
             if (this.debug) {
                 console.log('[@innomobile/attribution] Token', token);
             }

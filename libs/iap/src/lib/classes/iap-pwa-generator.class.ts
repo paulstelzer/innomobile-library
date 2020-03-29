@@ -1,6 +1,6 @@
 
 import { IAPProductClass } from './iap-product.class';
-import { IAPProduct } from '@ionic-native/in-app-purchase-2/ngx';
+import { IAPProduct } from '@innomobile-native/plugins';
 
 export class IapPwaGenerator {
     products: IAPProduct[] = [];

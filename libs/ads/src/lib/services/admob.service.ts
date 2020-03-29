@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { Observable, of } from 'rxjs';
 
-import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig, AdMobFreeRewardVideoConfig } from '@ionic-native/admob-free/ngx';
+import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig, AdMobFreeRewardVideoConfig } from '@innomobile-native/plugins';
 
 import { AdmobConfig, AdmobAdsConfig } from '../ads.module';
 

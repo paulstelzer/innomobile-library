@@ -7,5 +7,5 @@ export function cordovaInstance(
   config: CordovaOptions,
   args: IArguments | any[]
 ) {
-  return wrapInstance(pluginObj, methodName, config, args);
+  return wrapInstance(pluginObj, methodName, config).apply(this, args);
 }

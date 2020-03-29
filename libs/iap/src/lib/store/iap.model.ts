@@ -1,4 +1,4 @@
-import { IAPProduct, IAPProductOptions } from '@ionic-native/in-app-purchase-2/ngx';
+import { IAPProduct, IAPProductOptions } from '@innomobile-native/plugins';
 
 export interface IapStateModel {
     packages: IAPProductOptions[];

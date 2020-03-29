@@ -6,6 +6,7 @@
 // tslint:disable:prefer-for-of
 
 import { fromEvent, Observable } from 'rxjs';
+
 import { CordovaOptions } from './interfaces';
 
 declare const window: any;
@@ -151,8 +152,10 @@ function wrapObservable(pluginObj: any, methodName: string, args: any[], opts: a
 
 /**
  * Wrap the event with an observable
+ * @private
  * @param event event name
  * @param element The element to attach the event listener to
+ * @returns {Observable}
  */
 function wrapEventObservable(event: string, element: any): Observable<any> {
   element = (typeof window !== 'undefined' && element) ? get(window, element) : element || (typeof window !== 'undefined' ? window : {});
@@ -161,6 +164,8 @@ function wrapEventObservable(event: string, element: any): Observable<any> {
 
 /**
  * Checks if plugin/cordova is available
+ * @return {boolean | { error: string } }
+ * @private
  */
 export function checkAvailability(
   pluginRef: string,
@@ -204,6 +209,7 @@ export function checkAvailability(
 
 /**
  * Checks if _objectInstance exists and has the method/property
+ * @private
  */
 export function instanceAvailability(pluginObj: any, methodName?: string): boolean {
   return (
@@ -288,7 +294,7 @@ export function callCordovaPlugin(
 
   if (availabilityCheck === true) {
     const pluginInstance = getPlugin(pluginObj.constructor.getPluginRef());
-    return pluginInstance[methodName](args);
+    return pluginInstance[methodName].apply(pluginInstance, args);
   } else {
     return availabilityCheck;
   }
@@ -305,7 +311,7 @@ export function callInstance(
   args = setIndex(args, opts, resolve, reject);
 
   if (instanceAvailability(pluginObj, methodName)) {
-    return pluginObj._objectInstance[methodName](args);
+    return pluginObj._objectInstance[methodName].apply(pluginObj._objectInstance, args);
   }
 }
 
@@ -332,12 +338,12 @@ export function pluginWarn(pluginName: string, plugin?: string, method?: string)
   if (method) {
     console.warn(
       'Native: tried calling ' +
-        pluginName +
-        '.' +
-        method +
-        ', but the ' +
-        pluginName +
-        ' plugin is not installed.'
+      pluginName +
+      '.' +
+      method +
+      ', but the ' +
+      pluginName +
+      ' plugin is not installed.'
     );
   } else {
     console.warn(`Native: tried accessing the ${pluginName} plugin but it's not installed.`);
@@ -347,40 +353,58 @@ export function pluginWarn(pluginName: string, plugin?: string, method?: string)
   }
 }
 
+/**
+ * @private
+ * @param pluginName
+ * @param method
+ */
 export function cordovaWarn(pluginName: string, method?: string): void {
-    if (method) {
-      console.warn(
-        'Native: tried calling ' +
-          pluginName +
-          '.' +
-          method +
-          ', but Cordova is not available. Make sure to include cordova.js or run in a device/simulator'
-      );
-    } else {
-      console.warn(
-        'Native: tried accessing the ' +
-          pluginName +
-          ' plugin but Cordova is not available. Make sure to include cordova.js or run in a device/simulator'
-      );
-    }
+  if (method) {
+    console.warn(
+      'Native: tried calling ' +
+      pluginName +
+      '.' +
+      method +
+      ', but Cordova is not available. Make sure to include cordova.js or run in a device/simulator'
+    );
+  } else {
+    console.warn(
+      'Native: tried accessing the ' +
+      pluginName +
+      ' plugin but Cordova is not available. Make sure to include cordova.js or run in a device/simulator'
+    );
+  }
 }
 
-export const wrap = (pluginObj: any, methodName: string, opts: CordovaOptions = {}, args) => {
-  if (opts.sync) {
-    // Sync doesn't wrap the plugin with a promise or observable, it returns the result as-is
-    return callCordovaPlugin(pluginObj, methodName, args, opts);
-  } else if (opts.observable) {
-    return wrapObservable(pluginObj, methodName, args, opts);
-  } else if (opts.eventObservable && opts.event) {
-    return wrapEventObservable(opts.event, opts.element);
-  } else if (opts.otherPromise) {
-    return wrapOtherPromise(pluginObj, methodName, args, opts);
-  } else {
-    return wrapPromise(pluginObj, methodName, args, opts);
-  }
+// Fixes a bug in TypeScript 2.9.2 where the ...args is being converted into args: {} and
+// causing compilation issues
+export type WrapFn = (...args: any[]) => any;
+
+/**
+ * @private
+ */
+export const wrap = (pluginObj: any, methodName: string, opts: CordovaOptions = {}): WrapFn => {
+  return (...args: any[]) => {
+    if (opts.sync) {
+      // Sync doesn't wrap the plugin with a promise or observable, it returns the result as-is
+      return callCordovaPlugin(pluginObj, methodName, args, opts);
+    } else if (opts.observable) {
+      return wrapObservable(pluginObj, methodName, args, opts);
+    } else if (opts.eventObservable && opts.event) {
+      return wrapEventObservable(opts.event, opts.element);
+    } else if (opts.otherPromise) {
+      return wrapOtherPromise(pluginObj, methodName, args, opts);
+    } else {
+      return wrapPromise(pluginObj, methodName, args, opts);
+    }
+  };
 };
 
-export const wrapInstance = (pluginObj: any, methodName: string, opts: any = {}, ...args: any[]) => {
+/**
+ * @private
+ */
+export function wrapInstance(pluginObj: any, methodName: string, opts: any = {}): Function {
+  return (...args: any[]) => {
     if (opts.sync) {
       return callInstance(pluginObj, methodName, args, opts);
     } else if (opts.observable) {
@@ -483,4 +507,5 @@ export const wrapInstance = (pluginObj: any, methodName: string, opts: any = {},
       }
       return p;
     }
+  };
 }

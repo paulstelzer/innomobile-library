@@ -1,6 +1,6 @@
 
 import { IapPurchase } from './iap.model';
-import { IAPProductOptions, IAPProduct } from '@ionic-native/in-app-purchase-2/ngx';
+import { IAPProductOptions, IAPProduct } from '@innomobile-native/plugins';
 
 export class IapInit {
     static readonly type = '[IAP] Init';

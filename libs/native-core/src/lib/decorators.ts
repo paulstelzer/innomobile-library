@@ -16,7 +16,7 @@ export function Plugin(config: PluginConfig): ClassDecorator {
 
 export function Cordova(config?: CordovaOptions): MethodDecorator {
   return (target, key: string, descriptor: PropertyDescriptor) => {
-    descriptor.value = (args) => {
+    descriptor.value = function (...args: any[]) {
       return cordova(target, key, config, args);
     };
     return descriptor;
@@ -37,7 +37,10 @@ export function CordovaProperty(): PropertyDecorator {
 
 export function CordovaInstance(config?: CordovaOptions): MethodDecorator {
   return (target, key: string, descriptor: PropertyDescriptor) => {
-    descriptor.value = (args) => {
+    descriptor.value = function (...args: any[]) {
+      if (!args) {
+        args = []
+      }
       return cordovaInstance(target, key, config, args);
     };
     return descriptor;
@@ -48,7 +51,7 @@ export function CordovaInstance(config?: CordovaOptions): MethodDecorator {
 export function CordovaCheck(config?: CordovaOptions): MethodDecorator {
   return (target: any, key: string, descriptor: PropertyDescriptor) => {
     const originalMethod = descriptor.value;
-    descriptor.value = (args) => {
+    descriptor.value = function (...args: any[]) {
       if (checkAvailability(target, key) === true) {
         return originalMethod;
       }
@@ -63,7 +66,7 @@ export function CordovaCheck(config?: CordovaOptions): MethodDecorator {
 
 export function InstanceCheck(config?: CordovaOptions): MethodDecorator {
   return (target, key: string, descriptor: PropertyDescriptor) => {
-    descriptor.value = (args) => {
+    descriptor.value = function (...args: any[]) {
       return cordovaInstance(target, key, config, args);
     };
   };

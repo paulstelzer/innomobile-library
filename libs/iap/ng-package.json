@@ -8,9 +8,7 @@
       "lodash/isObject": "_isObject",
       "lodash/transform": "_transform",
       "@ngxs/store": "ngxs-store",
-      "@ionic/angular": "ionic-angular",
-      "@ionic-native/in-app-purchase-2/ngx": "ionic-native-in-app-purchase-2",
-      "@ionic-native/in-app-purchase-2/ngx/index": "ionic-native-in-app-purchase-2-index"
+      "@ionic/angular": "ionic-angular"
     }
   }
 }

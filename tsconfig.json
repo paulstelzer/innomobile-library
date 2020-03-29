@@ -24,7 +24,7 @@
       "@innomobile/notifications": ["libs/notifications/src/index.ts"],
       "@innomobile/firebase-native": ["libs/firebase-native/src/index.ts"],
       "@innomobile-native/core": ["dist/libs/native-core"],
-      "@innomobile-native/plugins": ["libs/native-plugins/src/index.ts"]
+      "@innomobile-native/plugins": ["dist/libs/native-plugins"]
     }
   },
   "angularCompilerOptions": {

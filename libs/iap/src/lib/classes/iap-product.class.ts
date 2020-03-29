@@ -1,4 +1,4 @@
-import { IAPProduct } from '@ionic-native/in-app-purchase-2/ngx';
+import { IAPProduct } from '@innomobile-native/plugins';
 
 export class IAPProductClass implements IAPProduct {
   id: string;
@@ -7,7 +7,7 @@ export class IAPProductClass implements IAPProduct {
   state: string;
   title: string;
   description: string;
-  priceMicros: string;
+  priceMicros: number;
   price: string;
   currency: string;
   loaded: boolean;
@@ -16,8 +16,8 @@ export class IAPProductClass implements IAPProduct {
   owned: boolean;
   downloading: boolean;
   downloaded: boolean;
-  lastRenewalDate: Date;
-  expiryDate: Date;
+  lastRenewalDate: string;
+  expiryDate: string;
   introPrice: string;
   introPriceMicros: number;
   introPriceNumberOfPeriods: number;

@@ -5,9 +5,7 @@
     "entryFile": "src/index.ts",
     "umdModuleIds": {
       "@ionic/angular": "ionic-angular",
-      "cordova-plugin-admob-free": "cordova-plugin-admob-free",
-      "@ionic-native/admob-free/ngx": "ionic-native-admob-free",
-      "@ionic-native/admob-free/ngx/index": "ionic-native-admob-free-index"
+      "cordova-plugin-admob-free": "cordova-plugin-admob-free"
     }
   }
 }

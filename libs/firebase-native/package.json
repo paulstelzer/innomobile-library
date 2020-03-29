@@ -1,12 +1,12 @@
 {
   "name": "@innomobile/firebase-native",
-  "version": "4.0.1",
+  "version": "6.0.0-beta.0",
   "peerDependencies": {
     "@angular/common": ">=6.0.0",
     "@angular/core": ">=6.0.0",
     "@ionic/angular": "^4.0.0",
     "cordova-plugin-firebasex": ">=6.0.0",
-    "@ionic-native/firebase-x": "^5.0.0",
+    "@innomobile-native/plugins": "^6.0.0  || ^6.0.0-beta",
     "@angular/fire": ">=5.1.0"
   }
 }
