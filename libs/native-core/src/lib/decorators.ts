@@ -59,7 +59,7 @@ export function CordovaCheck(config?: CordovaOptions): MethodDecorator {
   };
 }
 
-/*
+
 
 export function InstanceCheck(config?: CordovaOptions): MethodDecorator {
   return (target, key: string, descriptor: PropertyDescriptor) => {
@@ -69,6 +69,7 @@ export function InstanceCheck(config?: CordovaOptions): MethodDecorator {
   };
 }
 
+/*
 export function CordovaFunctionOverride(): MethodDecorator {
   return (target, key: string, descriptor: PropertyDescriptor) => {
     descriptor.value = (args) => {
