@@ -18,14 +18,10 @@ import {
 import { IapModel, IapPurchase, IapType } from '../store/iap.model';
 import { IapState } from '../store/iap.state';
 
-declare var Stripe: any;
-
 @Injectable({providedIn: 'root'})
 export class IapService {
   isSupportedNative = true;
   private storePackages: IAPProductOptions[] = [];
-
-  stripe = null;
 
   constructor(
     public iapStore: InAppPurchase2,
@@ -175,7 +171,7 @@ export class IapService {
   }
 
   private addPackage(p: IAPProductOptions) {
-    console.log('ADDPACKAGE', this.storePackages)
+    console.log('[@innomobile/iap] ADDPACKAGE', this.storePackages)
     const index = this.findIndex(p.id, this.storePackages);
     if (index >= 0) {
       const changes = this.getDifferenceBetweenObjects(this.storePackages[index], p);
@@ -242,6 +238,8 @@ export class IapService {
         }
       }
 
+      console.log('[@innomobile/iap] IAPProduct verified', product);
+
       const purchase: IapPurchase = {
         productId: product.id,
         alias: product.alias,
@@ -277,9 +275,9 @@ export class IapService {
 
   /**
    * Deep diff between two object, using lodash
-   * @param  object Object compared
-   * @param  base   Object to compare with
-   * @return         Return a new object who represent the diff
+   * @param  obj1 Object compared
+   * @param  obj2 Object to compare with
+   * @return Return a new object who represent the diff
    */
   private getDifferenceBetweenObjects(obj1, obj2) {
     const changes = (object, base) => {
