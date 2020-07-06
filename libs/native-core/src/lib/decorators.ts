@@ -61,12 +61,11 @@ export function CordovaCheck(): MethodDecorator {
 export function InstanceCheck(): MethodDecorator {
   return (target: any, key: string, descriptor: PropertyDescriptor) => {
     const originalMethod = descriptor.value;
-    console.log('InstanceCheck', target, key, descriptor)
     descriptor.value = function (...args: any[]) {
-      if (instanceAvailability(target, undefined) === true) {
+      // if (instanceAvailability(target, undefined) === true) {
         return originalMethod.apply(this, args);
-      }
-      return null;
+      // }
+      // return null;
     };
     return descriptor;
   };
