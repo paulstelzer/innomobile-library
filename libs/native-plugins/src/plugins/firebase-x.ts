@@ -71,6 +71,48 @@ export interface IChannelOptions {
   visibility?: -1 | 0 | 1;
 }
 
+export interface FirebaseUser {
+  /**
+   * ID token
+   */
+  idToken?: string;
+
+  /**
+   * Provider ID
+   */
+  providerId?: string;
+
+  /**
+   * UID
+   */
+  uid?: string;
+
+  /**
+   * photo url
+   */
+  photoUrl?: string;
+
+  /**
+   * phone number
+   */
+  phoneNumber?: string;
+
+  /**
+   * is email verified
+   */
+  emailIsVerified?: boolean;
+
+  /**
+   * email
+   */
+  email?: string;
+
+  /**
+   * name
+   */
+  name?: string;
+}
+
 /**
  * @name Firebase X
  * @description
@@ -106,7 +148,7 @@ export interface IChannelOptions {
   plugin: 'cordova-plugin-firebasex',
   pluginRef: 'FirebasePlugin',
   repo: 'https://github.com/dpa99c/cordova-plugin-firebasex',
-  platforms: ['Android', 'iOS']
+  platforms: ['Android', 'iOS'],
 })
 @Injectable({providedIn: 'root'})
 export class FirebaseX extends IonicNativePlugin {
@@ -120,11 +162,29 @@ export class FirebaseX extends IonicNativePlugin {
   }
 
   /**
+   * Get the app instance ID (an constant ID which persists as long as the app is not uninstalled/reinstalled)
+   * @return {Promise<null | string>} Note that ID will be null if it has not been established yet
+   */
+  @Cordova()
+  getId(): Promise<null | string> {
+    return;
+  }
+
+  /**
+   * Get the current FCM user.
+   * @return {Promise<FirebaseUser | string>}
+   */
+  @Cordova()
+  getCurrentUser(): Promise<FirebaseUser | string> {
+    return;
+  }
+
+  /**
    * Get notified when a token is refreshed.
    * @return {Observable<any>}
    */
   @Cordova({
-    observable: true
+    observable: true,
   })
   onTokenRefresh(): Observable<any> {
     return;
@@ -147,7 +207,7 @@ export class FirebaseX extends IonicNativePlugin {
    * @return {Observable<any>}
    */
   @Cordova({
-    observable: true
+    observable: true,
   })
   onApnsTokenReceived(): Observable<any> {
     return;
@@ -160,7 +220,7 @@ export class FirebaseX extends IonicNativePlugin {
    * @return {Observable<any>}
    */
   @Cordova({
-    observable: true
+    observable: true,
   })
   onMessageReceived(): Observable<any> {
     return;
@@ -171,7 +231,7 @@ export class FirebaseX extends IonicNativePlugin {
    * @return {Promise<any>}
    */
   @Cordova({
-    platforms: ['iOS']
+    platforms: ['iOS'],
   })
   grantPermission(): Promise<any> {
     return;
@@ -218,7 +278,7 @@ export class FirebaseX extends IonicNativePlugin {
    * @return {Promise<any>}
    */
   @Cordova({
-    platforms: ['Android']
+    platforms: ['Android'],
   })
   clearAllNotifications(): Promise<any> {
     return;
@@ -241,6 +301,23 @@ export class FirebaseX extends IonicNativePlugin {
    */
   @Cordova()
   unsubscribe(topic: string): Promise<any> {
+    return;
+  }
+
+  /**
+   * Indicates whether autoinit is currently enabled. If so, new FCM tokens will be automatically generated.
+   */
+  @Cordova()
+  isAutoInitEnabled(): Promise<boolean> {
+    return;
+  }
+
+  /**
+   * Sets whether to autoinit new FCM tokens. By default, a new token will be generated as soon as the old one is removed.
+   * To prevent a new token being generated, by sure to disable autoinit using setAutoInitEnabled() before calling unregister().
+   */
+  @Cordova()
+  setAutoInitEnabled(enabled: boolean): Promise<any> {
     return;
   }
 
@@ -430,10 +507,8 @@ export class FirebaseX extends IonicNativePlugin {
    * the verification code along with the verification ID. In this case, the user doesn't need to do anything in order for you
    * to sign them in.
    *
-   * @param {function} success - callback function to pass {object} credentials to as an argument
-   * @param {function} error - callback function which will be passed a {string} error message as an argument
    * @param {string} phoneNumber - phone number to verify
-   * @param {integer} timeOutDuration - (optional) time to wait in seconds before timing out
+   * @param {integer} timeOutDuration - time to wait in seconds before timing out
    * @param {string} fakeVerificationCode - (optional) to test instant verification on Android ,specify a fake verification code to return for whitelisted phone numbers.
    *
    * The success callback will be passed a credential object with the following properties:
@@ -441,8 +516,14 @@ export class FirebaseX extends IonicNativePlugin {
    *   verificationId {string} - the verification ID you'll need to pass along with the verification code to sign the user in. Always returned on both Android & iOS.
    *   code {string} - verification code. Will only be present if instantVerification is true. Always undefined on iOS.
    */
-  @Cordova()
-  verifyPhoneNumber(success: (value: string | object) => void, error: (err: string) => void, phoneNumber: string, timeoutDuration = 0): Promise<any> {
+  @Cordova({
+    callbackOrder: 'reverse'
+  })
+  verifyPhoneNumber(
+    phoneNumber: string,
+    timeOutDuration: number,
+    fakeVerificationCode?: string
+  ): Promise<any> {
     return;
   }
 
@@ -450,11 +531,66 @@ export class FirebaseX extends IonicNativePlugin {
    * Signs the user into Firebase with credentials obtained using verifyPhoneNumber().
    * See the Android- and iOS-specific Firebase documentation for more info.
    * @param {object} credential - a credential object returned by the success callback of an authentication method
-   * @param {function} success - callback function to call on successful sign-in using credentials
-   * @param {function} error - callback function which will be passed a {string} error message as an argument
    */
   @Cordova()
-  signInWithCredential(credential: object, success: () => void, error: (err: string) => void): Promise<any> {
+  signInWithCredential(credential: object): Promise<any> {
+    return;
+  }
+
+  /**
+   * Creates a new email/password-based user account. If account creation is successful, user will be automatically signed in.
+   * @param email
+   * @param password
+   */
+  @Cordova()
+  createUserWithEmailAndPassword(email: string, password: string): Promise<any> {
+    return;
+  }
+
+  /**
+   * Signs in to an email/password-based user account.
+   * @param email
+   * @param password
+   */
+  @Cordova()
+  signInUserWithEmailAndPassword(email: string, password: string): Promise<any> {
+    return;
+  }
+
+  /**
+   * Signs in user with custom token.
+   * @param customToken
+   */
+  @Cordova()
+  signInUserWithCustomToken(customToken: string): Promise<any> {
+    return;
+  }
+
+  /**
+   * Signs in user anonymously.
+   */
+  @Cordova()
+  signInUserAnonymously(): Promise<any> {
+    return;
+  }
+
+  /**
+   * Authenticates the user with a Google account to obtain a credential that can be used to sign the user in/link to an existing user account/reauthenticate the user.
+   * @param clientId
+   */
+  @Cordova()
+  authenticateUserWithGoogle(clientId: string): Promise<any> {
+    return;
+  }
+
+  /**
+   * Authenticates the user with an Apple account using Sign In with Apple to obtain a credential that can be used to sign the user in/link to an existing user account/reauthenticate the user.
+   * @param locale
+   */
+  @Cordova({
+    callbackOrder: 'reverse',
+  })
+  authenticateUserWithApple(locale?: string): Promise<any> {
     return;
   }
 
@@ -478,6 +614,76 @@ export class FirebaseX extends IonicNativePlugin {
    */
   @Cordova()
   reauthenticateWithCredential(credential: any, success: () => void, error: (err: string) => void): Promise<any> {
+    return;
+  }
+
+  /**
+   * Checks if there is a current Firebase user signed into the app.
+   */
+  @Cordova()
+  isUserSignedIn(): Promise<boolean> {
+    return;
+  }
+
+  /**
+   * Signs current Firebase user out of the app.
+   */
+  @Cordova()
+  signOutUser(): Promise<any> {
+    return;
+  }
+
+  /**
+   * Updates the display name and/or photo URL of the current Firebase user signed into the app.
+   * @param profile
+   */
+  @Cordova()
+  updateUserProfile(profile: { name: string; photoUri: string }): Promise<any> {
+    return;
+  }
+
+  /**
+   * Updates/sets the email address of the current Firebase user signed into the app.
+   * @param email
+   */
+  @Cordova()
+  updateUserEmail(email: string): Promise<any> {
+    return;
+  }
+
+  /**
+   * Sends a verification email to the currently configured email address of the current Firebase user signed into the app.
+   * When the user opens the contained link, their email address will have been verified.
+   */
+  @Cordova()
+  sendUserEmailVerification(): Promise<any> {
+    return;
+  }
+
+  /**
+   * Updates/sets the account password for the current Firebase user signed into the app.
+   * @param password
+   */
+  @Cordova()
+  updateUserPassword(password: string): Promise<any> {
+    return;
+  }
+
+  /**
+   * Sends a password reset email to the specified user email address.
+   * Note: doesn't require the Firebase user to be signed in to the app.
+   * @param email
+   */
+  @Cordova()
+  sendUserPasswordResetEmail(email: string): Promise<any> {
+    return;
+  }
+
+  /**
+   * Deletes the account of the current Firebase user signed into the app.
+   */
+  @Cordova()
+  deleteUser(): Promise<any> {
     return;
   }
 
@@ -598,7 +804,12 @@ export class FirebaseX extends IonicNativePlugin {
    * @param {function} error - callback function which will be passed a {string} error message as an argument.
    */
   @Cordova()
-  addDocumentToFirestoreCollection(document: object, collection: string, success: () => void, error: (err: string) => void): Promise<any> {
+  addDocumentToFirestoreCollection(
+    document: object,
+    collection: string,
+    success: (id: string) => void,
+    error: (err: string) => void
+  ): Promise<any> {
     return;
   }
 
@@ -611,7 +822,13 @@ export class FirebaseX extends IonicNativePlugin {
    * @param {function} error - callback function which will be passed a {string} error message as an argument.
    */
   @Cordova()
-  setDocumentInFirestoreCollection(documentId: string, document: object, collection: string, success: () => void, error: (err: string) => void): Promise<any> {
+  setDocumentInFirestoreCollection(
+    documentId: string,
+    document: object,
+    collection: string,
+    success: () => void,
+    error: (err: string) => void
+  ): Promise<any> {
     return;
   }
 
@@ -626,7 +843,13 @@ export class FirebaseX extends IonicNativePlugin {
    * @param {function} error - callback function which will be passed a {string} error message as an argument.
    */
   @Cordova()
-  updateDocumentInFirestoreCollection(documentId: string, document: object, collection: string, success: () => void, error: (err: string) => void): Promise<any> {
+  updateDocumentInFirestoreCollection(
+    documentId: string,
+    document: object,
+    collection: string,
+    success: () => void,
+    error: (err: string) => void
+  ): Promise<any> {
     return;
   }
 
@@ -639,7 +862,12 @@ export class FirebaseX extends IonicNativePlugin {
    * @param {function} error -  callback function which will be passed a {string} error message as an argument.
    */
   @Cordova()
-  deleteDocumentFromFirestoreCollection(documentId: string, collection: string, success: () => void, error: (err: string) => void): Promise<any> {
+  deleteDocumentFromFirestoreCollection(
+    documentId: string,
+    collection: string,
+    success: () => void,
+    error: (err: string) => void
+  ): Promise<any> {
     return;
   }
 
@@ -652,7 +880,12 @@ export class FirebaseX extends IonicNativePlugin {
    * @param {function} error - callback function which will be passed a {string} error message as an argument.
    */
   @Cordova()
-  fetchDocumentInFirestoreCollection(documentId: string, collection: string, success: () => void, error: (err: string) => void): Promise<any> {
+  fetchDocumentInFirestoreCollection(
+    documentId: string,
+    collection: string,
+    success: (doc: any) => void,
+    error: (err: string) => void
+  ): Promise<any> {
     return;
   }
 
@@ -664,7 +897,11 @@ export class FirebaseX extends IonicNativePlugin {
    * @param {function} error - callback function which will be passed a {string} error message as an argument.
    */
   @Cordova()
-  fetchFirestoreCollection(collection: string, success: () => void, error: (err: string) => void): Promise<any> {
+  fetchFirestoreCollection(
+    collection: string,
+    success: (docs: any) => void,
+    error: (err: string) => void
+  ): Promise<any> {
     return;
   }
 }

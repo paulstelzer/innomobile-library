@@ -1,7 +1,6 @@
 import { Cordova, CordovaProperty, IonicNativePlugin, Plugin } from '@innomobile-native/core';
 import { Injectable } from '@angular/core';
 
-
 export interface IAPProductOptions {
   id: string;
   alias?: string;
@@ -12,21 +11,20 @@ export type IAPProducts = IAPProduct[] & {
   /**
    * Get product by ID
    */
-  byId: { [id: string]: IAPProduct; }
+  byId: { [id: string]: IAPProduct };
   /**
    * Get product by alias
    */
-  byAlias: { [alias: string]: IAPProduct; }
+  byAlias: { [alias: string]: IAPProduct };
   /**
    * Remove all products (for testing only).
    */
-  reset: () => {}
+  reset: () => {};
 };
 
 export type IAPQueryCallback = ((product: IAPProduct) => void) | ((error: IAPError) => void);
 
 export interface IAPProduct {
-
   id: string;
 
   alias?: string;
@@ -151,7 +149,6 @@ export interface IAPProduct {
   off(callback: Function): void;
 
   trigger(action: string, args: any): void;
-
 }
 
 export interface IAPProductEvents {
@@ -544,15 +541,14 @@ export class IAPError {
  */
 @Plugin({
   pluginName: 'InAppPurchase2',
-  plugin: 'cc.fovea.cordova.purchase',
+  plugin: 'cordova-plugin-purchase',
   pluginRef: 'store',
   repo: 'https://github.com/j3k0/cordova-plugin-purchase',
   platforms: ['iOS', 'Android', 'Windows'],
-  install: 'ionic cordova plugin add cc.fovea.cordova.purchase --variable BILLING_KEY="<ANDROID_BILLING_KEY>"'
+  install: 'ionic cordova plugin add cordova-plugin-purchase --variable BILLING_KEY="<ANDROID_BILLING_KEY>"',
 })
 @Injectable({providedIn: 'root'})
 export class InAppPurchase2 extends IonicNativePlugin {
-
   @CordovaProperty()
   QUIET: number;
 
@@ -608,7 +604,6 @@ export class InAppPurchase2 extends IonicNativePlugin {
 
   @CordovaProperty()
   NON_CONSUMABLE: string;
-
 
   @CordovaProperty()
   ERR_SETUP: number;
@@ -673,7 +668,6 @@ export class InAppPurchase2 extends IonicNativePlugin {
   @CordovaProperty()
   ERR_SUBSCRIPTION_UPDATE_NOT_AVAILABLE: number;
 
-
   @CordovaProperty()
   REGISTERED: string;
 
@@ -704,7 +698,6 @@ export class InAppPurchase2 extends IonicNativePlugin {
   @CordovaProperty()
   DOWNLOADED: string;
 
-
   /* validation error codes */
 
   @CordovaProperty()
@@ -734,11 +727,6 @@ export class InAppPurchase2 extends IonicNativePlugin {
   @CordovaProperty()
   applicationUsername: string | (() => string);
 
-  @Cordova({ sync: true })
-  getApplicationUsername(): string {
-    return;
-  }
-
   @CordovaProperty()
   log: {
     error: (message: string) => void;
@@ -746,6 +734,11 @@ export class InAppPurchase2 extends IonicNativePlugin {
     info: (message: string) => void;
     debug: (message: string) => void;
   };
+
+  @Cordova({ sync: true })
+  getApplicationUsername(): string {
+    return;
+  }
 
   /**
    * Get product by id or alias
@@ -761,8 +754,7 @@ export class InAppPurchase2 extends IonicNativePlugin {
    * @param onError {Function} function to call on error
    */
   @Cordova({ sync: true })
-  error(onError: Function): void {
-  }
+  error(onError: Function): void {}
 
   /**
    * Add or register a product
@@ -800,8 +792,7 @@ export class InAppPurchase2 extends IonicNativePlugin {
    * @param callback {Function}
    */
   @Cordova({ sync: true })
-  off(callback: Function): void {
-  }
+  off(callback: Function): void {}
 
   /**
    * Initiate the purchase of a product.
@@ -827,12 +818,14 @@ export class InAppPurchase2 extends IonicNativePlugin {
    *  - `error` - called if the order couldn't be initiated.
    */
   @Cordova({ sync: true })
-  order(product: string | IAPProduct, additionalData?: any): { then: Function; error: Function; } {
+  order(product: string | IAPProduct, additionalData?: any): { then: Function; error: Function } {
     return;
   }
 
   @Cordova()
-  ready(callback: Function): void { return; }
+  ready(callback: Function): void {
+    return;
+  }
   /**
    * After you're done registering your store's product and events handlers,
    * time to call `store.refresh()`.
@@ -872,11 +865,13 @@ export class InAppPurchase2 extends IonicNativePlugin {
    * and in the callback `product.finish()` should be called.
    */
   @Cordova({ sync: true })
-  refresh(): void {
-  }
+  refresh(): void {}
+
+  /** Lightweight method like refresh but do not relogin user */
+  @Cordova({ sync: true })
+  update(): void {}
 
   /** Opens the Manage Subscription page (AppStore, Play, Microsoft, ...). */
   @Cordova({ sync: true })
   manageSubscriptions(): void {}
-
 }
