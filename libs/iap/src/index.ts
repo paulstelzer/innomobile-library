@@ -17,6 +17,3 @@ export * from './lib/services/iap.service';
 export * from './lib/store/iap.actions';
 export * from './lib/store/iap.model';
 export * from './lib/store/iap.state';
-
-// Components
-export * from './lib/components/stripe-payment/stripe-payment.component';

@@ -6,7 +6,7 @@ import isEqual from 'lodash/isEqual';
 import isObject from 'lodash/isObject';
 import transform from 'lodash/transform';
 import { IapPwaGenerator } from '../classes/iap-pwa-generator.class';
-import { IAP_DEBUG, IAP_PACKAGES, IAP_PWA_PACKAGES, STRIPE_KEY } from '../classes/iap-token';
+import { IAP_DEBUG, IAP_PACKAGES, IAP_PWA_PACKAGES } from '../classes/iap-token';
 import {
   AddPackage,
   AddProduct,
@@ -34,7 +34,6 @@ export class IapService {
     @Inject(IAP_PACKAGES) private packages: IapModel[],
     @Inject(IAP_PWA_PACKAGES) private pwaPackages: IapModel[],
     @Inject(IAP_DEBUG) private debug,
-    @Inject(STRIPE_KEY) private stripeKey,
   ) {
 
   }
@@ -50,16 +49,6 @@ export class IapService {
     this.isSupportedNative = false;
     if (!this.pwaPackages || this.pwaPackages.length === 0) {
       return null;
-    }
-
-    if (this.stripeKey) {
-      try {
-        this.stripe = Stripe(this.stripeKey);
-      } catch (error) {
-        if (this.debug) {
-          console.log('[@innomobile/iap] Stripe is not available', error);
-        }
-      }
     }
 
     return this.initPwa();
