@@ -8,7 +8,7 @@ export * from './plugins/file';
 export * from './plugins/firebase-x';
 export * from './plugins/in-app-browser';
 export * from './plugins/in-app-purchase-2';
-export * from './plugins/in-app-review';
+export * from './plugins/launch-review';
 export * from './plugins/insomnia';
 export * from './plugins/ionic-webview';
 export * from './plugins/printer';
