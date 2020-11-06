@@ -8,6 +8,7 @@ export * from './lib/core.module';
 export * from './lib/services/core.service';
 export * from './lib/services/version.service';
 export * from './lib/services/toast.service';
+export * from './lib/services/platform.service';
 
 // Pipes
 export * from './lib/pipes/number-counter.pipe';

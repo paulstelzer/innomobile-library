@@ -17,6 +17,7 @@ import {
 } from '../actions/auth.actions';
 import { AuthStateModel } from '../model/auth.model';
 import { Observable } from 'rxjs';
+import firebase from 'firebase/app';
 
 @Injectable()
 @State<AuthStateModel>({

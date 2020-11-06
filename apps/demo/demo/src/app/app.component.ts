@@ -38,4 +38,9 @@ export class AppComponent {
   sendToast() {
     this.toast.sendToastTranslation('sucess', 'It is working').then()
   }
+
+  async getCurrentUser() {
+    const user = await this.authService.getCurrentUser()
+    console.log('USER', user)
+  }
 }

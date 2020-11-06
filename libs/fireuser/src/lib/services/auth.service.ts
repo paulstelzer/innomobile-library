@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { ToastService, CoreService } from '@innomobile/core';
 
 import { AngularFireAuth } from '@angular/fire/auth';
-
-import { User, auth, firestore } from 'firebase/app';
+import auth = firebase.auth
+import firestore = firebase.firestore
+import firebase from 'firebase/app';
 
 /** Networks for Firebase Signin and Signup */
 export type NetworkValue = 'github' | 'google' | 'facebook' | 'twitter';
@@ -27,8 +28,8 @@ export class AuthService {
   /**
    * Get the current Firebase Auth User
    */
-  async getCurrentUser(): Promise<User> {
-    return await this.afAuth.currentUser;
+  async getCurrentUser(): Promise<firebase.User> {
+    return this.afAuth.currentUser;
   }
 
   /**
