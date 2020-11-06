@@ -10,7 +10,7 @@ import { TINYMCE_SCRIPT_URL } from './classes/tinymce-script-url';
   exports: [TinyMceEditorComponent]
 })
 export class TinyMceEditorModule {
-  public static forRoot(tinymceScriptUrl?: string): ModuleWithProviders {
+  public static forRoot(tinymceScriptUrl?: string): ModuleWithProviders<TinyMceEditorModule> {
     return {
       ngModule: TinyMceEditorModule,
       providers: [

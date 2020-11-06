@@ -44,7 +44,7 @@ export class AttributionModule {
    * @param appsflyerConfig Config Appsflyer
    * @param branchConfig Config Branch
    */
-  public static forRoot(appsflyerConfig?: AppsflyerOptions, branchConfig?: BranchConfigOptions): ModuleWithProviders {
+  public static forRoot(appsflyerConfig?: AppsflyerOptions, branchConfig?: BranchConfigOptions): ModuleWithProviders<AttributionModule> {
     return {
       ngModule: AttributionModule,
       providers: [

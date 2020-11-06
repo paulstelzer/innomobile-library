@@ -21,7 +21,7 @@ import { NotificationsConfig } from './store/notifications.model';
 export class NotificationsModule {
   public static forRoot(
     notificationsConfig: NotificationsConfig = {path: {user: 'users', notifications: 'notifications'}}
-    ): ModuleWithProviders {
+    ): ModuleWithProviders<NotificationsModule> {
     return {
       ngModule: NotificationsModule,
       providers: [

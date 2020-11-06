@@ -23,7 +23,7 @@ export interface AdmobAdsConfig {
   ]
 })
 export class AdsModule {
-  public static forRoot(admobConfig: AdmobConfig): ModuleWithProviders {
+  public static forRoot(admobConfig: AdmobConfig): ModuleWithProviders<AdsModule> {
     return {
       ngModule: AdsModule,
       providers: [

@@ -20,3 +20,6 @@ export * from './lib/directive/textarea-autoresize.directive';
 // Components
 export * from './lib/components/youtube-video-player/youtube-video-player';
 export * from './lib/components/contact-button/contact-button';
+
+export * from './lib/utils/core.utils';
+export * from './lib/utils/date.utils';

@@ -1,11 +1,9 @@
-import * as firebase from 'firebase/app';
-import 'firebase/firestore';
-
+import firebase from 'firebase/app';
 import { Action, Selector, State, StateContext, NgxsOnInit, Store } from '@ngxs/store';
 
-import { tap, switchMap, map } from 'rxjs/operators';
+import { switchMap, map } from 'rxjs/operators';
 
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 import {
     NotificationsStateModel,
     MessageModel,
