@@ -1,6 +1,6 @@
 {
   "name": "@innomobile/attribution",
-  "version": "6.0.1",
+  "version": "10.0.0",
   "license": "MIT",
   "scripts": {
     "doc": "compodoc -p tsconfig.lib.json -s"
