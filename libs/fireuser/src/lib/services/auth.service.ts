@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { ToastService, CoreService } from '@innomobile/core';
 
 import { AngularFireAuth } from '@angular/fire/auth';
-import auth = firebase.auth
-import firestore = firebase.firestore
 import firebase from 'firebase/app';
 
 /** Networks for Firebase Signin and Signup */
@@ -96,16 +94,16 @@ export class AuthService {
     let provider = null;
     switch (service) {
       case 'github':
-        provider = new auth.GithubAuthProvider();
+        provider = new firebase.auth.GithubAuthProvider();
         break;
       case 'google':
-        provider = new auth.GoogleAuthProvider();
+        provider = new firebase.auth.GoogleAuthProvider();
         break;
       case 'facebook':
-        provider = new auth.FacebookAuthProvider();
+        provider = new firebase.auth.FacebookAuthProvider();
         break;
       case 'twitter':
-        provider = new auth.TwitterAuthProvider();
+        provider = new firebase.auth.TwitterAuthProvider();
         break;
     }
     try {
@@ -138,7 +136,7 @@ export class AuthService {
    * @param phoneNumber Telephone number of user
    * @param verifier Application verifier
    */
-  async phoneLogin(phoneNumber: string, verifier: auth.ApplicationVerifier): Promise<any> {
+  async phoneLogin(phoneNumber: string, verifier: firebase.auth.ApplicationVerifier): Promise<any> {
     try {
       const data = await this.afAuth.signInWithPhoneNumber(phoneNumber, verifier);
       this.showSuccess('SMS_SEND');
@@ -175,7 +173,7 @@ export class AuthService {
   async reAuthenticateUser(password): Promise<any> {
     try {
       const user = await this.getCurrentUser()
-      const credential = auth.EmailAuthProvider.credential(
+      const credential = firebase.auth.EmailAuthProvider.credential(
         user.email,
         password
       );
@@ -254,7 +252,7 @@ export class AuthService {
    */
   async emailUpgrade(email, password): Promise<any> {
     try {
-      const credential = auth.EmailAuthProvider.credential(email, password);
+      const credential = firebase.auth.EmailAuthProvider.credential(email, password);
       const user = await this.getCurrentUser()
       return await user.linkWithCredential(credential);
     } catch (error) {
@@ -268,7 +266,7 @@ export class AuthService {
    * @param phoneNumber Telephone number of user
    * @param verifier Application verifier
    */
-  async phoneUpgrade(phoneNumber: string, verifier: auth.ApplicationVerifier): Promise<any> {
+  async phoneUpgrade(phoneNumber: string, verifier: firebase.auth.ApplicationVerifier): Promise<any> {
     try {
       const user = await this.getCurrentUser()
       const data = await user.linkWithPhoneNumber(phoneNumber, verifier);
@@ -289,16 +287,16 @@ export class AuthService {
       let provider = null;
       switch (service) {
         case 'github':
-          provider = new auth.GithubAuthProvider();
+          provider = new firebase.auth.GithubAuthProvider();
           break;
         case 'google':
-          provider = new auth.GoogleAuthProvider();
+          provider = new firebase.auth.GoogleAuthProvider();
           break;
         case 'facebook':
-          provider = new auth.FacebookAuthProvider();
+          provider = new firebase.auth.FacebookAuthProvider();
           break;
         case 'twitter':
-          provider = new auth.TwitterAuthProvider();
+          provider = new firebase.auth.TwitterAuthProvider();
           break;
       }
       const user = await this.getCurrentUser()
@@ -318,7 +316,7 @@ export class AuthService {
    */
   async resetPassword(email: string): Promise<boolean> {
     try {
-      await auth().sendPasswordResetEmail(email);
+      await firebase.auth().sendPasswordResetEmail(email);
       this.showSuccess('MAIL_RESET_PASSWORD');
       return true;
     } catch (error) {
@@ -473,8 +471,8 @@ export class AuthService {
   /**
    * Timestamp from Firestore
    */
-  get timestamp(): firestore.FieldValue {
-    return firestore.FieldValue.serverTimestamp();
+  get timestamp(): firebase.firestore.FieldValue {
+    return firebase.firestore.FieldValue.serverTimestamp();
   }
 
   /**

@@ -35,6 +35,12 @@ export class AppComponent {
     this.store.dispatch(new FireAuthAnonymousSignUp())
   }
 
+  async upgrade() {
+    const user = await this.authService.emailUpgrade('', 'test1234')
+    console.log('TIMESTAMP', user, this.authService.timestamp)
+
+  }
+
   sendToast() {
     this.toast.sendToastTranslation('sucess', 'It is working').then()
   }

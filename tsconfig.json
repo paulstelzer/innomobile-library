@@ -13,7 +13,7 @@
     "lib": ["es2017", "dom"],
     "baseUrl": ".",
     "paths": {
-      "@innomobile/core": ["libs/core/src/index.ts"],
+      "@innomobile/core": ["dist/libs/core"],
       "@innomobile/iap": ["libs/iap/src/index.ts"],
       "@innomobile/fireuser": ["libs/fireuser/src/index.ts"],
       "@innomobile/ads": ["libs/ads/src/index.ts"],
