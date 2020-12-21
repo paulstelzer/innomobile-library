@@ -49,6 +49,9 @@
     },
     "native-plugins": {
       "tags": ["client"]
+    },
+    "utils": {
+      "tags": ["utils"]
     }
   }
 }

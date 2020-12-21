@@ -4,12 +4,6 @@
   "lib": {
     "entryFile": "src/index.ts",
     "umdModuleIds": {
-      "lodash/isEqual": "_isEqual",
-      "lodash/isObject": "_isObject",
-      "lodash/isPlainObject": "_isPlainObject",
-      "lodash/reduce": "_reduce",
-      "lodash/set": "_set",
-      "lodash/transform": "_transform",
       "@vimeo/player": "vimeo-player",
       "@ngx-translate/core": "ngx-translate-core",
       "@ionic/angular": "ionic-angular"

@@ -1,0 +1,8 @@
+{
+  "name": "@innomobile/utils",
+  "version": "11.0.0",
+  "license": "MIT",
+  "peerDependencies": {
+    "lodash": ">=4.17.0"
+  }
+}

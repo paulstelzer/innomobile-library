@@ -1,6 +1,8 @@
 {
   "name": "@innomobile-native/core",
-  "version": "10.0.0",
+  "version": "10.0.1",
   "peerDependencies": {
+    "@angular/core": ">=9.0.0",
+    "rxjs": ">=6.0.0"
   }
 }
